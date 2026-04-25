@@ -48,7 +48,7 @@ export function QuoteSection() {
             Get a free quote
           </span>
           <h2 className="section-title section-title-light">
-            A fixed price in your inbox by <em className="hl-orange" style={{ color: "var(--orange-2)" }}>tomorrow</em>.
+            A <em className="hl-orange" style={{ color: "var(--orange-2)" }}>fixed price</em>, no hidden fees.
           </h2>
           <p className="quote-blurb">
             Quick and simple. No pushy follow-ups, no hidden
@@ -59,8 +59,8 @@ export function QuoteSection() {
             <div className="qb-item">
               <span className="qb-icon">✓</span>
               <div>
-                <strong>24-hour turnaround</strong>
-                <span>Quote back by end of next business day.</span>
+                <strong>Fast response</strong>
+                <span>We&rsquo;ll get back to you as quickly as possible — usually within one business day.</span>
               </div>
             </div>
             <div className="qb-item">

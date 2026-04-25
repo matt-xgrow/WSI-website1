@@ -3,17 +3,18 @@ import { site } from "@/lib/site";
 
 export function Footer() {
   return (
-    <footer className="footer">
+    <>
+    <div className="footer-cta-strip">
       <div className="footer-cta">
         <div>
-          <div className="eyebrow eyebrow-light">
+          <div className="eyebrow">
             <span className="eyebrow-line" />
             Ready when you are
           </div>
-          <h3 className="footer-cta-title">Let&rsquo;s make it look new again.</h3>
+          <h3 className="footer-cta-title-dark">Let&rsquo;s make it look new again.</h3>
         </div>
         <div className="footer-cta-actions">
-          <a href={site.phoneHref} className="btn btn-ghost-light btn-lg">
+          <a href={site.phoneHref} className="btn btn-ghost btn-lg">
             Call {site.phoneDisplay}
           </a>
           <a href="/#quote" className="btn btn-orange btn-lg">
@@ -21,6 +22,8 @@ export function Footer() {
           </a>
         </div>
       </div>
+    </div>
+    <footer className="footer">
 
       <div className="footer-grid">
         <div className="footer-col footer-col-wide">
@@ -98,5 +101,6 @@ export function Footer() {
         </div>
       </div>
     </footer>
+    </>
   );
 }

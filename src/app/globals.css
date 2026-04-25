@@ -266,6 +266,14 @@ img, svg { display: block; max-width: 100%; }
   box-shadow: 0 20px 60px -20px oklch(0.22 0.04 250 / 0.25);
   animation: slideDown 0.18s ease-out;
 }
+.dropdown-panel::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: 0;
+  right: 0;
+  height: 15px;
+}
 .dropdown-panel-sm { min-width: 360px; }
 @keyframes slideDown {
   from { opacity: 0; transform: translateY(-6px); }
@@ -1112,6 +1120,11 @@ img, svg { display: block; max-width: 100%; }
 
 /* ── Footer ─────────────────────────────────────────────────────────────── */
 
+.footer-cta-strip {
+  background: var(--warm-0);
+  padding: 0 var(--pad);
+  border-top: 1px solid var(--line);
+}
 .footer {
   background: var(--navy-ink);
   color: var(--warm-2);
@@ -1135,6 +1148,15 @@ img, svg { display: block; max-width: 100%; }
   line-height: 1;
   letter-spacing: -0.025em;
   color: var(--warm-0);
+  margin: 12px 0 0;
+}
+.footer-cta-title-dark {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1;
+  letter-spacing: -0.025em;
+  color: var(--navy-ink);
   margin: 12px 0 0;
 }
 .footer-cta-actions { display: flex; gap: 12px; flex-wrap: wrap; }

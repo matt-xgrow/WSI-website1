@@ -8,8 +8,8 @@ import { ArrowRightIcon, PhoneIcon, StarIcon } from "./icons";
 const HERO_SERVICES = [
   { name: "House Washing", surface: "Render, brick, weatherboard", img: "/images/residential-aerial.jpg" },
   { name: "Pressure Washing", surface: "Driveways, paths, concrete", img: "/images/commercial-pressure.jpg" },
-  { name: "Soft Washing", surface: "Render, paint, delicate surfaces", img: "/images/glass-wash.jpg" },
-  { name: "Commercial Cleaning", surface: "Offices, strata, facades", img: "/images/commercial-windows.jpg" },
+  { name: "Window Cleaning", surface: "Glass, frames, balustrades", img: "/images/commercial-windows.jpg" },
+  { name: "Commercial Cleaning", surface: "Offices, strata, facades", img: "/images/glass-wash.jpg" },
 ];
 
 export function Hero() {
@@ -83,11 +83,9 @@ export function Hero() {
               ))}
               <div className="hero-photo-overlay">
                 <div className="overlay-card">
-                  <div className="overlay-title">{HERO_SERVICES[active].name} · Hamilton, QLD</div>
+                  <div className="overlay-title">{HERO_SERVICES[active].name} · Brisbane, QLD</div>
                   <div className="overlay-meta">
                     <span>{HERO_SERVICES[active].surface}</span>
-                    <span className="overlay-sep">·</span>
-                    <span>2h 40m</span>
                   </div>
                 </div>
               </div>
