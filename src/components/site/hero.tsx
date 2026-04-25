@@ -22,13 +22,13 @@ export function Hero() {
         <div className="hero-left">
           <div className="hero-eyebrow">
             <span className="eyebrow-dot" />
-            <span>Est. 2014 · QLD + NSW · ABN verified</span>
+            <span>Est. 2014 · Brisbane · QLD · ABN verified</span>
           </div>
 
           <h1 className="hero-title">
-            <span className="title-line">Exterior cleaning,</span>
+            <span className="title-line">Your home deserves</span>
             <span className="title-line">
-              <em className="hl-orange">refined</em> to a science.
+              to look this <em className="hl-orange">clean.</em>
             </span>
           </h1>
 
