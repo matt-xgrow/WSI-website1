@@ -33,10 +33,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 const SERVICE_IMAGE_MAP: Record<string, string> = {
-  "house-washing-brisbane": "/images/residential-aerial.jpg",
-  "pressure-cleaning-brisbane": "/images/commercial-pressure.jpg",
-  "window-cleaning-brisbane": "/images/commercial-windows.jpg",
-  "gutter-cleaning-brisbane": "/images/soft-wash.jpg",
+  "house-washing": "/images/residential-aerial.jpg",
+  "pressure-washing": "/images/commercial-pressure.jpg",
+  "window-cleaning": "/images/commercial-windows.jpg",
+  "gutter-cleaning": "/images/soft-wash.jpg",
+  "roof-cleaning": "/images/soft-wash.jpg",
+  "driveway-cleaning": "/images/commercial-pressure.jpg",
+  "solar-panel-cleaning": "/images/glass-wash.jpg",
+  "strata-cleaning": "/images/commercial-aerial.jpg",
+  "commercial-cleaning": "/images/commercial-pressure.jpg",
 };
 
 export default async function ServicePage({ params }: PageProps) {
@@ -77,7 +82,7 @@ export default async function ServicePage({ params }: PageProps) {
               {service.eyebrow}
             </span>
             <h1>
-              {service.name} <em className="hl-orange">Brisbane</em>.
+              {service.name}
             </h1>
             <p>{service.description}</p>
             <div className="hero-actions">
@@ -128,9 +133,8 @@ export default async function ServicePage({ params }: PageProps) {
             {service.name} — done the <em className="hl-orange">right way</em> for your surface.
           </h2>
           <p>
-            We bring {service.name.toLowerCase()} to Brisbane homes, strata and
-            commercial properties across the wider metro area. Every job starts
-            with a quick look at the surface, the level of build-up and the
+            We provide {service.name.toLowerCase()} across Brisbane, Gold Coast and Sunshine Coast.
+            Every job starts with a quick look at the surface, the level of build-up and the
             safest cleaning method — so the finish lasts longer and the surface
             is never compromised.
           </p>
