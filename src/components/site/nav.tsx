@@ -3,10 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { site, services } from "@/lib/site";
+import { site, services, locations } from "@/lib/site";
 import { PhoneIcon } from "./icons";
-
-const NAV_LOCATIONS = ["Brisbane", "Sunshine Coast", "Gold Coast"];
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -76,11 +74,11 @@ export function Nav() {
                   <h4>Queensland</h4>
                 </div>
                 <div className="dropdown-list">
-                  {NAV_LOCATIONS.map((l) => (
-                    <a key={l} href="#areas" className="dropdown-item">
-                      <span>{l}</span>
+                  {locations.map((l) => (
+                    <Link key={l.slug} href={`/locations/${l.slug}`} className="dropdown-item">
+                      <span>{l.name}</span>
                       <span className="arrow">→</span>
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
