@@ -94,7 +94,7 @@ export default async function ServicePage({ params }: PageProps) {
               src={heroImage}
               alt={service.title}
               width={720}
-              height={900}
+              height={450}
               priority
             />
           </div>

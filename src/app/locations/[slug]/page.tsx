@@ -74,7 +74,7 @@ export default async function LocationPage({ params }: PageProps) {
           </div>
         </div>
         <div className="sub-hero-img">
-          <Image src={heroImg} alt={`${location.name} service area`} width={720} height={900} priority />
+          <Image src={heroImg} alt={`${location.name} service area`} width={720} height={450} priority />
         </div>
       </section>
 
