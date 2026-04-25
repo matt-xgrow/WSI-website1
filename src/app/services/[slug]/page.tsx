@@ -6,6 +6,7 @@ import { Nav } from "@/components/site/nav";
 import { QuoteSection } from "@/components/site/quote-section";
 import { StickyCTA } from "@/components/site/sticky-cta";
 import { TopBar } from "@/components/site/top-bar";
+import { CalendarIcon, GoogleGIcon, ShieldIcon, StarIcon } from "@/components/site/icons";
 import { getService, services, site } from "@/lib/site";
 
 type PageProps = {
@@ -92,6 +93,37 @@ export default async function ServicePage({ params }: PageProps) {
               <a className="btn btn-ghost btn-lg" href={site.phoneHref}>
                 Call {site.phoneDisplay}
               </a>
+            </div>
+
+            <div className="trust-strip">
+              <div className="trust-item trust-google">
+                <GoogleGIcon />
+                <div className="trust-stars" aria-label={`${site.rating} out of 5`}>
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <StarIcon key={i} style={{ color: "#FBBC05" }} />
+                  ))}
+                </div>
+                <div className="trust-text">
+                  <strong>{site.rating}</strong>
+                  <span>{site.reviewCountLabel} Google reviews</span>
+                </div>
+              </div>
+              <div className="trust-divider" />
+              <div className="trust-item">
+                <ShieldIcon style={{ color: "var(--cyan-ink)" }} />
+                <div className="trust-text">
+                  <strong>$20M</strong>
+                  <span>Public liability</span>
+                </div>
+              </div>
+              <div className="trust-divider" />
+              <div className="trust-item">
+                <CalendarIcon style={{ color: "var(--cyan-ink)" }} />
+                <div className="trust-text">
+                  <strong>10+ yrs</strong>
+                  <span>On the ground</span>
+                </div>
+              </div>
             </div>
           </div>
           <div className="sub-hero-img">

@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import Link from "next/link";
+import { useState } from "react";
 
 type ServiceEntry = {
   id: string;
@@ -10,39 +11,109 @@ type ServiceEntry = {
   tag: string | null;
   img: string;
   kind: "residential" | "commercial";
+  href: string;
 };
 
 const SERVICES: ServiceEntry[] = [
-  { id: "pressure", name: "Pressure Washing", desc: "Restore driveways, paths and concrete to factory finish.", tag: "Most booked", img: "/images/commercial-pressure.jpg", kind: "residential" },
-  { id: "house", name: "House Washing", desc: "Soft-wash render, brick, weatherboard. Algae and grime, gone.", tag: null, img: "/images/residential-aerial.jpg", kind: "residential" },
-  { id: "roof", name: "Roof Cleaning", desc: "Tile, Colorbond, terracotta — moss and lichen treated at the root.", tag: "Specialist", img: "/images/aerial-clean.jpg", kind: "residential" },
-  { id: "gutter", name: "Gutter Cleaning", desc: "Unclog, flush and inspect. Protect your home before storm season.", tag: null, img: "/images/soft-wash.jpg", kind: "residential" },
-  { id: "window", name: "Window Cleaning", desc: "Streak-free interior + exterior glass, screens and sills.", tag: null, img: "/images/commercial-windows.jpg", kind: "residential" },
-  { id: "solar", name: "Solar Panel Cleaning", desc: "Restore up to 25% lost output. Safe, deionised-water process.", tag: null, img: "/images/drone-aerial.jpg", kind: "residential" },
-  { id: "driveway", name: "Driveway Cleaning", desc: "Oil, rust, tyre marks — lifted with commercial-grade pressure.", tag: null, img: "/images/commercial-aerial.jpg", kind: "residential" },
-  { id: "strata", name: "Strata Cleaning", desc: "Common areas, car parks, facades. Scheduled or on-demand.", tag: "Commercial", img: "/images/wsi-team.jpg", kind: "commercial" },
-  { id: "deck", name: "Deck & Patio", desc: "Timber, composite and tile — revived without damage.", tag: null, img: "/images/glass-wash.jpg", kind: "residential" },
-  { id: "render", name: "Concrete Render", desc: "Deep-clean painted and rendered surfaces. No chipping.", tag: null, img: "/images/house-wash.jpg", kind: "residential" },
-  { id: "tennis", name: "Tennis Court", desc: "Acrylic-safe cleaning. Courts return bouncing true.", tag: null, img: "/images/pressure-cleaning.jpg", kind: "commercial" },
-  { id: "commercial", name: "Commercial Buildings", desc: "High-access facade work for offices, retail and hospitality.", tag: "Commercial", img: "/images/commercial-windows.jpg", kind: "commercial" },
-  { id: "pest", name: "Pest Control", desc: "General pest treatments for homes and businesses.", tag: null, img: "/images/soft-wash.jpg", kind: "residential" },
-  { id: "newbuild", name: "Newbuild Cleaning", desc: "Post-construction clean, inside and out. Handover ready.", tag: null, img: "/images/residential-aerial.jpg", kind: "residential" },
-  { id: "presale", name: "Presale Cleaning", desc: "Kerb-appeal package for agents and sellers. Sells faster.", tag: null, img: "/images/commercial-pressure.jpg", kind: "residential" },
+  {
+    id: "house-washing",
+    name: "House Washing",
+    desc: "Soft-wash render, brick and weatherboard. Algae and grime removed without blasting delicate surfaces.",
+    tag: "Most booked",
+    img: "/images/residential-aerial.jpg",
+    kind: "residential",
+    href: "/services/house-washing-brisbane",
+  },
+  {
+    id: "pressure-washing",
+    name: "Pressure Washing",
+    desc: "Restore driveways, paths and concrete to factory finish with commercial-grade pressure.",
+    tag: null,
+    img: "/images/commercial-pressure.jpg",
+    kind: "residential",
+    href: "/services/pressure-cleaning-brisbane",
+  },
+  {
+    id: "window-cleaning",
+    name: "Window Cleaning",
+    desc: "Streak-free interior and exterior glass, frames, screens and sills.",
+    tag: null,
+    img: "/images/commercial-windows.jpg",
+    kind: "residential",
+    href: "/services/window-cleaning-brisbane",
+  },
+  {
+    id: "gutter-cleaning",
+    name: "Gutter Cleaning",
+    desc: "Unclog, flush and inspect. Protect your home before storm season hits.",
+    tag: null,
+    img: "/images/soft-wash.jpg",
+    kind: "residential",
+    href: "/services/gutter-cleaning-brisbane",
+  },
+  {
+    id: "roof-cleaning",
+    name: "Roof Cleaning",
+    desc: "Tile, Colorbond, terracotta — moss and lichen treated at the root.",
+    tag: null,
+    img: "/images/aerial-clean.jpg",
+    kind: "residential",
+    href: "#quote",
+  },
+  {
+    id: "driveway-cleaning",
+    name: "Driveway Cleaning",
+    desc: "Oil, rust and tyre marks lifted. Concrete and pavers restored.",
+    tag: null,
+    img: "/images/commercial-aerial.jpg",
+    kind: "residential",
+    href: "#quote",
+  },
+  {
+    id: "solar-panel",
+    name: "Solar Panel Cleaning",
+    desc: "Restore up to 25% lost output. Safe deionised-water process.",
+    tag: null,
+    img: "/images/drone-aerial.jpg",
+    kind: "residential",
+    href: "#quote",
+  },
+  {
+    id: "strata",
+    name: "Strata Cleaning",
+    desc: "Common areas, car parks and facades. Scheduled or on-demand.",
+    tag: "Commercial",
+    img: "/images/wsi-team.jpg",
+    kind: "commercial",
+    href: "#quote",
+  },
+  {
+    id: "commercial",
+    name: "Commercial Buildings",
+    desc: "High-access facade work for offices, retail and hospitality.",
+    tag: "Commercial",
+    img: "/images/glass-wash.jpg",
+    kind: "commercial",
+    href: "#quote",
+  },
+];
+
+const FILTERS = [
+  { id: "all" as const, label: "All services" },
+  { id: "residential" as const, label: "Residential" },
+  { id: "commercial" as const, label: "Commercial" },
 ];
 
 export function ServicesSection() {
   const [filter, setFilter] = useState<"all" | "residential" | "commercial">("all");
 
-  const filters = useMemo(
-    () => [
-      { id: "all" as const, label: "All services", count: SERVICES.length },
-      { id: "residential" as const, label: "Residential", count: SERVICES.filter((s) => s.kind === "residential").length },
-      { id: "commercial" as const, label: "Commercial", count: SERVICES.filter((s) => s.kind === "commercial").length },
-    ],
-    []
-  );
-
   const filtered = filter === "all" ? SERVICES : SERVICES.filter((s) => s.kind === filter);
+
+  const counts = {
+    all: SERVICES.length,
+    residential: SERVICES.filter((s) => s.kind === "residential").length,
+    commercial: SERVICES.filter((s) => s.kind === "commercial").length,
+  };
 
   return (
     <section className="services" id="services">
@@ -53,7 +124,7 @@ export function ServicesSection() {
             What we clean
           </span>
           <h2 className="section-title">
-            One team. <em className="hl-orange">Fifteen</em> services.
+            One team. <em className="hl-orange">Nine</em> services.
             <br />
             Every surface your property owns.
           </h2>
@@ -61,8 +132,8 @@ export function ServicesSection() {
         <div className="section-head-right">
           <p>
             From a single window to a 40-unit strata complex — we bring the
-            equipment, the chemistry, and the crew. Quoted in 24 hours, on-site
-            within the week.
+            equipment, the chemistry, and the crew. Quoted in 24 hours,
+            on-site within the week.
           </p>
           <a className="btn btn-dark btn-md" href="#quote">
             Request a quote →
@@ -71,7 +142,7 @@ export function ServicesSection() {
       </div>
 
       <div className="services-filters">
-        {filters.map((f) => (
+        {FILTERS.map((f) => (
           <button
             key={f.id}
             type="button"
@@ -79,42 +150,55 @@ export function ServicesSection() {
             onClick={() => setFilter(f.id)}
           >
             {f.label}
-            <span className="chip-count">{f.count}</span>
+            <span className="chip-count">{counts[f.id]}</span>
           </button>
         ))}
       </div>
 
       <div className="services-grid">
-        {filtered.map((s, i) => (
-          <a key={s.id} href="#quote" className="service-card">
-            <div className="service-img">
-              <Image
-                src={s.img}
-                alt={s.name}
-                width={720}
-                height={495}
-                sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 33vw"
-                className="service-photo"
-              />
-              <div className="service-img-overlay">
-                <span>Learn more</span>
-                <span className="service-arrow">→</span>
+        {filtered.map((s, i) => {
+          const isExternal = s.href.startsWith("#");
+          const inner = (
+            <>
+              <div className="service-img">
+                <Image
+                  src={s.img}
+                  alt={s.name}
+                  width={720}
+                  height={495}
+                  sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 33vw"
+                  className="service-photo"
+                />
+                <div className="service-img-overlay">
+                  <span>{isExternal ? "Get a quote" : "Learn more"}</span>
+                  <span className="service-arrow">→</span>
+                </div>
               </div>
-            </div>
-            <div className="service-body">
-              <div className="service-top">
-                <span className="service-num">{String(i + 1).padStart(2, "0")}</span>
-                {s.tag && (
-                  <span className={`service-tag${s.tag === "Specialist" ? " service-tag-cyan" : ""}`}>
-                    {s.tag}
-                  </span>
-                )}
+              <div className="service-body">
+                <div className="service-top">
+                  <span className="service-num">{String(i + 1).padStart(2, "0")}</span>
+                  {s.tag && (
+                    <span className={`service-tag${s.tag === "Specialist" ? " service-tag-cyan" : ""}`}>
+                      {s.tag}
+                    </span>
+                  )}
+                </div>
+                <h3 className="service-name">{s.name}</h3>
+                <p className="service-desc">{s.desc}</p>
               </div>
-              <h3 className="service-name">{s.name}</h3>
-              <p className="service-desc">{s.desc}</p>
-            </div>
-          </a>
-        ))}
+            </>
+          );
+
+          return isExternal ? (
+            <a key={s.id} href={s.href} className="service-card">
+              {inner}
+            </a>
+          ) : (
+            <Link key={s.id} href={s.href} className="service-card">
+              {inner}
+            </Link>
+          );
+        })}
       </div>
     </section>
   );

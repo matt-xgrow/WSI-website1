@@ -3,8 +3,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { site, services, locations } from "@/lib/site";
+import { site, locations } from "@/lib/site";
 import { PhoneIcon } from "./icons";
+
+const NAV_SERVICES = [
+  { name: "House Washing", href: "/services/house-washing-brisbane" },
+  { name: "Pressure Washing", href: "/services/pressure-cleaning-brisbane" },
+  { name: "Window Cleaning", href: "/services/window-cleaning-brisbane" },
+  { name: "Gutter Cleaning", href: "/services/gutter-cleaning-brisbane" },
+  { name: "Roof Cleaning", href: "#quote" },
+  { name: "Driveway Cleaning", href: "#quote" },
+  { name: "Solar Panel Cleaning", href: "#quote" },
+  { name: "Strata Cleaning", href: "#quote" },
+  { name: "Commercial Buildings", href: "#quote" },
+];
 
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -46,11 +58,11 @@ export function Nav() {
               <div className="dropdown-panel">
                 <div className="dropdown-head">
                   <span className="eyebrow">Exterior cleaning</span>
-                  <h4>{services.length} services. One trusted team.</h4>
+                  <h4>9 services. One trusted team.</h4>
                 </div>
                 <div className="dropdown-grid">
-                  {services.map((s) => (
-                    <Link key={s.slug} href={`/services/${s.slug}`} className="dropdown-item">
+                  {NAV_SERVICES.map((s) => (
+                    <Link key={s.name} href={s.href} className="dropdown-item">
                       <span>{s.name}</span>
                       <span className="arrow">→</span>
                     </Link>
