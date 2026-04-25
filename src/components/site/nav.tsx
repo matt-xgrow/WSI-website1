@@ -7,15 +7,15 @@ import { site, locations } from "@/lib/site";
 import { PhoneIcon } from "./icons";
 
 const NAV_SERVICES = [
-  { name: "House Washing", href: "/services/house-washing-brisbane" },
-  { name: "Pressure Washing", href: "/services/pressure-cleaning-brisbane" },
-  { name: "Window Cleaning", href: "/services/window-cleaning-brisbane" },
-  { name: "Gutter Cleaning", href: "/services/gutter-cleaning-brisbane" },
-  { name: "Roof Cleaning", href: "#quote" },
-  { name: "Driveway Cleaning", href: "#quote" },
-  { name: "Solar Panel Cleaning", href: "#quote" },
-  { name: "Strata Cleaning", href: "#quote" },
-  { name: "Commercial Buildings", href: "#quote" },
+  { name: "House Washing", href: "/services/house-washing" },
+  { name: "Pressure Washing", href: "/services/pressure-washing" },
+  { name: "Window Cleaning", href: "/services/window-cleaning" },
+  { name: "Gutter Cleaning", href: "/services/gutter-cleaning" },
+  { name: "Roof Cleaning", href: "/services/roof-cleaning" },
+  { name: "Driveway Cleaning", href: "/services/driveway-cleaning" },
+  { name: "Solar Panel Cleaning", href: "/services/solar-panel-cleaning" },
+  { name: "Strata Cleaning", href: "/services/strata-cleaning" },
+  { name: "Commercial Buildings", href: "/services/commercial-cleaning" },
 ];
 
 export function Nav() {

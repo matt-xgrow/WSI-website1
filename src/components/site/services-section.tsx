@@ -22,7 +22,7 @@ const SERVICES: ServiceEntry[] = [
     tag: "Most booked",
     img: "/images/residential-aerial.jpg",
     kind: "residential",
-    href: "/services/house-washing-brisbane",
+    href: "/services/house-washing",
   },
   {
     id: "pressure-washing",
@@ -31,7 +31,7 @@ const SERVICES: ServiceEntry[] = [
     tag: null,
     img: "/images/commercial-pressure.jpg",
     kind: "residential",
-    href: "/services/pressure-cleaning-brisbane",
+    href: "/services/pressure-washing",
   },
   {
     id: "window-cleaning",
@@ -40,7 +40,7 @@ const SERVICES: ServiceEntry[] = [
     tag: null,
     img: "/images/commercial-windows.jpg",
     kind: "residential",
-    href: "/services/window-cleaning-brisbane",
+    href: "/services/window-cleaning",
   },
   {
     id: "gutter-cleaning",
@@ -49,7 +49,7 @@ const SERVICES: ServiceEntry[] = [
     tag: null,
     img: "/images/soft-wash.jpg",
     kind: "residential",
-    href: "/services/gutter-cleaning-brisbane",
+    href: "/services/gutter-cleaning",
   },
   {
     id: "roof-cleaning",
@@ -58,7 +58,7 @@ const SERVICES: ServiceEntry[] = [
     tag: null,
     img: "/images/aerial-clean.jpg",
     kind: "residential",
-    href: "#quote",
+    href: "/services/roof-cleaning",
   },
   {
     id: "driveway-cleaning",
@@ -67,7 +67,7 @@ const SERVICES: ServiceEntry[] = [
     tag: null,
     img: "/images/commercial-aerial.jpg",
     kind: "residential",
-    href: "#quote",
+    href: "/services/driveway-cleaning",
   },
   {
     id: "solar-panel",
@@ -76,7 +76,7 @@ const SERVICES: ServiceEntry[] = [
     tag: null,
     img: "/images/drone-aerial.jpg",
     kind: "residential",
-    href: "#quote",
+    href: "/services/solar-panel-cleaning",
   },
   {
     id: "strata",
@@ -85,7 +85,7 @@ const SERVICES: ServiceEntry[] = [
     tag: "Commercial",
     img: "/images/wsi-team.jpg",
     kind: "commercial",
-    href: "#quote",
+    href: "/services/strata-cleaning",
   },
   {
     id: "commercial",
@@ -94,7 +94,7 @@ const SERVICES: ServiceEntry[] = [
     tag: "Commercial",
     img: "/images/glass-wash.jpg",
     kind: "commercial",
-    href: "#quote",
+    href: "/services/commercial-cleaning",
   },
 ];
 
