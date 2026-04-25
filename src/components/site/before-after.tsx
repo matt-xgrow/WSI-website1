@@ -1,169 +1,124 @@
 "use client";
 
 import Image from "next/image";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
-const JOBS = [
+const PROJECTS = [
   {
     id: 0,
-    label: "Driveway · Pressure wash",
-    location: "Ascot, QLD",
-    duration: "3h 20m",
-    surface: "95m² concrete",
-    before: "/images/soft-wash.jpg",
-    after: "/images/commercial-pressure.jpg",
+    title: "Pressure Washing",
+    before: "/design/pressure-1.jpg",
+    after: "/design/pressure-2.jpg",
   },
   {
     id: 1,
-    label: "House · Soft wash",
-    location: "Broadbeach, QLD",
-    duration: "6h 00m",
-    surface: "220m² render",
+    title: "Window Cleaning",
     before: "/images/window-clean.jpg",
-    after: "/images/residential-aerial.jpg",
+    after: "/images/commercial-windows.jpg",
   },
   {
     id: 2,
-    label: "Commercial · Exterior",
-    location: "New Farm, QLD",
-    duration: "4h 15m",
-    surface: "180m² facade",
+    title: "Roof Cleaning",
     before: "/images/house-wash.jpg",
-    after: "/images/commercial-windows.jpg",
+    after: "/images/residential-aerial.jpg",
   },
 ];
 
 export function BeforeAfter() {
-  const [pos, setPos] = useState(50);
-  const [activeJob, setActiveJob] = useState(0);
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  const draggingRef = useRef(false);
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handleMove = useCallback((clientX: number) => {
-    const el = containerRef.current;
-    if (!el) return;
-    const rect = el.getBoundingClientRect();
-    const p = ((clientX - rect.left) / rect.width) * 100;
-    setPos(Math.max(0, Math.min(100, p)));
-  }, []);
+  const nextImage = () => {
+    setCurrentIndex((prev) => (prev + 1) % PROJECTS.length);
+  };
 
-  useEffect(() => {
-    const onMove = (e: MouseEvent | TouchEvent) => {
-      if (!draggingRef.current) return;
-      const x = "touches" in e ? e.touches[0].clientX : e.clientX;
-      handleMove(x);
-    };
-    const onUp = () => {
-      draggingRef.current = false;
-    };
-    window.addEventListener("mousemove", onMove);
-    window.addEventListener("mouseup", onUp);
-    window.addEventListener("touchmove", onMove, { passive: true });
-    window.addEventListener("touchend", onUp);
-    return () => {
-      window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mouseup", onUp);
-      window.removeEventListener("touchmove", onMove);
-      window.removeEventListener("touchend", onUp);
-    };
-  }, [handleMove]);
+  const prevImage = () => {
+    setCurrentIndex((prev) => (prev - 1 + PROJECTS.length) % PROJECTS.length);
+  };
 
-  const job = JOBS[activeJob];
+  const project = PROJECTS[currentIndex];
 
   return (
-    <section className="ba-section" id="gallery">
-      <div className="section-head">
-        <div className="section-head-left">
-          <span className="eyebrow">
-            <span className="eyebrow-line" />
-            The receipts
-          </span>
-          <h2 className="section-title">Drag to see the difference.</h2>
-        </div>
-        <div className="section-head-right">
-          <p>
-            Every job photographed at arrival and completion. No filters, no
-            retouching — just the honest delta between ten years of dirt and
-            two hours of work.
-          </p>
-        </div>
-      </div>
+    <section className="py-24 bg-gray-50 flex flex-col items-center" id="gallery">
+      <h2 className="text-3xl md:text-4xl font-medium text-[#1F2A66] mb-12 text-center max-w-2xl px-4">
+        See the dramatic difference our services make
+      </h2>
 
-      <div className="ba-inner">
-        <div className="ba-layout">
-          <div>
-            <div
-              ref={containerRef}
-              className="ba-viewer"
-              onMouseDown={(e) => {
-                draggingRef.current = true;
-                handleMove(e.clientX);
-              }}
-              onTouchStart={(e) => {
-                draggingRef.current = true;
-                handleMove(e.touches[0].clientX);
-              }}
-            >
-              <div className="ba-after">
-                <Image src={job.after} alt={`${job.label} — after`} fill sizes="60vw" className="ba-img" />
-              </div>
-              <div className="ba-before" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
-                <Image src={job.before} alt={`${job.label} — before`} fill sizes="60vw" className="ba-img" />
-                <div className="ba-before-tint" />
-              </div>
-              <div className="ba-divider" style={{ left: `${pos}%` }}>
-                <div className="ba-handle">
-                  <svg viewBox="0 0 24 24" fill="none" width="18" height="18">
-                    <path d="M9 6 L5 12 L9 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    <path d="M15 6 L19 12 L15 18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-              </div>
-              <div className="ba-label ba-label-before">BEFORE</div>
-              <div className="ba-label ba-label-after">AFTER</div>
+      <div className="w-full max-w-5xl px-4 flex flex-col items-center">
+        {/* Carousel Container */}
+        <div className="relative w-full aspect-[4/3] md:aspect-[16/9] rounded-2xl overflow-hidden shadow-2xl bg-white group">
+          
+          {/* Split Image Display */}
+          <div className="absolute inset-0 w-full h-full">
+            {/* After Image (Background) */}
+            <Image 
+              src={project.after} 
+              alt={`${project.title} After`} 
+              fill 
+              className="object-cover" 
+              priority
+            />
+            {/* Before Image (Foreground, clipped 50%) */}
+            <div className="absolute inset-0 w-1/2 h-full overflow-hidden border-r-2 border-white">
+              <img 
+                src={project.before} 
+                alt={`${project.title} Before`} 
+                className="absolute inset-0 h-full max-w-none object-cover object-left" 
+                style={{ width: "200%" }}
+              />
             </div>
-
-            <div className="ba-meta">
-              <div>
-                <div className="ba-meta-label">Job</div>
-                <div className="ba-meta-value">{job.label}</div>
-              </div>
-              <div>
-                <div className="ba-meta-label">Location</div>
-                <div className="ba-meta-value">{job.location}</div>
-              </div>
-              <div>
-                <div className="ba-meta-label">Completed in</div>
-                <div className="ba-meta-value">{job.duration}</div>
-              </div>
+            
+            {/* Text Labels */}
+            <div className="absolute bottom-4 left-4 bg-black/50 text-white text-xs font-bold px-2 py-1 rounded backdrop-blur-sm tracking-wider">
+              BEFORE
+            </div>
+            <div className="absolute bottom-4 right-4 bg-black/50 text-white text-xs font-bold px-2 py-1 rounded backdrop-blur-sm tracking-wider">
+              AFTER
             </div>
           </div>
 
-          <div className="ba-thumbs">
-            <div className="ba-thumbs-head">
-              <span className="eyebrow-sm">Recent jobs</span>
-              <span className="ba-count">{activeJob + 1} / {JOBS.length}</span>
-            </div>
-            {JOBS.map((j, i) => (
-              <button
-                key={j.id}
-                type="button"
-                className={`ba-thumb ${i === activeJob ? "active" : ""}`}
-                onClick={() => setActiveJob(i)}
-              >
-                <div className="ba-thumb-img">
-                  <Image src={j.after} alt={j.label} width={136} height={136} className="ba-thumb-photo" />
-                </div>
-                <div className="ba-thumb-body">
-                  <div className="ba-thumb-title">{j.label}</div>
-                  <div className="ba-thumb-meta">
-                    {j.location} · {j.duration}
-                  </div>
-                </div>
-                <span className="ba-thumb-arrow">›</span>
-              </button>
-            ))}
+          {/* Navigation Buttons */}
+          <button 
+            onClick={prevImage}
+            className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/80 hover:bg-white text-[#1F2A66] shadow-lg flex items-center justify-center backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+            aria-label="Previous image"
+          >
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="15 18 9 12 15 6" />
+            </svg>
+          </button>
+          
+          <button 
+            onClick={nextImage}
+            className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/80 hover:bg-white text-[#1F2A66] shadow-lg flex items-center justify-center backdrop-blur-sm transition-all opacity-0 group-hover:opacity-100 focus:opacity-100"
+            aria-label="Next image"
+          >
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9 18 15 12 9 6" />
+            </svg>
+          </button>
+        </div>
+
+        {/* Floating Badge (Bottom Left relative to container) */}
+        <div className="w-full relative -mt-6 z-10 flex justify-start pl-6 md:pl-10">
+          <div className="bg-gray-500/90 text-white font-medium px-6 py-3 rounded-lg shadow-lg backdrop-blur-md text-lg">
+            {project.title}
           </div>
+        </div>
+
+        {/* Pagination Dots */}
+        <div className="flex justify-center gap-2 mt-8">
+          {PROJECTS.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentIndex(index)}
+              className={`w-3 h-3 rounded-full transition-all ${
+                index === currentIndex 
+                  ? "bg-[#1F2A66] w-6" 
+                  : "bg-gray-300 hover:bg-gray-400"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
         </div>
       </div>
     </section>

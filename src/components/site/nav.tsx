@@ -3,23 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { site } from "@/lib/site";
+import { site, services } from "@/lib/site";
 import { PhoneIcon } from "./icons";
-
-const NAV_SERVICES = [
-  "Pressure Washing",
-  "House Washing",
-  "Roof Cleaning",
-  "Gutter Cleaning",
-  "Window Cleaning",
-  "Driveway Cleaning",
-  "Solar Panel Cleaning",
-  "Strata Cleaning",
-  "Commercial Building",
-  "Tennis Court Cleaning",
-  "Deck & Patio",
-  "Concrete Render",
-];
 
 const NAV_LOCATIONS = ["Brisbane", "Sunshine Coast", "Gold Coast"];
 
@@ -50,7 +35,7 @@ export function Nav() {
         </Link>
 
         <div className="nav-links">
-          <a href="#about">About</a>
+          <Link href="/#about">About</Link>
           <div
             className="nav-dropdown"
             onMouseEnter={() => setOpenMenu("services")}
@@ -63,14 +48,14 @@ export function Nav() {
               <div className="dropdown-panel">
                 <div className="dropdown-head">
                   <span className="eyebrow">Exterior cleaning</span>
-                  <h4>15 services. One trusted team.</h4>
+                  <h4>{services.length} services. One trusted team.</h4>
                 </div>
                 <div className="dropdown-grid">
-                  {NAV_SERVICES.map((s) => (
-                    <a key={s} href="#services" className="dropdown-item">
-                      <span>{s}</span>
+                  {services.map((s) => (
+                    <Link key={s.slug} href={`/services/${s.slug}`} className="dropdown-item">
+                      <span>{s.name}</span>
                       <span className="arrow">→</span>
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -101,9 +86,9 @@ export function Nav() {
               </div>
             )}
           </div>
-          <a href="#gallery">Gallery</a>
-          <a href="#reviews">Reviews</a>
-          <a href="#faq">FAQ</a>
+          <Link href="/gallery">Gallery</Link>
+          <Link href="/#reviews">Reviews</Link>
+          <Link href="/#faq">FAQ</Link>
         </div>
 
         <div className="nav-cta">
@@ -111,9 +96,9 @@ export function Nav() {
             <PhoneIcon />
             {site.phoneDisplay}
           </a>
-          <a href="#quote" className="btn btn-orange btn-sm">
+          <Link href="/#quote" className="btn btn-orange btn-sm">
             Free Quote
-          </a>
+          </Link>
           <button
             className="nav-burger"
             type="button"
@@ -128,13 +113,13 @@ export function Nav() {
         </div>
       </div>
       <div className={`nav-mobile ${mobileOpen ? "open" : ""}`}>
-        <a href="#about" onClick={() => setMobileOpen(false)}>About</a>
-        <a href="#services" onClick={() => setMobileOpen(false)}>Services</a>
-        <a href="#areas" onClick={() => setMobileOpen(false)}>Locations</a>
-        <a href="#gallery" onClick={() => setMobileOpen(false)}>Gallery</a>
-        <a href="#reviews" onClick={() => setMobileOpen(false)}>Reviews</a>
-        <a href="#faq" onClick={() => setMobileOpen(false)}>FAQ</a>
-        <a href="#quote" onClick={() => setMobileOpen(false)}>Free Quote</a>
+        <Link href="/#about" onClick={() => setMobileOpen(false)}>About</Link>
+        <Link href="/#services" onClick={() => setMobileOpen(false)}>Services</Link>
+        <Link href="/#areas" onClick={() => setMobileOpen(false)}>Locations</Link>
+        <Link href="/gallery" onClick={() => setMobileOpen(false)}>Gallery</Link>
+        <Link href="/#reviews" onClick={() => setMobileOpen(false)}>Reviews</Link>
+        <Link href="/#faq" onClick={() => setMobileOpen(false)}>FAQ</Link>
+        <Link href="/#quote" onClick={() => setMobileOpen(false)}>Free Quote</Link>
       </div>
     </nav>
   );

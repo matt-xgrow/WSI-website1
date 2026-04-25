@@ -83,10 +83,6 @@ export function Hero() {
               ))}
               <div className="hero-photo-overlay">
                 <div className="overlay-card">
-                  <div className="overlay-row">
-                    <span className="overlay-dot" />
-                    <span>Live job · today</span>
-                  </div>
                   <div className="overlay-title">{HERO_SERVICES[active].name} · Hamilton, QLD</div>
                   <div className="overlay-meta">
                     <span>{HERO_SERVICES[active].surface}</span>

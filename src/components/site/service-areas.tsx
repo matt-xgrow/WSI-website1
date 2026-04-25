@@ -128,19 +128,26 @@ function MapSVG({ active }: { active: string }) {
           <pattern id="mgrid" width="20" height="20" patternUnits="userSpaceOnUse">
             <path d="M 20 0 L 0 0 0 20" fill="none" stroke="currentColor" strokeWidth="0.3" opacity="0.15" />
           </pattern>
+          <linearGradient id="mapGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="currentColor" stopOpacity="0.1" />
+            <stop offset="100%" stopColor="currentColor" stopOpacity="0.02" />
+          </linearGradient>
+          <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+            <feDropShadow dx="0" dy="6" stdDeviation="8" floodOpacity="0.06" />
+          </filter>
         </defs>
         <rect width="400" height="440" fill="url(#mgrid)" />
         <path
-          d="M 280 20 Q 310 80 305 130 Q 300 170 290 210 Q 280 260 260 310 Q 240 360 210 400 Q 180 430 150 420 L 140 400 Q 160 350 180 300 Q 200 240 220 180 Q 240 120 260 60 Q 270 30 280 20 Z"
-          fill="currentColor"
-          fillOpacity="0.05"
+          d="M 230 30 Q 260 90 255 140 Q 250 180 240 220 Q 230 270 210 320 Q 190 370 160 410 Q 130 440 100 430 L 90 410 Q 110 360 130 310 Q 150 250 170 190 Q 190 130 210 70 Q 220 40 230 30 Z"
+          fill="url(#mapGradient)"
           stroke="currentColor"
-          strokeOpacity="0.3"
-          strokeWidth="1"
+          strokeOpacity="0.4"
+          strokeWidth="1.5"
+          filter="url(#shadow)"
         />
-        <MapPin x={270} y={115} label="Sunshine Coast" active={active === "Sunshine Coast"} />
-        <MapPin x={275} y={165} label="Brisbane" active={active === "Brisbane"} />
-        <MapPin x={265} y={195} label="Gold Coast" active={active === "Gold Coast"} />
+        <MapPin x={235} y={110} label="Sunshine Coast" active={active === "Sunshine Coast"} />
+        <MapPin x={210} y={230} label="Brisbane" active={active === "Brisbane"} />
+        <MapPin x={165} y={350} label="Gold Coast" active={active === "Gold Coast"} />
       </svg>
       <div className="map-legend">
         <span className="map-legend-dot" />
@@ -155,16 +162,29 @@ function MapPin({ x, y, label, active }: { x: number; y: number; label: string; 
     <g>
       {active && (
         <>
-          <circle cx={x} cy={y} r={22} fill="currentColor" opacity="0.08">
-            <animate attributeName="r" values="16;28;16" dur="2s" repeatCount="indefinite" />
+          <circle cx={x} cy={y} r={32} fill="currentColor" opacity="0.06">
+            <animate attributeName="r" values="16;36;16" dur="2s" repeatCount="indefinite" />
             <animate attributeName="opacity" values="0.15;0;0.15" dur="2s" repeatCount="indefinite" />
           </circle>
-          <circle cx={x} cy={y} r={14} fill="currentColor" opacity="0.12" />
+          <circle cx={x} cy={y} r={18} fill="currentColor" opacity="0.1" />
         </>
       )}
-      <circle cx={x} cy={y} r={active ? 6 : 4} fill={active ? "var(--cyan)" : "currentColor"} />
-      <circle cx={x} cy={y} r={2} fill="white" />
-      <text x={x + 12} y={y + 4} fontSize="11" fill="currentColor" fontWeight={active ? 600 : 400}>
+      <g transform={`translate(${x - 12}, ${y - 24})`}>
+        <path
+          d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+          fill={active ? "var(--cyan)" : "currentColor"}
+          stroke="white"
+          strokeWidth="1.5"
+        />
+        <circle cx="12" cy="10" r="3.5" fill="white" />
+      </g>
+      <text
+        x={x + 16}
+        y={y - 8}
+        fontSize="14"
+        fill="currentColor"
+        fontWeight={active ? 600 : 400}
+      >
         {label}
       </text>
     </g>

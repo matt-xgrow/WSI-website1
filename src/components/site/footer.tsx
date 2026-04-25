@@ -16,7 +16,7 @@ export function Footer() {
           <a href={site.phoneHref} className="btn btn-ghost-light btn-lg">
             Call {site.phoneDisplay}
           </a>
-          <a href="#quote" className="btn btn-orange btn-lg">
+          <a href="/#quote" className="btn btn-orange btn-lg">
             Request a quote →
           </a>
         </div>
@@ -37,9 +37,22 @@ export function Footer() {
             homeowners, strata and commercial clients across Queensland and New
             South Wales since 2014.
           </p>
-          <div className="footer-pay">
-            {["Visa", "Mastercard", "Amex", "Apple Pay", "Google Pay", "Afterpay"].map((p) => (
-              <span key={p} className="pay-chip">{p}</span>
+          <div className="footer-pay" style={{ display: 'flex', gap: '16px', alignItems: 'center', marginTop: '8px' }}>
+            {[
+              { name: "Visa", file: "visa" },
+              { name: "Mastercard", file: "mastercard" },
+              { name: "Amex", file: "americanexpress" },
+              { name: "Apple Pay", file: "applepay" },
+              { name: "Google Pay", file: "googlepay" },
+              { name: "Afterpay", file: "afterpay" },
+            ].map((p) => (
+              <span key={p.name} aria-label={p.name} style={{ display: 'inline-flex' }}>
+                <img 
+                  src={`/images/payment/${p.file}.svg`} 
+                  alt={p.name} 
+                  style={{ height: '24px', width: 'auto', filter: 'brightness(0) invert(1)', opacity: 0.75 }}
+                />
+              </span>
             ))}
           </div>
         </div>
@@ -49,10 +62,10 @@ export function Footer() {
           <ul>
             <li><a href="/services/pressure-cleaning-brisbane">Pressure Washing</a></li>
             <li><a href="/services/house-washing-brisbane">House Washing</a></li>
-            <li><a href="#services">Roof Cleaning</a></li>
+            <li><a href="/services/roof-cleaning-brisbane">Roof Cleaning</a></li>
             <li><a href="/services/gutter-cleaning-brisbane">Gutter Cleaning</a></li>
             <li><a href="/services/window-cleaning-brisbane">Window Cleaning</a></li>
-            <li><a href="#services">Commercial & Strata</a></li>
+            <li><a href="/services/strata-cleaning-brisbane">Commercial & Strata</a></li>
           </ul>
         </div>
 

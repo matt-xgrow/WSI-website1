@@ -15,8 +15,6 @@ const SERVICES = [
   "Commercial / Strata",
   "Other",
 ];
-const SURFACES = ["Under 50m²", "50–150m²", "150–300m²", "300m² or more", "Not sure"];
-const URGENCIES = ["This week", "Next 2 weeks", "This month", "Just scoping"];
 
 type Data = {
   service: string;
@@ -53,7 +51,7 @@ export function QuoteSection() {
             A fixed price in your inbox by <em className="hl-orange" style={{ color: "var(--orange-2)" }}>tomorrow</em>.
           </h2>
           <p className="quote-blurb">
-            Three questions, thirty seconds. No pushy follow-ups, no hidden
+            Quick and simple. No pushy follow-ups, no hidden
             fees, no phone call unless you ask for one.
           </p>
 
@@ -95,7 +93,7 @@ export function QuoteSection() {
 }
 
 function QuoteForm() {
-  const [step, setStep] = useState<0 | 1 | 2>(0);
+  const [step, setStep] = useState<0 | 1>(0);
   const [data, setData] = useState<Data>(INITIAL);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -104,8 +102,7 @@ function QuoteForm() {
 
   const canNext = () => {
     if (step === 0) return !!data.service;
-    if (step === 1) return !!data.surface && !!data.urgency;
-    if (step === 2) return !!data.name && !!data.phone;
+    if (step === 1) return !!data.name && !!data.phone;
     return true;
   };
 
@@ -124,8 +121,8 @@ function QuoteForm() {
           email: data.email,
           suburb: data.postcode,
           service: data.service,
-          propertyType: data.surface,
-          message: `Timing: ${data.urgency}. ${data.notes}`.trim(),
+          propertyType: "",
+          message: data.notes.trim(),
           sourcePath: typeof window !== "undefined" ? window.location.pathname : "/",
         }),
       });
@@ -162,12 +159,8 @@ function QuoteForm() {
             <strong>{data.service}</strong>
           </div>
           <div>
-            <span>Surface</span>
-            <strong>{data.surface}</strong>
-          </div>
-          <div>
-            <span>Timing</span>
-            <strong>{data.urgency}</strong>
+            <span>Contact</span>
+            <strong>{data.phone}</strong>
           </div>
         </div>
         <button
@@ -188,10 +181,10 @@ function QuoteForm() {
   return (
     <form className="quote-form" onSubmit={submit}>
       <div className="quote-progress">
-        {[0, 1, 2].map((i) => (
+        {[0, 1].map((i) => (
           <div key={i} className={`qp-step ${step >= i ? "done" : ""}`}>
             <span className="qp-num">{i + 1}</span>
-            <span className="qp-label">{["Service", "Details", "Contact"][i]}</span>
+            <span className="qp-label">{["Service", "Contact"][i]}</span>
           </div>
         ))}
       </div>
@@ -215,37 +208,6 @@ function QuoteForm() {
       )}
 
       {step === 1 && (
-        <div className="quote-step">
-          <div className="q-label">Approximate size</div>
-          <div className="q-grid q-grid-2">
-            {SURFACES.map((s) => (
-              <button
-                key={s}
-                type="button"
-                className={`q-option ${data.surface === s ? "selected" : ""}`}
-                onClick={() => update("surface", s)}
-              >
-                {s}
-              </button>
-            ))}
-          </div>
-          <div className="q-label q-label-gap">When do you need it done?</div>
-          <div className="q-grid q-grid-2">
-            {URGENCIES.map((u) => (
-              <button
-                key={u}
-                type="button"
-                className={`q-option ${data.urgency === u ? "selected" : ""}`}
-                onClick={() => update("urgency", u)}
-              >
-                {u}
-              </button>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {step === 2 && (
         <div className="quote-step">
           <div className="q-row">
             <div className="q-field">
@@ -318,18 +280,18 @@ function QuoteForm() {
           <button
             type="button"
             className="btn btn-ghost btn-md"
-            onClick={() => setStep((s) => (s > 0 ? ((s - 1) as 0 | 1 | 2) : s))}
+            onClick={() => setStep((s) => (s > 0 ? ((s - 1) as 0 | 1) : s))}
           >
             ← Back
           </button>
         )}
         <div className="quote-action-spacer" />
-        {step < 2 ? (
+        {step < 1 ? (
           <button
             type="button"
             className="btn btn-orange btn-md"
             disabled={!canNext()}
-            onClick={() => setStep((s) => (s < 2 ? ((s + 1) as 0 | 1 | 2) : s))}
+            onClick={() => setStep((s) => (s < 1 ? ((s + 1) as 0 | 1) : s))}
           >
             Continue →
           </button>
