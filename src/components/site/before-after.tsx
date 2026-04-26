@@ -10,18 +10,22 @@ type Slide = {
   src: string;
 };
 
-const SLIDES: Slide[] = [
+type SlideWithAlt = Slide & { alt: string };
+
+const SLIDES: SlideWithAlt[] = [
   {
     id: 0,
     title: "Driveway restoration",
     service: "Pressure Washing",
     src: "/images/before-after/driveway-1.jpg",
+    alt: "Before-and-after of a Brisbane concrete driveway restored by pressure washing",
   },
   {
     id: 1,
     title: "Concrete recovery",
     service: "Pressure Washing",
     src: "/images/before-after/driveway-2.jpg",
+    alt: "Before-and-after of a stained concrete path returned to factory finish",
   },
 ];
 
@@ -58,11 +62,10 @@ export function BeforeAfter() {
           <Image
             key={slide.id}
             src={slide.src}
-            alt={`${slide.title} — before and after`}
+            alt={slide.alt}
             fill
             sizes="(max-width: 900px) 100vw, 1100px"
             className="ba-img"
-            priority
           />
           <span className="ba-tag ba-tag-before">BEFORE</span>
           <span className="ba-tag ba-tag-after">AFTER</span>

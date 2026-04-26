@@ -10,6 +10,7 @@ type ServiceEntry = {
   desc: string;
   tag: string | null;
   img: string;
+  alt: string;
   kind: "residential" | "commercial";
   href: string;
 };
@@ -21,6 +22,7 @@ const SERVICES: ServiceEntry[] = [
     desc: "Soft-wash render, brick and weatherboard. Algae and grime removed without blasting delicate surfaces.",
     tag: "Most booked",
     img: "/images/residential-aerial.jpg",
+    alt: "Aerial view of a soft-washed Brisbane home with clean rendered walls",
     kind: "residential",
     href: "/services/house-washing",
   },
@@ -30,6 +32,7 @@ const SERVICES: ServiceEntry[] = [
     desc: "Restore driveways, paths and concrete to factory finish with commercial-grade pressure.",
     tag: null,
     img: "/images/commercial-pressure.jpg",
+    alt: "Commercial-grade pressure washer restoring a Brisbane concrete surface",
     kind: "residential",
     href: "/services/pressure-washing",
   },
@@ -39,6 +42,7 @@ const SERVICES: ServiceEntry[] = [
     desc: "Streak-free interior and exterior glass, frames, screens and sills.",
     tag: null,
     img: "/images/commercial-windows.jpg",
+    alt: "Streak-free window cleaning of a Brisbane residential exterior",
     kind: "residential",
     href: "/services/window-cleaning",
   },
@@ -48,6 +52,7 @@ const SERVICES: ServiceEntry[] = [
     desc: "Unclog, flush and inspect. Protect your home before storm season hits.",
     tag: null,
     img: "/images/soft-wash.jpg",
+    alt: "Roof gutter cleaning ahead of South East Queensland storm season",
     kind: "residential",
     href: "/services/gutter-cleaning",
   },
@@ -57,6 +62,7 @@ const SERVICES: ServiceEntry[] = [
     desc: "Tile, Colorbond, terracotta — moss and lichen treated at the root.",
     tag: null,
     img: "/images/aerial-clean.jpg",
+    alt: "Soft-washed tile roof in Brisbane after WSI Cleaning treatment",
     kind: "residential",
     href: "/services/roof-cleaning",
   },
@@ -66,6 +72,7 @@ const SERVICES: ServiceEntry[] = [
     desc: "Oil, rust and tyre marks lifted. Concrete and pavers restored.",
     tag: null,
     img: "/images/commercial-aerial.jpg",
+    alt: "Restored concrete driveway after pressure cleaning in Brisbane",
     kind: "residential",
     href: "/services/driveway-cleaning",
   },
@@ -75,6 +82,7 @@ const SERVICES: ServiceEntry[] = [
     desc: "Restore up to 25% lost output. Safe deionised-water process.",
     tag: null,
     img: "/images/drone-aerial.jpg",
+    alt: "Rooftop solar panel array cleaned with deionised water in Brisbane",
     kind: "residential",
     href: "/services/solar-panel-cleaning",
   },
@@ -84,6 +92,7 @@ const SERVICES: ServiceEntry[] = [
     desc: "Common areas, car parks and facades. Scheduled or on-demand.",
     tag: "Commercial",
     img: "/images/wsi-team.jpg",
+    alt: "WSI Cleaning crew on a strata complex common-area maintenance day",
     kind: "commercial",
     href: "/services/strata-cleaning",
   },
@@ -93,6 +102,7 @@ const SERVICES: ServiceEntry[] = [
     desc: "High-access facade work for offices, retail and hospitality.",
     tag: "Commercial",
     img: "/images/glass-wash.jpg",
+    alt: "Commercial glass facade wash on a Brisbane office building",
     kind: "commercial",
     href: "/services/commercial-cleaning",
   },
@@ -163,7 +173,7 @@ export function ServicesSection() {
               <div className="service-img">
                 <Image
                   src={s.img}
-                  alt={s.name}
+                  alt={s.alt}
                   width={720}
                   height={495}
                   sizes="(max-width: 640px) 100vw, (max-width: 960px) 50vw, 33vw"

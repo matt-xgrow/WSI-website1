@@ -10,10 +10,12 @@ import { TopBar } from "@/components/site/top-bar";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
   breadcrumbSchema,
+  faqPageSchemaFromList,
   graph,
   locationServiceSchema,
 } from "@/lib/seo/schema";
-import { getLocation, locations, services, site } from "@/lib/site";
+import { getLocationContent } from "@/lib/location-content";
+import { getLocation, locations, services, site, SITE_URL } from "@/lib/site";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -62,8 +64,10 @@ export default async function LocationPage({ params }: PageProps) {
   const location = getLocation(slug);
   if (!location) notFound();
 
-  const isPrimary = location.slug === "brisbane";
   const heroImg = LOCATION_HERO[location.slug] ?? "/images/aerial-clean.jpg";
+  const content = getLocationContent(location.slug);
+  const canonical = `/locations/${location.slug}`;
+  const faqId = `${SITE_URL}${canonical}#faq`;
 
   const pageSchema = graph(
     locationServiceSchema({
@@ -74,8 +78,9 @@ export default async function LocationPage({ params }: PageProps) {
     breadcrumbSchema([
       { name: "Home", url: "/" },
       { name: "Service Areas", url: "/#areas" },
-      { name: location.name, url: `/locations/${location.slug}` },
-    ])
+      { name: location.name, url: canonical },
+    ]),
+    ...(content ? [faqPageSchemaFromList(content.faqs, faqId)] : [])
   );
 
   return (
@@ -116,62 +121,131 @@ export default async function LocationPage({ params }: PageProps) {
           </div>
         </section>
 
+        {content && (
+          <section className="content-section service-lead">
+            <p className="service-lead-text">{content.lead}</p>
+            {content.stats.length > 0 && (
+              <ul className="location-stats">
+                {content.stats.map((stat) => (
+                  <li key={stat.label}>
+                    <strong>{stat.value}</strong>
+                    <span>{stat.label}</span>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </section>
+        )}
+
+        {content && (
+          <section className="content-section">
+            <span className="eyebrow">
+              <span className="eyebrow-line" />
+              Local context
+            </span>
+            <h2>{content.climate.title}</h2>
+            <p>{content.climate.body}</p>
+          </section>
+        )}
+
         <section className="content-section">
           <span className="eyebrow">
             <span className="eyebrow-line" />
             Working in {location.name}
           </span>
-          <h2>
-            {isPrimary
-              ? "Brisbane homes and businesses, cleaned by a local crew."
-              : `${location.name} bookings, handled by our Brisbane-based team.`}
-          </h2>
-          <p>
-            {isPrimary
-              ? `Brisbane is home for WSI Cleaning and where we book most of our house washing, pressure cleaning, window cleaning and gutter work. We know the local architecture, the weather patterns and the surfaces that need extra care.`
-              : `We take on ${location.name} jobs whenever our crews are heading down the coast. Brisbane stays our priority area, so we'll let you know about availability when you get in touch.`}
-          </p>
-        </section>
-
-        <section className="location-areas-grid">
-          {services.map((service) => (
-            <Link
-              href={`/services/${service.slug}`}
-              key={service.slug}
-              aria-label={`${service.name} in ${location.name}`}
-            >
-              <Image
-                src={service.image}
-                alt=""
-                width={72}
-                height={72}
-                style={{
-                  width: 56,
-                  height: 56,
-                  borderRadius: 12,
-                  objectFit: "cover",
-                }}
-              />
-              <span>{service.name}</span>
-              <svg
-                viewBox="0 0 16 16"
-                width="16"
-                height="16"
-                fill="none"
-                aria-hidden="true"
-              >
-                <path
-                  d="M5 3 L11 8 L5 13"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <strong>{service.description}</strong>
-            </Link>
+          <h2>What we do most often in {location.name}.</h2>
+          {content?.intro.map((paragraph, i) => (
+            <p key={i}>{paragraph}</p>
           ))}
         </section>
+
+        {content && content.suburbs.length > 0 && (
+          <section className="content-section">
+            <span className="eyebrow">
+              <span className="eyebrow-line" />
+              Suburbs we cover
+            </span>
+            <h2>{location.name} suburbs in our service area.</h2>
+            <ul className="suburb-list">
+              {content.suburbs.map((suburb) => (
+                <li key={suburb}>{suburb}</li>
+              ))}
+              <li className="suburb-more">+ surrounding suburbs</li>
+            </ul>
+          </section>
+        )}
+
+        <section className="content-section">
+          <span className="eyebrow">
+            <span className="eyebrow-line" />
+            Services in {location.name}
+          </span>
+          <h2>What we clean across {location.name}.</h2>
+          <div className="location-areas-grid">
+            {services.map((service) => (
+              <Link
+                href={`/services/${service.slug}`}
+                key={service.slug}
+                aria-label={`${service.name} in ${location.name}`}
+              >
+                <Image
+                  src={service.image}
+                  alt=""
+                  width={72}
+                  height={72}
+                  style={{
+                    width: 56,
+                    height: 56,
+                    borderRadius: 12,
+                    objectFit: "cover",
+                  }}
+                />
+                <span>
+                  {service.name} in {location.name}
+                </span>
+                <svg
+                  viewBox="0 0 16 16"
+                  width="16"
+                  height="16"
+                  fill="none"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M5 3 L11 8 L5 13"
+                    stroke="currentColor"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                <strong>{service.description}</strong>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {content && (
+          <section className="content-section service-faqs">
+            <span className="eyebrow">
+              <span className="eyebrow-line" />
+              {location.name} questions
+            </span>
+            <h2>Frequently asked about {location.name}.</h2>
+            <div className="faq-list-inline">
+              {content.faqs.map((faq) => (
+                <details key={faq.q} className="faq-item-inline">
+                  <summary>
+                    <h3>{faq.q}</h3>
+                    <span aria-hidden="true" className="faq-toggle">
+                      +
+                    </span>
+                  </summary>
+                  <p>{faq.a}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        )}
 
         <QuoteSection />
         <Footer />

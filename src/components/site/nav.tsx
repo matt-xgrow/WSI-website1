@@ -58,7 +58,7 @@ export function Nav() {
               <div className="dropdown-panel">
                 <div className="dropdown-head">
                   <span className="eyebrow">Exterior cleaning</span>
-                  <h4>9 services. One trusted team.</h4>
+                  <p className="dropdown-title">9 services. One trusted team.</p>
                 </div>
                 <div className="dropdown-grid">
                   {NAV_SERVICES.map((s) => (
@@ -83,7 +83,7 @@ export function Nav() {
               <div className="dropdown-panel dropdown-panel-sm">
                 <div className="dropdown-head">
                   <span className="eyebrow">Service areas</span>
-                  <h4>Queensland</h4>
+                  <p className="dropdown-title">Queensland</p>
                 </div>
                 <div className="dropdown-list">
                   {locations.map((l) => (

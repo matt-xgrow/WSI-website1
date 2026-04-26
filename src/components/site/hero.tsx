@@ -6,10 +6,30 @@ import { site } from "@/lib/site";
 import { ArrowRightIcon, PhoneIcon, StarIcon } from "./icons";
 
 const HERO_SERVICES = [
-  { name: "House Washing", surface: "Render, brick, weatherboard", img: "/images/residential-aerial.jpg" },
-  { name: "Pressure Washing", surface: "Driveways, paths, concrete", img: "/images/commercial-pressure.jpg" },
-  { name: "Window Cleaning", surface: "Glass, frames, balustrades", img: "/images/commercial-windows.jpg" },
-  { name: "Commercial Cleaning", surface: "Offices, strata, facades", img: "/images/glass-wash.jpg" },
+  {
+    name: "House Washing",
+    surface: "Render, brick, weatherboard",
+    img: "/images/residential-aerial.jpg",
+    alt: "Aerial view of a soft-washed Brisbane home showing clean rendered walls",
+  },
+  {
+    name: "Pressure Washing",
+    surface: "Driveways, paths, concrete",
+    img: "/images/commercial-pressure.jpg",
+    alt: "Commercial-grade pressure washer restoring a Brisbane concrete surface",
+  },
+  {
+    name: "Window Cleaning",
+    surface: "Glass, frames, balustrades",
+    img: "/images/commercial-windows.jpg",
+    alt: "Streak-free window cleaning on a Brisbane residential exterior",
+  },
+  {
+    name: "Commercial Cleaning",
+    surface: "Offices, strata, facades",
+    img: "/images/glass-wash.jpg",
+    alt: "Commercial glass facade cleaning on a Brisbane office building",
+  },
 ];
 
 export function Hero() {
@@ -22,7 +42,9 @@ export function Hero() {
         <div className="hero-left">
           <div className="hero-eyebrow">
             <span className="eyebrow-dot" />
-            <span>Est. 2014 · Brisbane · QLD · ABN verified</span>
+            <span>
+              Est. {site.foundingYear} · Brisbane · QLD · ABN {site.abnDisplay}
+            </span>
           </div>
 
           <h1 className="hero-title">
@@ -33,10 +55,13 @@ export function Hero() {
           </h1>
 
           <p className="hero-sub">
-            Brisbane&rsquo;s most-reviewed exterior cleaning team. Ten years of
-            soft-washing homes, scrubbing driveways, polishing glass, and
-            restoring roofs across Queensland — insured for $20M, rated five
-            stars by hundreds of homeowners and strata managers.
+            WSI Cleaning is a Brisbane-based exterior cleaning company,
+            operating across Brisbane, the Gold Coast and the Sunshine Coast
+            since {site.foundingYear}. We soft-wash homes, pressure-clean
+            driveways and paving, polish windows, clear gutters and restore
+            roofs — backed by {site.insuranceLabel.toLowerCase()},{" "}
+            {site.rating}/5 from {site.reviewCount} Google reviews and{" "}
+            {site.yearsInBusiness}+ years on the ground.
           </p>
 
           <div className="hero-actions">
@@ -52,15 +77,21 @@ export function Hero() {
 
           <div className="hero-stats">
             <div className="stat">
-              <div className="stat-num"><AnimatedNum to={100} suffix="+" /></div>
+              <div className="stat-num">
+                <AnimatedNum to={site.reviewCount} />
+              </div>
               <div className="stat-label">5-star Google reviews</div>
             </div>
             <div className="stat">
-              <div className="stat-num">$<AnimatedNum to={20} />M</div>
+              <div className="stat-num">
+                $<AnimatedNum to={20} />M
+              </div>
               <div className="stat-label">Public liability insurance</div>
             </div>
             <div className="stat">
-              <div className="stat-num"><AnimatedNum to={10} suffix="+" /></div>
+              <div className="stat-num">
+                <AnimatedNum to={site.yearsInBusiness} suffix="+" />
+              </div>
               <div className="stat-label">Years on the ground</div>
             </div>
           </div>
@@ -73,7 +104,7 @@ export function Hero() {
                 <div key={s.name} className={`hero-photo-slide ${i === active ? "active" : ""}`}>
                   <Image
                     src={s.img}
-                    alt={`WSI ${s.name} job`}
+                    alt={s.alt}
                     fill
                     sizes="(max-width: 900px) 100vw, 45vw"
                     priority={i === 0}
@@ -132,14 +163,30 @@ export function Hero() {
   );
 }
 
-function AnimatedNum({ to, suffix = "", duration = 1400 }: { to: number; suffix?: string; duration?: number }) {
-  const [n, setN] = useState(0);
+function AnimatedNum({
+  to,
+  suffix = "",
+  duration = 1400,
+}: {
+  to: number;
+  suffix?: string;
+  duration?: number;
+}) {
+  const [n, setN] = useState(to);
   const ref = useRef<HTMLSpanElement | null>(null);
   const started = useRef(false);
 
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
+    const rect = el.getBoundingClientRect();
+    const inViewportOnMount =
+      rect.top < window.innerHeight && rect.bottom > 0;
+    if (inViewportOnMount) {
+      started.current = true;
+      return;
+    }
+    setN(0);
     const obs = new IntersectionObserver(
       (entries) => {
         for (const e of entries) {

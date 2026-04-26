@@ -280,7 +280,7 @@ img, svg { display: block; max-width: 100%; }
   to { opacity: 1; transform: translateY(0); }
 }
 .dropdown-head { margin-bottom: 16px; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
-.dropdown-head h4 { margin: 6px 0 0; font-family: var(--font-display); font-weight: 500; font-size: 20px; letter-spacing: -0.01em; color: var(--navy-ink); }
+.dropdown-head .dropdown-title { margin: 6px 0 0; font-family: var(--font-display); font-weight: 500; font-size: 20px; letter-spacing: -0.01em; color: var(--navy-ink); }
 .dropdown-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
 .dropdown-list { display: flex; flex-direction: column; gap: 2px; }
 .dropdown-item {
@@ -1411,6 +1411,194 @@ img, svg { display: block; max-width: 100%; }
 .density-compact .process,
 .density-compact .reviews,
 .density-compact .faq { padding-bottom: 80px; }
+
+/* service-page expansions */
+.service-lead-text {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 2.4vw, 28px);
+  line-height: 1.5;
+  color: var(--ink-1);
+  letter-spacing: -0.01em;
+  max-width: 880px;
+}
+
+.process-list {
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 0;
+  display: grid;
+  gap: 28px;
+}
+.process-list li {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 20px;
+  align-items: start;
+}
+.process-list .process-num {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--orange-ink);
+  padding-top: 6px;
+}
+.process-step-title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 1.2;
+  margin: 0 0 6px;
+  color: var(--ink-1);
+}
+.process-list p {
+  margin: 0;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+.surfaces-grid {
+  list-style: none;
+  padding: 0;
+  margin: 32px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
+}
+.surfaces-grid li {
+  background: var(--warm-1);
+  border-radius: 16px;
+  padding: 20px 22px;
+  border: 1px solid var(--warm-2);
+}
+.surface-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0 0 6px;
+  color: var(--ink-1);
+}
+.surface-note {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+.faq-list-inline {
+  margin-top: 24px;
+  display: grid;
+  gap: 12px;
+}
+.faq-item-inline {
+  border: 1px solid var(--warm-2);
+  border-radius: 14px;
+  padding: 0;
+  background: var(--warm-0);
+  overflow: hidden;
+}
+.faq-item-inline summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 22px;
+}
+.faq-item-inline summary::-webkit-details-marker {
+  display: none;
+}
+.faq-item-inline summary h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 18px;
+  margin: 0;
+  color: var(--ink-1);
+  line-height: 1.35;
+}
+.faq-item-inline .faq-toggle {
+  font-size: 20px;
+  color: var(--ink-3);
+  transition: transform 200ms ease;
+  flex-shrink: 0;
+}
+.faq-item-inline[open] .faq-toggle {
+  transform: rotate(45deg);
+}
+.faq-item-inline p {
+  margin: 0;
+  padding: 0 22px 20px;
+  color: var(--ink-2);
+  line-height: 1.65;
+  font-size: 15.5px;
+}
+
+@media (max-width: 640px) {
+  .process-list li {
+    grid-template-columns: 48px 1fr;
+    gap: 14px;
+  }
+  .process-list .process-num {
+    font-size: 12px;
+  }
+  .process-step-title {
+    font-size: 19px;
+  }
+}
+
+.location-stats {
+  list-style: none;
+  padding: 0;
+  margin: 28px 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+.location-stats li {
+  background: var(--warm-1);
+  border: 1px solid var(--warm-2);
+  border-radius: 14px;
+  padding: 18px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.location-stats strong {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 22px;
+  color: var(--ink-1);
+  letter-spacing: -0.01em;
+}
+.location-stats span {
+  font-size: 13px;
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+}
+
+.suburb-list {
+  list-style: none;
+  padding: 0;
+  margin: 28px 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.suburb-list li {
+  background: var(--warm-1);
+  border: 1px solid var(--warm-2);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: 14px;
+  color: var(--ink-2);
+  font-weight: 500;
+}
+.suburb-list .suburb-more {
+  background: transparent;
+  color: var(--ink-3);
+  font-style: italic;
+  border-style: dashed;
+}
 
 /* reduced motion */
 @media (prefers-reduced-motion: reduce) {

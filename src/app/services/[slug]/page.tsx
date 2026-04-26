@@ -16,10 +16,12 @@ import {
 import { JsonLd } from "@/components/seo/json-ld";
 import {
   breadcrumbSchema,
+  faqPageSchemaFromList,
   graph,
   serviceSchema,
 } from "@/lib/seo/schema";
-import { getService, services, site } from "@/lib/site";
+import { getServiceContent } from "@/lib/service-content";
+import { getService, services, site, SITE_URL } from "@/lib/site";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -68,13 +70,39 @@ const SERVICE_IMAGE_MAP: Record<string, string> = {
   "commercial-cleaning": "/images/commercial-pressure.jpg",
 };
 
+const HERO_ALT_MAP: Record<string, string> = {
+  "house-washing":
+    "Soft-wash exterior house cleaning on a rendered Brisbane home",
+  "pressure-washing":
+    "Commercial pressure washing of a concrete driveway in Brisbane",
+  "window-cleaning":
+    "Streak-free residential window cleaning on a Queenslander",
+  "gutter-cleaning":
+    "Roof gutter cleaning before storm season in South East Queensland",
+  "roof-cleaning":
+    "Soft-wash roof cleaning on a tile roof in subtropical Brisbane",
+  "driveway-cleaning":
+    "Pressure-cleaned exposed-aggregate driveway after WSI Cleaning service",
+  "solar-panel-cleaning":
+    "Deionised-water solar panel cleaning on a Brisbane rooftop array",
+  "strata-cleaning":
+    "Strata complex common-area pressure clean by WSI Cleaning",
+  "commercial-cleaning":
+    "Commercial facade cleaning of an office building in Brisbane CBD",
+};
+
 export default async function ServicePage({ params }: PageProps) {
   const { slug } = await params;
   const service = getService(slug);
   if (!service) notFound();
 
   const heroImage = SERVICE_IMAGE_MAP[service.slug] ?? service.image;
-  const heroAlt = `${service.name} job by WSI Cleaning in Brisbane`;
+  const heroAlt =
+    HERO_ALT_MAP[service.slug] ??
+    `${service.name} job by WSI Cleaning in Brisbane`;
+  const content = getServiceContent(service.slug);
+  const canonical = `/services/${service.slug}`;
+  const pageId = `${SITE_URL}${canonical}#faq`;
 
   const pageSchema = graph(
     serviceSchema({
@@ -86,8 +114,9 @@ export default async function ServicePage({ params }: PageProps) {
     breadcrumbSchema([
       { name: "Home", url: "/" },
       { name: "Services", url: "/#services" },
-      { name: service.name, url: `/services/${service.slug}` },
-    ])
+      { name: service.name, url: canonical },
+    ]),
+    ...(content ? [faqPageSchemaFromList(content.faqs, pageId)] : [])
   );
 
   return (
@@ -159,6 +188,12 @@ export default async function ServicePage({ params }: PageProps) {
           </div>
         </section>
 
+        {content && (
+          <section className="content-section service-lead">
+            <p className="service-lead-text">{content.lead}</p>
+          </section>
+        )}
+
         <section className="answer-grid">
           <div className="answer-card">
             <span className="eyebrow">
@@ -178,29 +213,80 @@ export default async function ServicePage({ params }: PageProps) {
           </div>
         </section>
 
-        <section className="content-section">
-          <span className="eyebrow">
-            <span className="eyebrow-line" />
-            About this service
-          </span>
-          <h2>
-            {service.name} — done the{" "}
-            <em className="hl-orange">right way</em> for your surface.
-          </h2>
-          <p>
-            We provide {service.name.toLowerCase()} across Brisbane, Gold Coast
-            and Sunshine Coast. Every job starts with a quick look at the
-            surface, the level of build-up and the safest cleaning method — so
-            the finish lasts longer and the surface is never compromised.
-          </p>
-          <p>
-            Every WSI crew arrives with commercial-grade equipment, the right
-            cleaning chemistry and {site.insuranceLabel.toLowerCase()}. We work
-            efficiently, leave the area tidy and give you honest advice about
-            what the property actually needs. Quotes are returned within 24
-            business hours and fixed in writing before we start.
-          </p>
-        </section>
+        {content && (
+          <section className="content-section service-definition">
+            <span className="eyebrow">
+              <span className="eyebrow-line" />
+              The basics
+            </span>
+            <h2>{content.definition.title}</h2>
+            <p>{content.definition.body}</p>
+          </section>
+        )}
+
+        {content && (
+          <section className="content-section service-process">
+            <span className="eyebrow">
+              <span className="eyebrow-line" />
+              Our process
+            </span>
+            <h2>How we approach a {service.name.toLowerCase()} job.</h2>
+            <ol className="process-list">
+              {content.process.map((step, i) => (
+                <li key={step.title}>
+                  <span className="process-num">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div>
+                    <h3 className="process-step-title">{step.title}</h3>
+                    <p>{step.body}</p>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+        )}
+
+        {content && (
+          <section className="content-section service-surfaces">
+            <span className="eyebrow">
+              <span className="eyebrow-line" />
+              Surfaces we clean
+            </span>
+            <h2>What this service covers.</h2>
+            <ul className="surfaces-grid">
+              {content.surfaces.map((surface) => (
+                <li key={surface.name}>
+                  <h3 className="surface-name">{surface.name}</h3>
+                  <p className="surface-note">{surface.note}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {content && (
+          <section className="content-section service-faqs">
+            <span className="eyebrow">
+              <span className="eyebrow-line" />
+              Frequently asked
+            </span>
+            <h2>{service.name} questions, answered.</h2>
+            <div className="faq-list-inline">
+              {content.faqs.map((faq) => (
+                <details key={faq.q} className="faq-item-inline">
+                  <summary>
+                    <h3>{faq.q}</h3>
+                    <span aria-hidden="true" className="faq-toggle">
+                      +
+                    </span>
+                  </summary>
+                  <p>{faq.a}</p>
+                </details>
+              ))}
+            </div>
+          </section>
+        )}
 
         <QuoteSection />
         <Footer />
@@ -209,4 +295,3 @@ export default async function ServicePage({ params }: PageProps) {
     </>
   );
 }
-
