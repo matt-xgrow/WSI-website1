@@ -1,12 +1,24 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/site/footer";
 import { Nav } from "@/components/site/nav";
 import { QuoteSection } from "@/components/site/quote-section";
 import { StickyCTA } from "@/components/site/sticky-cta";
 import { TopBar } from "@/components/site/top-bar";
-import { CalendarIcon, GoogleGIcon, ShieldIcon, StarIcon } from "@/components/site/icons";
+import {
+  CalendarIcon,
+  GoogleGIcon,
+  ShieldIcon,
+  StarIcon,
+} from "@/components/site/icons";
+import { JsonLd } from "@/components/seo/json-ld";
+import {
+  breadcrumbSchema,
+  graph,
+  serviceSchema,
+} from "@/lib/seo/schema";
 import { getService, services, site } from "@/lib/site";
 
 type PageProps = {
@@ -17,18 +29,29 @@ export function generateStaticParams() {
   return services.map((service) => ({ slug: service.slug }));
 }
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { slug } = await params;
   const service = getService(slug);
   if (!service) return {};
+  const canonical = `/services/${service.slug}`;
   return {
     title: service.title,
     description: service.description,
-    alternates: { canonical: `/services/${service.slug}` },
+    alternates: { canonical },
     openGraph: {
-      title: `${service.title} | WSI Cleaning`,
+      title: service.title,
       description: service.description,
+      url: canonical,
       images: [{ url: service.image }],
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: service.title,
+      description: service.description,
+      images: [service.image],
     },
   };
 }
@@ -51,27 +74,25 @@ export default async function ServicePage({ params }: PageProps) {
   if (!service) notFound();
 
   const heroImage = SERVICE_IMAGE_MAP[service.slug] ?? service.image;
+  const heroAlt = `${service.name} job by WSI Cleaning in Brisbane`;
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Service",
-    name: service.title,
-    description: service.description,
-    provider: {
-      "@type": "LocalBusiness",
-      name: site.legalName,
-      telephone: site.phoneDisplay,
-      url: site.url,
-    },
-    areaServed: ["Brisbane", "Gold Coast", "Sunshine Coast"],
-  };
+  const pageSchema = graph(
+    serviceSchema({
+      name: service.name,
+      description: service.description,
+      slug: service.slug,
+      image: heroImage,
+    }),
+    breadcrumbSchema([
+      { name: "Home", url: "/" },
+      { name: "Services", url: "/#services" },
+      { name: service.name, url: `/services/${service.slug}` },
+    ])
+  );
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <JsonLd data={pageSchema} />
       <main className="page-shell">
         <TopBar />
         <Nav />
@@ -82,14 +103,12 @@ export default async function ServicePage({ params }: PageProps) {
               <span className="eyebrow-dot" />
               {service.eyebrow}
             </span>
-            <h1>
-              {service.name}
-            </h1>
+            <h1>{service.name}</h1>
             <p>{service.description}</p>
             <div className="hero-actions">
-              <a className="btn btn-orange btn-lg" href="#quote">
+              <Link className="btn btn-orange btn-lg" href="#quote">
                 Get a free quote →
-              </a>
+              </Link>
               <a className="btn btn-ghost btn-lg" href={site.phoneHref}>
                 Call {site.phoneDisplay}
               </a>
@@ -98,7 +117,10 @@ export default async function ServicePage({ params }: PageProps) {
             <div className="trust-strip">
               <div className="trust-item trust-google">
                 <GoogleGIcon />
-                <div className="trust-stars" aria-label={`${site.rating} out of 5`}>
+                <div
+                  className="trust-stars"
+                  aria-label={`${site.rating} out of 5 from ${site.reviewCount} Google reviews`}
+                >
                   {Array.from({ length: 5 }).map((_, i) => (
                     <StarIcon key={i} style={{ color: "#FBBC05" }} />
                   ))}
@@ -120,7 +142,7 @@ export default async function ServicePage({ params }: PageProps) {
               <div className="trust-item">
                 <CalendarIcon style={{ color: "var(--cyan-ink)" }} />
                 <div className="trust-text">
-                  <strong>10+ yrs</strong>
+                  <strong>{site.yearsInBusiness}+ yrs</strong>
                   <span>On the ground</span>
                 </div>
               </div>
@@ -129,7 +151,7 @@ export default async function ServicePage({ params }: PageProps) {
           <div className="sub-hero-img">
             <Image
               src={heroImage}
-              alt={service.title}
+              alt={heroAlt}
               width={720}
               height={450}
               priority
@@ -151,7 +173,7 @@ export default async function ServicePage({ params }: PageProps) {
               <span className="eyebrow-line" />
               Why WSI is a fit
             </span>
-            <h2>Built on ten years of surface care.</h2>
+            <h2>Built on {site.yearsInBusiness} years of surface care.</h2>
             <p>{service.proof}</p>
           </div>
         </section>
@@ -162,19 +184,21 @@ export default async function ServicePage({ params }: PageProps) {
             About this service
           </span>
           <h2>
-            {service.name} — done the <em className="hl-orange">right way</em> for your surface.
+            {service.name} — done the{" "}
+            <em className="hl-orange">right way</em> for your surface.
           </h2>
           <p>
-            We provide {service.name.toLowerCase()} across Brisbane, Gold Coast and Sunshine Coast.
-            Every job starts with a quick look at the surface, the level of build-up and the
-            safest cleaning method — so the finish lasts longer and the surface
-            is never compromised.
+            We provide {service.name.toLowerCase()} across Brisbane, Gold Coast
+            and Sunshine Coast. Every job starts with a quick look at the
+            surface, the level of build-up and the safest cleaning method — so
+            the finish lasts longer and the surface is never compromised.
           </p>
           <p>
             Every WSI crew arrives with commercial-grade equipment, the right
-            cleaning chemistry and $20M public liability cover. We work
+            cleaning chemistry and {site.insuranceLabel.toLowerCase()}. We work
             efficiently, leave the area tidy and give you honest advice about
-            what the property actually needs.
+            what the property actually needs. Quotes are returned within 24
+            business hours and fixed in writing before we start.
           </p>
         </section>
 
@@ -185,3 +209,4 @@ export default async function ServicePage({ params }: PageProps) {
     </>
   );
 }
+

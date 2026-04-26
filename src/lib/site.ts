@@ -1,26 +1,55 @@
+function resolveSiteUrl() {
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (explicit) return explicit.replace(/\/$/, "");
+  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
+  return "http://localhost:3000";
+}
+
+export const SITE_URL = resolveSiteUrl();
+export const IS_PRODUCTION_HOST =
+  process.env.VERCEL_ENV === "production" ||
+  (!!process.env.NEXT_PUBLIC_SITE_URL && !process.env.VERCEL_ENV);
+
+const FOUNDING_YEAR = 2014;
+const CURRENT_YEAR = new Date().getFullYear();
+const YEARS_IN_BUSINESS = CURRENT_YEAR - FOUNDING_YEAR;
+
 export const site = {
   name: "WSI Cleaning",
   legalName: "WSI Cleaning Services",
-  url: "https://wsicleaning.com",
+  url: SITE_URL,
   phoneDisplay: "0426 400 029",
+  phoneE164: "+61426400029",
   phoneHref: "tel:+61426400029",
   email: "info@wsicleaning.com",
-  mapsUrl:
-    "https://www.google.com/maps/place/WSI+Pressure+Cleaning+-+Pressure+Cleaning+Service/@-27.5521735,152.9337057,11.86z/data=!4m6!3m5!1s0x474f05cdf0f2bcdb:0xca2a5024b05aa548!8m2!3d-30.265976!4d152.254271!16s%2Fg%2F11t_hnfh7n",
+  abn: "14 608 887 850",
+  abnDisplay: "14 608 887 850",
+  foundingYear: FOUNDING_YEAR,
+  yearsInBusiness: YEARS_IN_BUSINESS,
+  experienceLabel: `${YEARS_IN_BUSINESS}+ years`,
+  rating: "4.9",
+  reviewCount: 162,
+  reviewCountLabel: "162",
+  insuranceAmount: 20_000_000,
+  insuranceLabel: "$20M public liability insurance",
   areas: ["Brisbane", "Gold Coast", "Sunshine Coast"],
   primaryArea: "Brisbane",
-  rating: "5.0",
-  reviewCountLabel: "100+",
-  experienceLabel: "10+ years",
-  insuranceLabel: "$20M public liability insurance",
+  socialLinks: [] as string[],
 };
+
+export const CONTENT_UPDATED = {
+  home: "2026-04-26",
+  services: "2026-04-26",
+  locations: "2026-04-26",
+  gallery: "2026-04-26",
+} as const;
 
 export const services = [
   {
     slug: "house-washing",
     name: "House Washing",
     eyebrow: "Priority service",
-    title: "House Washing Services | WSI Cleaning",
+    title: "House Washing Services",
     description:
       "Soft washing for rendered, painted, brick and weatherboard homes, built to remove mould, algae and grime without blasting delicate surfaces.",
     image: "/images/house-wash.jpg",
@@ -33,7 +62,7 @@ export const services = [
     slug: "pressure-washing",
     name: "Pressure Washing",
     eyebrow: "High-demand service",
-    title: "Pressure Washing Services | WSI Cleaning",
+    title: "Pressure Washing Services",
     description:
       "Professional pressure washing for driveways, paths, patios, pool surrounds and hard exterior surfaces where dirt, oil and organic growth have built up.",
     image: "/images/pressure-cleaning.jpg",
@@ -45,7 +74,7 @@ export const services = [
     slug: "window-cleaning",
     name: "Window Cleaning",
     eyebrow: "Residential and commercial",
-    title: "Window Cleaning Services | WSI Cleaning",
+    title: "Window Cleaning Services",
     description:
       "Interior and exterior window cleaning for homes, offices, shopfronts and body corporate properties.",
     image: "/images/window-cleaning.jpg",
@@ -57,7 +86,7 @@ export const services = [
     slug: "gutter-cleaning",
     name: "Gutter Cleaning",
     eyebrow: "Maintenance service",
-    title: "Gutter Cleaning Services | WSI Cleaning",
+    title: "Gutter Cleaning Services",
     description:
       "Gutter cleaning for homes and small commercial properties, helping reduce overflow, blockages and water damage risks during storm season.",
     image: "/images/gutter-cleaning.jpg",
@@ -69,7 +98,7 @@ export const services = [
     slug: "roof-cleaning",
     name: "Roof Cleaning",
     eyebrow: "Specialized service",
-    title: "Roof Cleaning Services | WSI Cleaning",
+    title: "Roof Cleaning Services",
     description: "Safe and effective roof cleaning for tiles, metal, and terracotta roofs, removing moss, lichen, and dirt build-up.",
     image: "/images/soft-wash.jpg",
     intent: "For homeowners looking to restore their roof's appearance and prevent long-term damage from organic growth.",
@@ -80,7 +109,7 @@ export const services = [
     slug: "driveway-cleaning",
     name: "Driveway Cleaning",
     eyebrow: "Curb appeal boost",
-    title: "Driveway Cleaning Services | WSI Cleaning",
+    title: "Driveway Cleaning Services",
     description: "High-pressure driveway cleaning to remove oil stains, tyre marks, dirt, and mould from concrete, exposed aggregate, and pavers.",
     image: "/images/pressure-cleaning.jpg",
     intent: "For properties needing an instant facelift to their entrance or removing slippery moss and algae.",
@@ -91,7 +120,7 @@ export const services = [
     slug: "solar-panel-cleaning",
     name: "Solar Panel Cleaning",
     eyebrow: "Efficiency boost",
-    title: "Solar Panel Cleaning Services | WSI Cleaning",
+    title: "Solar Panel Cleaning Services",
     description: "Gentle, pure-water solar panel cleaning to maximize energy output by removing dust, bird droppings, and pollution.",
     image: "/images/glass-wash.jpg",
     intent: "For homeowners and businesses wanting to maintain peak efficiency of their solar energy system.",
@@ -102,7 +131,7 @@ export const services = [
     slug: "strata-cleaning",
     name: "Strata Cleaning",
     eyebrow: "Body corporate",
-    title: "Strata Cleaning Services | WSI Cleaning",
+    title: "Strata Cleaning Services",
     description: "Comprehensive exterior cleaning for strata and body corporate properties, including common areas, pathways, and building washdowns.",
     image: "/images/commercial-aerial.jpg",
     intent: "For body corporate managers needing reliable, fully insured, and systematic exterior maintenance.",
@@ -113,7 +142,7 @@ export const services = [
     slug: "commercial-cleaning",
     name: "Commercial Cleaning",
     eyebrow: "Business presentation",
-    title: "Commercial Building Cleaning Services | WSI Cleaning",
+    title: "Commercial Building Cleaning Services",
     description: "Professional washing for commercial building exteriors, warehouses, and shopfronts to maintain a pristine business image.",
     image: "/images/commercial-pressure.jpg",
     intent: "For business owners and property managers requiring exterior maintenance with minimal disruption to operations.",
@@ -150,34 +179,6 @@ export const locations = [
   },
 ];
 
-export const faqs = [
-  {
-    question: "What is WSI Cleaning best known for?",
-    answer:
-      "WSI Cleaning is best known for house washing, pressure cleaning, window cleaning and gutter cleaning across Brisbane, with selected availability on the Gold Coast and Sunshine Coast.",
-  },
-  {
-    question: "Does WSI Cleaning service Brisbane?",
-    answer:
-      "Yes. Brisbane is the primary focus area for WSI Cleaning, especially for house washing, pressure cleaning, window cleaning and gutter cleaning enquiries.",
-  },
-  {
-    question: "Is pressure cleaning safe for every exterior surface?",
-    answer:
-      "No. Some surfaces need pressure cleaning, while painted, rendered or more delicate exterior surfaces may need soft washing. WSI Cleaning chooses the method based on the surface and the result needed.",
-  },
-  {
-    question: "Does WSI Cleaning offer roof cleaning?",
-    answer:
-      "WSI Cleaning can assess roof cleaning enquiries, but the core service focus is house washing, pressure cleaning, window cleaning and gutter cleaning.",
-  },
-  {
-    question: "How can I get a quote?",
-    answer:
-      "Use the website form or call 0426 400 029. Sharing the suburb, service needed and a few photos helps the team respond with better context.",
-  },
-];
-
 export function getService(slug: string) {
   return services.find((service) => service.slug === slug);
 }
@@ -185,4 +186,3 @@ export function getService(slug: string) {
 export function getLocation(slug: string) {
   return locations.find((location) => location.slug === slug);
 }
-

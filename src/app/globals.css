@@ -1167,7 +1167,7 @@ img, svg { display: block; max-width: 100%; }
   gap: 40px;
 }
 @media (max-width: 780px) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-col-wide { grid-column: span 2; } }
-.footer-col h5 {
+.footer-col-heading {
   font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
