@@ -34,6 +34,16 @@ const HERO_SERVICES = [
 
 export function Hero() {
   const [active, setActive] = useState(0);
+  const [seen, setSeen] = useState<Set<number>>(() => new Set([0]));
+
+  useEffect(() => {
+    setSeen((prev) => {
+      if (prev.has(active)) return prev;
+      const next = new Set(prev);
+      next.add(active);
+      return next;
+    });
+  }, [active]);
 
   return (
     <section className="hero" id="top">
@@ -100,18 +110,26 @@ export function Hero() {
         <div className="hero-right">
           <div className="hero-visual">
             <div className="hero-photo">
-              {HERO_SERVICES.map((s, i) => (
-                <div key={s.name} className={`hero-photo-slide ${i === active ? "active" : ""}`}>
-                  <Image
-                    src={s.img}
-                    alt={s.alt}
-                    fill
-                    sizes="(max-width: 900px) 100vw, 45vw"
-                    priority={i === 0}
-                    className="hero-photo-img"
-                  />
-                </div>
-              ))}
+              {HERO_SERVICES.map((s, i) => {
+                if (!seen.has(i)) return null;
+                return (
+                  <div
+                    key={s.name}
+                    className={`hero-photo-slide ${
+                      i === active ? "active" : ""
+                    }`}
+                  >
+                    <Image
+                      src={s.img}
+                      alt={s.alt}
+                      fill
+                      sizes="(max-width: 900px) 100vw, 45vw"
+                      priority={i === 0}
+                      className="hero-photo-img"
+                    />
+                  </div>
+                );
+              })}
               <div className="hero-photo-overlay">
                 <div className="overlay-card">
                   <div className="overlay-title">{HERO_SERVICES[active].name} · Brisbane, QLD</div>

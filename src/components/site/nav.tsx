@@ -45,7 +45,7 @@ export function Nav() {
         </Link>
 
         <div className="nav-links">
-          <Link href="/#about">About</Link>
+          <Link href="/about">About</Link>
           <div
             className="nav-dropdown"
             onMouseEnter={() => setOpenMenu("services")}

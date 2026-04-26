@@ -1600,6 +1600,72 @@ img, svg { display: block; max-width: 100%; }
   border-style: dashed;
 }
 
+.comparison-table-wrap {
+  margin-top: 28px;
+  overflow-x: auto;
+  border: 1px solid var(--warm-2);
+  border-radius: 16px;
+  background: var(--warm-0);
+}
+.comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 15px;
+  min-width: 640px;
+}
+.comparison-table th,
+.comparison-table td {
+  text-align: left;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--warm-2);
+  vertical-align: top;
+}
+.comparison-table thead th {
+  font-family: var(--font-display);
+  font-weight: 600;
+  background: var(--warm-1);
+  color: var(--ink-1);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+}
+.comparison-table tbody th {
+  font-weight: 600;
+  color: var(--ink-1);
+  width: 28%;
+  background: var(--warm-1);
+}
+.comparison-table td {
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+.comparison-table tr:last-child th,
+.comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+.method-pill {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+.method-pill-soft-wash {
+  background: rgba(247, 148, 30, 0.14);
+  color: var(--orange-ink);
+}
+.method-pill-pressure-wash {
+  background: rgba(31, 42, 102, 0.1);
+  color: var(--navy-ink);
+}
+.method-pill-deionised-water {
+  background: rgba(61, 198, 237, 0.18);
+  color: var(--cyan-ink);
+}
+
 /* reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

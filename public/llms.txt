@@ -37,6 +37,14 @@ WSI Cleaning offers nine exterior cleaning services. All services are available 
 - [Gold Coast](/locations/gold-coast): Weekly batched trips. Burleigh, Mermaid Beach, Surfers Paradise, Broadbeach, Coolangatta, Sanctuary Cove and surrounding suburbs.
 - [Sunshine Coast](/locations/sunshine-coast): Weekly batched trips. Noosa, Maroochydore, Mooloolaba, Caloundra, Coolum, Buderim and Sunshine Coast hinterland.
 
+## Guides
+
+- [Soft Wash vs Pressure Wash](/guides/soft-wash-vs-pressure-wash): Detailed comparison of cleaning methods, pressure ranges, surface compatibility tables and FAQs. Soft wash (under 500 PSI) for render, paint, weatherboard and roof tiles. Pressure wash (1,500–4,000 PSI) for concrete, pavers and pool surrounds. Deionised water for solar panels and glass.
+
+## About
+
+- [About WSI Cleaning](/about): Brand story, methodology, compliance credentials and operating principles.
+
 ## Methodology
 
 WSI Cleaning chooses cleaning method by surface type:

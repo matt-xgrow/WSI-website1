@@ -9,6 +9,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 1,
   };
 
+  const about: MetadataRoute.Sitemap[number] = {
+    url: `${SITE_URL}/about`,
+    lastModified: CONTENT_UPDATED.about,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  };
+
+  const guides: MetadataRoute.Sitemap = [
+    {
+      url: `${SITE_URL}/guides/soft-wash-vs-pressure-wash`,
+      lastModified: CONTENT_UPDATED.guides,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+  ];
+
   const gallery: MetadataRoute.Sitemap[number] = {
     url: `${SITE_URL}/gallery`,
     lastModified: CONTENT_UPDATED.gallery,
@@ -33,5 +49,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: location.slug === "brisbane" ? 0.9 : 0.7,
   }));
 
-  return [home, gallery, ...servicePages, ...locationPages];
+  return [home, about, ...guides, gallery, ...servicePages, ...locationPages];
 }
