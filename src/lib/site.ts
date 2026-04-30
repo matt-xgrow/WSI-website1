@@ -32,7 +32,7 @@ export const site = {
   reviewCountLabel: "162",
   insuranceAmount: 20_000_000,
   insuranceLabel: "$20M public liability insurance",
-  areas: ["Brisbane", "Gold Coast", "Sunshine Coast"],
+  areas: ["Brisbane", "Sunshine Coast"],
   primaryArea: "Brisbane",
   socialLinks: [] as string[],
 };
@@ -162,14 +162,6 @@ export const locations = [
     description:
       "The primary service area for WSI Cleaning, with priority availability for house washing, pressure cleaning, window cleaning and gutter cleaning.",
     priority: "Primary focus area",
-  },
-  {
-    slug: "gold-coast",
-    name: "Gold Coast",
-    title: "Exterior Cleaning Services Gold Coast",
-    description:
-      "Selective exterior cleaning availability for Gold Coast homes and properties, depending on crew scheduling.",
-    priority: "Secondary service area",
   },
   {
     slug: "sunshine-coast",

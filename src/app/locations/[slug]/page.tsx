@@ -23,7 +23,6 @@ type PageProps = {
 
 const LOCATION_HERO: Record<string, string> = {
   brisbane: "/images/commercial-pressure.jpg",
-  "gold-coast": "/images/residential-aerial.jpg",
   "sunshine-coast": "/images/glass-wash.jpg",
 };
 

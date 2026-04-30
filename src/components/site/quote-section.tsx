@@ -16,7 +16,7 @@ const SERVICES = [
   "Other",
 ];
 
-const CITIES = ["Brisbane", "Gold Coast", "Sunshine Coast"];
+const CITIES = ["Brisbane", "Sunshine Coast"];
 
 type Data = {
   service: string;

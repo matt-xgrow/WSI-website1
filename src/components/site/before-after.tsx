@@ -50,7 +50,7 @@ export function BeforeAfter() {
         </div>
         <div className="section-head-right">
           <p>
-            Real before-and-after photos from jobs across Brisbane, Gold Coast and
+            Real before-and-after photos from jobs across Brisbane and
             the Sunshine Coast. Same surface, same day — just our crew, our
             chemistry and the right pressure.
           </p>

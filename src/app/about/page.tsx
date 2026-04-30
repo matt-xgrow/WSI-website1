@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   alternates: { canonical: "/about" },
   openGraph: {
     title: "About WSI Cleaning",
-    description: `Exterior cleaning specialists since ${site.foundingYear}. ${site.insuranceLabel}. Brisbane, Gold Coast, Sunshine Coast.`,
+    description: `Exterior cleaning specialists since ${site.foundingYear}. ${site.insuranceLabel}. Brisbane, Sunshine Coast.`,
     url: "/about",
     images: [{ url: "/images/wsi-team.jpg" }],
     type: "website",
@@ -76,7 +76,7 @@ export default function AboutPage() {
       "@id": `${SITE_URL}/about#about`,
       url: `${SITE_URL}/about`,
       name: "About WSI Cleaning",
-      description: `Exterior cleaning specialists serving Brisbane, Gold Coast and Sunshine Coast since ${site.foundingYear}. ABN ${site.abnDisplay}.`,
+      description: `Exterior cleaning specialists serving Brisbane and Sunshine Coast since ${site.foundingYear}. ABN ${site.abnDisplay}.`,
       mainEntity: { "@id": `${SITE_URL}/#business` },
       isPartOf: { "@id": `${SITE_URL}/#website` },
     }
@@ -101,7 +101,7 @@ export default function AboutPage() {
             </h1>
             <p>
               WSI Cleaning is a Brisbane-based exterior cleaning company,
-              operating across Brisbane, the Gold Coast and the Sunshine Coast
+              operating across Brisbane and the Sunshine Coast
               since {site.foundingYear}. We service residential homes, body
               corporate properties and commercial buildings — house washes,
               pressure cleans, window work, gutter clears, roof treatments,
@@ -134,7 +134,7 @@ export default function AboutPage() {
             across South East Queensland — {site.rating}/5 stars from{" "}
             {site.reviewCount} Google reviews,{" "}
             {site.insuranceLabel.toLowerCase()}, and a service area covering
-            Brisbane, the Gold Coast and the Sunshine Coast. We
+            Brisbane and the Sunshine Coast. We
             don&rsquo;t do interior cleaning. We don&rsquo;t do garden work.
             Everything we do is exterior — surfaces that take weather, salt,
             mould and traffic, and the chemistry and pressure required to
@@ -239,20 +239,16 @@ export default function AboutPage() {
             <span className="eyebrow-line" />
             Where we work
           </span>
-          <h2>South East Queensland — three metro hubs.</h2>
+          <h2>South East Queensland — two metro hubs.</h2>
           <p>
-            We operate from a Brisbane base across three metro markets in South
+            We operate from a Brisbane base across two metro markets in South
             East Queensland. Brisbane is the primary service area with
-            same-week scheduling for residential. The Gold Coast and Sunshine
-            Coast are run as weekly batched trips so multiple jobs share the
-            travel time.
+            same-week scheduling for residential. The Sunshine Coast is run as
+            weekly batched trips so multiple jobs share the travel time.
           </p>
           <ul className="suburb-list">
             <li>
               <Link href="/locations/brisbane">Brisbane →</Link>
-            </li>
-            <li>
-              <Link href="/locations/gold-coast">Gold Coast →</Link>
             </li>
             <li>
               <Link href="/locations/sunshine-coast">Sunshine Coast →</Link>

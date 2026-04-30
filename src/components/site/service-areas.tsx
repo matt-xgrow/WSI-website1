@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { site } from "@/lib/site";
 
-type AreaKey = "brisbane" | "sunshine-coast" | "gold-coast";
+type AreaKey = "brisbane" | "sunshine-coast";
 
 const AREAS: Record<AreaKey, {
   name: string;
@@ -16,12 +16,6 @@ const AREAS: Record<AreaKey, {
     state: "QLD",
     suburbs: ["New Farm", "Hamilton", "Ascot", "Bulimba", "Teneriffe", "Paddington", "Toowong", "Indooroopilly", "Chelmer", "Graceville", "Wilston", "Clayfield"],
     stats: { jobs: "1,800+", reviews: "68", response: "24h" },
-  },
-  "gold-coast": {
-    name: "Gold Coast",
-    state: "QLD",
-    suburbs: ["Broadbeach", "Surfers Paradise", "Burleigh Heads", "Mermaid Beach", "Robina", "Palm Beach", "Coolangatta", "Paradise Point", "Sanctuary Cove", "Isle of Capri"],
-    stats: { jobs: "920+", reviews: "24", response: "24h" },
   },
   "sunshine-coast": {
     name: "Sunshine Coast",
@@ -49,7 +43,7 @@ export function ServiceAreas() {
         </div>
         <div className="section-head-right">
           <p>
-            Three metro hubs, dozens of suburbs. Click a city to see what
+            Two metro hubs, dozens of suburbs. Click a city to see what
             we&rsquo;ve been up to there recently.
           </p>
         </div>
@@ -172,7 +166,6 @@ function MapSVG({ active, onSelect }: { active: string; onSelect: (k: AreaKey) =
         {/* Pins */}
         <MapPin x={420} y={130} label="Sunshine Coast" active={active === "Sunshine Coast"} onSelect={() => onSelect("sunshine-coast")} />
         <MapPin x={380} y={310} label="Brisbane" active={active === "Brisbane"} onSelect={() => onSelect("brisbane")} />
-        <MapPin x={340} y={485} label="Gold Coast" active={active === "Gold Coast"} onSelect={() => onSelect("gold-coast")} />
       </svg>
       <div className="map-legend">Tap a region to see local services</div>
     </div>

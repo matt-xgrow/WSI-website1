@@ -56,53 +56,11 @@ export const LOCATION_CONTENT: Record<string, LocationContent> = {
     ],
   },
 
-  "gold-coast": {
-    lead: "WSI Cleaning services properties on the Gold Coast for residential, body corporate and commercial exterior cleaning — from Coolangatta in the south up through Burleigh, Mermaid Beach, Broadbeach, Surfers Paradise, Main Beach and Sanctuary Cove. The Gold Coast is a salt-air environment, which changes the cleaning calendar: window haze appears every 6–8 weeks, render and painted facades stain faster, and unprotected metal corrodes inside a year if salt isn't washed off. Crews travel from our Brisbane base; book ahead so we can group Gold Coast jobs into the same trip and keep the quote efficient.",
-    climate: {
-      title: "How does Gold Coast salt air change cleaning needs?",
-      body: "Salt air carries microscopic salt particles up to several kilometres inland. On glass it dries as a haze that scatters light — windows look cloudy weeks after a clean. On render and painted facades it accelerates staining and chalking. On unprotected metal (window frames, balustrades, garage doors) it pits the surface and starts corrosion within months. Cleaning intervals shorten the closer the property sits to the beach: 6–8 weeks for windows within a kilometre of the coast, every 9–12 months for a full house wash, and quarterly for high-rise glass facades.",
-    },
-    intro: [
-      "Our most-booked Gold Coast services are window cleaning (regular cycle for coastal homes), house washing and pressure cleaning of paving, pool surrounds and salt-stained driveways. High-rise glass and strata facade work is regular for our crew along the central beachfront. We carry $20M public liability cover, are inducted on the major contractor systems (Cm3, Rapid Global, Avetta) and provide certificates of currency on request.",
-      "Gold Coast bookings are scheduled in batches — most weeks we run a Gold Coast day for jobs we've grouped together, which keeps travel cost contained and lets us turn around a full property in a single visit. If you're flexible on timing, the quote will reflect that.",
-    ],
-    suburbs: [
-      "Broadbeach",
-      "Surfers Paradise",
-      "Main Beach",
-      "Burleigh Heads",
-      "Mermaid Beach",
-      "Robina",
-      "Palm Beach",
-      "Coolangatta",
-      "Paradise Point",
-      "Sanctuary Cove",
-      "Isle of Capri",
-      "Mermaid Waters",
-      "Bundall",
-      "Ashmore",
-      "Helensvale",
-      "Hope Island",
-    ],
-    stats: [
-      { label: "Service availability", value: "Weekly batched trips" },
-      { label: "Quote turnaround", value: "24 hours" },
-      { label: "Specialty", value: "Salt-affected glass & facades" },
-    ],
-    faqs: [
-      { q: "Do you service the southern Gold Coast (Burleigh, Palm Beach, Coolangatta)?", a: "Yes — south Gold Coast is a regular run. Burleigh Heads, Mermaid Beach, Palm Beach, Currumbin and Coolangatta are scheduled as part of our Gold Coast batched trips. Larger jobs in this region can be quoted as standalone visits." },
-      { q: "How often should Gold Coast windows be cleaned?", a: "Every 6–8 weeks within a kilometre of the beach because of salt haze, every 8–12 weeks 1–3 km inland, and quarterly further inland. Commercial street-front shops typically book fortnightly. The closer to the beach, the shorter the interval — salt simply doesn't wait." },
-      { q: "Can you handle high-rise apartment building work?", a: "Yes. We're set up for working-at-heights with EWP for buildings up to 3 storeys; higher buildings are handled with hired access (boom lift or rope access). Strata committees and building managers are our most common contact for this scope." },
-      { q: "Do salt-corroded surfaces need different cleaning?", a: "Yes. Salt-affected aluminium, stainless steel and painted metal need a chemical-led clean (mild acid descale for early-stage corrosion) plus a fresh-water rinse. We'll flag any surface that's past the cleaning stage and into the repaint or replace stage so you can budget accordingly." },
-      { q: "Do you batch Gold Coast jobs to keep prices reasonable?", a: "Yes — we run scheduled Gold Coast days each week so multiple jobs share the travel time. If your job is flexible on date, the quote will be more competitive. Urgent same-week work is available but priced for the standalone trip." },
-    ],
-  },
-
   "sunshine-coast": {
-    lead: "WSI Cleaning services properties on the Sunshine Coast — from Caloundra in the south through Mooloolaba, Maroochydore, Coolum, Peregian and up to Noosa. The Sunshine Coast splits into two distinct cleaning environments: coastal salt air (same dynamics as the Gold Coast) on the beachfront strip, and humid hinterland mildew further inland from Buderim and Eumundi up through the Glasshouse Mountains. We travel from our Brisbane base — Sunshine Coast jobs are grouped into batched trips so the quote stays efficient. Book ahead where you can; same-week is available for urgent work.",
+    lead: "WSI Cleaning services properties on the Sunshine Coast — from Caloundra in the south through Mooloolaba, Maroochydore, Coolum, Peregian and up to Noosa. The Sunshine Coast splits into two distinct cleaning environments: coastal salt air on the beachfront strip, and humid hinterland mildew further inland from Buderim and Eumundi up through the Glasshouse Mountains. We travel from our Brisbane base — Sunshine Coast jobs are grouped into batched trips so the quote stays efficient. Book ahead where you can; same-week is available for urgent work.",
     climate: {
       title: "How do Sunshine Coast hinterland and coast cleaning needs differ?",
-      body: "Coastal Sunshine Coast properties (Mooloolaba, Maroochydore, Coolum, Noosa, Peregian) sit in a salt-air environment — same window-haze and metal-corrosion pattern as the Gold Coast. Hinterland properties (Buderim, Maleny, Montville, Eumundi) sit in higher rainfall, lower wind, with more tree cover and dense humidity — that combination drives faster moss and mildew growth on roofs, decks and shaded walls than nearly any other region in South East Queensland. The same property type needs a different cleaning cycle depending on which side of the highway it sits.",
+      body: "Coastal Sunshine Coast properties (Mooloolaba, Maroochydore, Coolum, Noosa, Peregian) sit in a salt-air environment — with the same window-haze and metal-corrosion pattern you get on any salt-exposed coastline. Hinterland properties (Buderim, Maleny, Montville, Eumundi) sit in higher rainfall, lower wind, with more tree cover and dense humidity — that combination drives faster moss and mildew growth on roofs, decks and shaded walls than nearly any other region in South East Queensland. The same property type needs a different cleaning cycle depending on which side of the highway it sits.",
     },
     intro: [
       "Coastal Sunshine Coast jobs typically include window cleans on shorter cycles (salt haze), house washes every 9–12 months and quarterly pool-surround cleans. Hinterland properties book heavier on roof cleans (moss and lichen pressure is high), deck washes and gutter clears (tree cover means leaf load is constant). Both regions book gutter cleans before October each year for storm season.",

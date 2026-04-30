@@ -66,7 +66,7 @@ export function Hero() {
 
           <p className="hero-sub">
             WSI Cleaning is a Brisbane-based exterior cleaning company,
-            operating across Brisbane, the Gold Coast and the Sunshine Coast
+            operating across Brisbane and the Sunshine Coast
             since {site.foundingYear}. We soft-wash homes, pressure-clean
             driveways and paving, polish windows, clear gutters and restore
             roofs — backed by {site.insuranceLabel.toLowerCase()},{" "}

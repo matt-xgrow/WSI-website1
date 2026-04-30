@@ -1,7 +1,6 @@
 const MARQUEE_ITEMS = [
   "Brisbane",
   "Sunshine Coast",
-  "Gold Coast",
   "$20M insured",
   "100+ ★ reviews",
   "Same-week bookings",

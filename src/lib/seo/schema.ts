@@ -16,11 +16,6 @@ const AREAS_SERVED = [
   },
   {
     "@type": "City" as const,
-    name: "Gold Coast",
-    sameAs: "https://en.wikipedia.org/wiki/Gold_Coast,_Queensland",
-  },
-  {
-    "@type": "City" as const,
     name: "Sunshine Coast",
     sameAs: "https://en.wikipedia.org/wiki/Sunshine_Coast,_Queensland",
   },
@@ -81,7 +76,7 @@ export function localBusinessSchema() {
     name: site.legalName,
     alternateName: site.name,
     description:
-      "Exterior cleaning specialists serving Brisbane, Gold Coast and Sunshine Coast — pressure washing, soft-wash house cleaning, roof, gutter, window, solar panel, driveway, strata and commercial cleaning.",
+      "Exterior cleaning specialists serving Brisbane and Sunshine Coast — pressure washing, soft-wash house cleaning, roof, gutter, window, solar panel, driveway, strata and commercial cleaning.",
     url: SITE_URL,
     telephone: site.phoneE164,
     email: site.email,
