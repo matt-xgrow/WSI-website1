@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { site, locations } from "@/lib/site";
 import { PhoneIcon } from "./icons";
 
@@ -18,10 +18,14 @@ const NAV_SERVICES = [
   { name: "Commercial Buildings", href: "/services/commercial-cleaning" },
 ];
 
+type MenuKey = "services" | "locations" | null;
+
 export function Nav() {
   const [scrolled, setScrolled] = useState(false);
-  const [openMenu, setOpenMenu] = useState<"services" | "locations" | null>(null);
+  const [openMenu, setOpenMenu] = useState<MenuKey>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileSection, setMobileSection] = useState<MenuKey>(null);
+  const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -29,10 +33,52 @@ export function Nav() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    if (!openMenu) return;
+    const onClickOutside = (e: MouseEvent) => {
+      if (navRef.current && !navRef.current.contains(e.target as Node)) {
+        setOpenMenu(null);
+      }
+    };
+    const onEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setOpenMenu(null);
+    };
+    document.addEventListener("mousedown", onClickOutside);
+    document.addEventListener("keydown", onEscape);
+    return () => {
+      document.removeEventListener("mousedown", onClickOutside);
+      document.removeEventListener("keydown", onEscape);
+    };
+  }, [openMenu]);
+
+  useEffect(() => {
+    if (mobileOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
+  const toggleMenu = (key: MenuKey) => {
+    setOpenMenu((current) => (current === key ? null : key));
+  };
+
+  const toggleMobileSection = (key: MenuKey) => {
+    setMobileSection((current) => (current === key ? null : key));
+  };
+
+  const closeMobile = () => {
+    setMobileOpen(false);
+    setMobileSection(null);
+  };
+
   return (
-    <nav className={`nav ${scrolled ? "nav-scrolled" : ""}`}>
+    <nav ref={navRef} className={`nav ${scrolled ? "nav-scrolled" : ""}`}>
       <div className="nav-inner">
-        <Link href="/" className="logo" aria-label="WSI Cleaning home">
+        <Link href="/" className="logo" aria-label="WSI Cleaning home" onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}>
           <Image
             src="/design/logo-color.png"
             alt="WSI Cleaning"
@@ -51,7 +97,12 @@ export function Nav() {
             onMouseEnter={() => setOpenMenu("services")}
             onMouseLeave={() => setOpenMenu(null)}
           >
-            <button type="button">
+            <button
+              type="button"
+              onClick={() => toggleMenu("services")}
+              aria-haspopup="true"
+              aria-expanded={openMenu === "services"}
+            >
               Services <span className="caret">›</span>
             </button>
             {openMenu === "services" && (
@@ -62,7 +113,12 @@ export function Nav() {
                 </div>
                 <div className="dropdown-grid">
                   {NAV_SERVICES.map((s) => (
-                    <Link key={s.name} href={s.href} className="dropdown-item">
+                    <Link
+                      key={s.name}
+                      href={s.href}
+                      className="dropdown-item"
+                      onClick={() => setOpenMenu(null)}
+                    >
                       <span>{s.name}</span>
                       <span className="arrow">→</span>
                     </Link>
@@ -76,7 +132,12 @@ export function Nav() {
             onMouseEnter={() => setOpenMenu("locations")}
             onMouseLeave={() => setOpenMenu(null)}
           >
-            <button type="button">
+            <button
+              type="button"
+              onClick={() => toggleMenu("locations")}
+              aria-haspopup="true"
+              aria-expanded={openMenu === "locations"}
+            >
               Locations <span className="caret">›</span>
             </button>
             {openMenu === "locations" && (
@@ -87,7 +148,12 @@ export function Nav() {
                 </div>
                 <div className="dropdown-list">
                   {locations.map((l) => (
-                    <Link key={l.slug} href={`/locations/${l.slug}`} className="dropdown-item">
+                    <Link
+                      key={l.slug}
+                      href={`/locations/${l.slug}`}
+                      className="dropdown-item"
+                      onClick={() => setOpenMenu(null)}
+                    >
                       <span>{l.name}</span>
                       <span className="arrow">→</span>
                     </Link>
@@ -96,6 +162,7 @@ export function Nav() {
               </div>
             )}
           </div>
+          <Link href="/guides">Guides</Link>
           <Link href="/gallery">Gallery</Link>
           <Link href="/#reviews">Reviews</Link>
           <Link href="/#faq">FAQ</Link>
@@ -113,8 +180,9 @@ export function Nav() {
             className="nav-burger"
             type="button"
             onClick={() => setMobileOpen((v) => !v)}
-            aria-label="Menu"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
+            aria-controls="nav-mobile-panel"
           >
             <span />
             <span />
@@ -122,14 +190,79 @@ export function Nav() {
           </button>
         </div>
       </div>
-      <div className={`nav-mobile ${mobileOpen ? "open" : ""}`}>
-        <Link href="/#about" onClick={() => setMobileOpen(false)}>About</Link>
-        <Link href="/#services" onClick={() => setMobileOpen(false)}>Services</Link>
-        <Link href="/#areas" onClick={() => setMobileOpen(false)}>Locations</Link>
-        <Link href="/gallery" onClick={() => setMobileOpen(false)}>Gallery</Link>
-        <Link href="/#reviews" onClick={() => setMobileOpen(false)}>Reviews</Link>
-        <Link href="/#faq" onClick={() => setMobileOpen(false)}>FAQ</Link>
-        <Link href="/#quote" onClick={() => setMobileOpen(false)}>Free Quote</Link>
+      <div
+        id="nav-mobile-panel"
+        className={`nav-mobile ${mobileOpen ? "open" : ""}`}
+      >
+        <Link href="/about" onClick={closeMobile}>
+          About
+        </Link>
+
+        <div className="nav-mobile-group">
+          <button
+            type="button"
+            className="nav-mobile-toggle"
+            onClick={() => toggleMobileSection("services")}
+            aria-expanded={mobileSection === "services"}
+          >
+            <span>Services</span>
+            <span className="caret">{mobileSection === "services" ? "−" : "+"}</span>
+          </button>
+          {mobileSection === "services" && (
+            <div className="nav-mobile-sub">
+              {NAV_SERVICES.map((s) => (
+                <Link key={s.name} href={s.href} onClick={closeMobile}>
+                  {s.name}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="nav-mobile-group">
+          <button
+            type="button"
+            className="nav-mobile-toggle"
+            onClick={() => toggleMobileSection("locations")}
+            aria-expanded={mobileSection === "locations"}
+          >
+            <span>Locations</span>
+            <span className="caret">{mobileSection === "locations" ? "−" : "+"}</span>
+          </button>
+          {mobileSection === "locations" && (
+            <div className="nav-mobile-sub">
+              {locations.map((l) => (
+                <Link
+                  key={l.slug}
+                  href={`/locations/${l.slug}`}
+                  onClick={closeMobile}
+                >
+                  {l.name}
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <Link href="/guides" onClick={closeMobile}>
+          Guides
+        </Link>
+        <Link href="/gallery" onClick={closeMobile}>
+          Gallery
+        </Link>
+        <Link href="/#reviews" onClick={closeMobile}>
+          Reviews
+        </Link>
+        <Link href="/#faq" onClick={closeMobile}>
+          FAQ
+        </Link>
+        <Link
+          href="/#quote"
+          onClick={closeMobile}
+          className="nav-mobile-cta"
+        >
+          Free Quote →
+        </Link>
       </div>
     </nav>
   );

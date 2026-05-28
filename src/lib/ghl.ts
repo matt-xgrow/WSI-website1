@@ -56,12 +56,19 @@ async function ghlFetch<T>(path: string, init: RequestInit): Promise<T> {
   return data as T;
 }
 
+const WSI_CLEANING_PIPELINE_ID = "1Dzi7g5aq1lbdJ9L96vR";
+const WSI_CLEANING_LEADS_STAGE_ID = "1c2bbfc2-b4d1-48f0-9fb1-eeb5d498865e";
+
+const FIELD_LOCATION = "k23P1i7zooGvygpt4Xvs";
+const FIELD_SERVICE_NEEDED = "Tg6st45oxQXEA0vfm4rf";
+const FIELD_PROPERTY_TYPE = "LTIznpsmYSBl7RBgJ8xd";
+
 export async function sendLeadToGhl(payload: LeadPayload) {
   const { locationId } = getGhlConfig();
   const { firstName, lastName } = splitName(payload.name);
   const normalizedService = payload.service.toLowerCase().replace(/\s+/g, "-");
 
-  return ghlFetch<{ contact?: { id?: string }; id?: string }>("/contacts/upsert", {
+  const contact = await ghlFetch<{ contact?: { id?: string }; id?: string }>("/contacts/upsert", {
     method: "POST",
     body: JSON.stringify({
       firstName,
@@ -79,8 +86,29 @@ export async function sendLeadToGhl(payload: LeadPayload) {
         normalizedService,
         payload.propertyType.toLowerCase().replace(/\s+/g, "-"),
       ],
-      customFields: [],
+      customFields: [
+        { id: FIELD_LOCATION, field_value: "Brisbane" },
+        { id: FIELD_SERVICE_NEEDED, field_value: payload.service },
+        { id: FIELD_PROPERTY_TYPE, field_value: payload.propertyType },
+      ],
     }),
   });
+
+  const contactId = contact.contact?.id ?? contact.id;
+  if (contactId) {
+    await ghlFetch("/opportunities/", {
+      method: "POST",
+      body: JSON.stringify({
+        pipelineId: WSI_CLEANING_PIPELINE_ID,
+        locationId,
+        name: `${payload.name} — ${payload.service}`,
+        pipelineStageId: WSI_CLEANING_LEADS_STAGE_ID,
+        status: "open",
+        contactId,
+      }),
+    });
+  }
+
+  return contact;
 }
 
