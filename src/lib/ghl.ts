@@ -67,7 +67,6 @@ const FIELD_PROPERTY_TYPE = "LTIznpsmYSBl7RBgJ8xd";
 export async function sendLeadToGhl(payload: LeadPayload) {
   const { locationId } = getGhlConfig();
   const { firstName, lastName } = splitName(payload.name);
-  const normalizedService = payload.service.toLowerCase().replace(/\s+/g, "-");
 
   const contact = await ghlFetch<{ contact?: { id?: string }; id?: string }>("/contacts/upsert", {
     method: "POST",
@@ -79,14 +78,8 @@ export async function sendLeadToGhl(payload: LeadPayload) {
       email: payload.email || undefined,
       city: payload.suburb,
       locationId,
-      source: "WSI Cleaning Website",
-      tags: [
-        "website-lead",
-        "wsi-cleaning",
-        "brisbane-focus",
-        normalizedService,
-        payload.propertyType.toLowerCase().replace(/\s+/g, "-"),
-      ],
+      source: "Website",
+      tags: [],
       customFields: [
         { id: FIELD_LOCATION, field_value: payload.location || "Brisbane" },
         { id: FIELD_SERVICE_NEEDED, field_value: payload.service },
