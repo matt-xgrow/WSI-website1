@@ -3,10 +3,17 @@ import { sendLeadToGhl } from "@/lib/ghl";
 
 const services = new Set([
   "House Washing",
+  "Pressure Washing",
   "Pressure Cleaning",
   "Window Cleaning",
   "Gutter Cleaning",
+  "Roof Cleaning",
+  "Driveway Cleaning",
+  "Solar Panel Cleaning",
+  "Strata Cleaning",
+  "Commercial Buildings",
   "Other Exterior Cleaning",
+  "Other",
 ]);
 
 function clean(value: unknown) {
@@ -21,6 +28,7 @@ export async function POST(request: Request) {
       phone: clean(body.phone),
       email: clean(body.email),
       suburb: clean(body.suburb),
+      location: clean(body.location),
       service: clean(body.service),
       propertyType: clean(body.propertyType),
       message: clean(body.message),

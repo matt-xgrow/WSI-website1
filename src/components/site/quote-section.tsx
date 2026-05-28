@@ -128,6 +128,7 @@ function QuoteForm() {
           phone: data.phone,
           email: data.email,
           suburb: data.city,
+          location: data.city,
           service: data.service,
           propertyType: "",
           message: data.notes.trim(),

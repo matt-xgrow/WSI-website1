@@ -3,6 +3,7 @@ type LeadPayload = {
   phone: string;
   email?: string;
   suburb: string;
+  location?: string;
   service: string;
   propertyType: string;
   message?: string;
@@ -87,7 +88,7 @@ export async function sendLeadToGhl(payload: LeadPayload) {
         payload.propertyType.toLowerCase().replace(/\s+/g, "-"),
       ],
       customFields: [
-        { id: FIELD_LOCATION, field_value: "Brisbane" },
+        { id: FIELD_LOCATION, field_value: payload.location || "Brisbane" },
         { id: FIELD_SERVICE_NEEDED, field_value: payload.service },
         { id: FIELD_PROPERTY_TYPE, field_value: payload.propertyType },
       ],
