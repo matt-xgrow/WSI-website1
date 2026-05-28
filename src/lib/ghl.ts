@@ -35,7 +35,7 @@ async function ghlFetch<T>(path: string, init: RequestInit): Promise<T> {
   const response = await fetch(`${GHL_BASE_URL}${path}`, {
     ...init,
     headers: {
-      Authorization: token,
+      Authorization: `Bearer ${token}`,
       "Content-Type": "application/json",
       Version: GHL_VERSION,
       ...(init.headers ?? {}),
