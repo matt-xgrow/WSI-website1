@@ -58,7 +58,7 @@ export function Hero() {
           </div>
 
           <h1 className="hero-title">
-            <span className="title-line">Your home deserves</span>
+            <span className="title-line">Your home deserves</span>{" "}
             <span className="title-line">
               to look this <em className="hl-orange">clean.</em>
             </span>
