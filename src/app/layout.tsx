@@ -46,7 +46,7 @@ export const metadata: Metadata = {
       "WSI Cleaning — Premium Exterior Cleaning Brisbane & Sunshine Coast",
     template: "%s | WSI Cleaning",
   },
-  description: `Brisbane's exterior cleaning specialists since ${site.foundingYear}. Pressure washing, soft-wash house cleaning, roof, gutter, window, solar, strata and commercial — ${site.insuranceLabel.toLowerCase()}, ${site.rating}/5 from ${site.reviewCount} Google reviews, fixed quotes in 24 hours.`,
+  description: `Brisbane exterior cleaning since ${site.foundingYear}. Pressure washing, house washing, roof, gutter, window & solar cleaning — ${site.insuranceLabel.toLowerCase()}, ${site.rating}/5 from ${site.reviewCount} reviews.`,
   applicationName: site.name,
   authors: [{ name: site.legalName }],
   creator: site.legalName,
@@ -76,7 +76,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "WSI Cleaning — Exterior Cleaning Brisbane",
-    description: `${site.rating}/5 from ${site.reviewCount} Google reviews · ${site.insuranceLabel} · Brisbane, Sunshine Coast`,
+    description: `${site.rating}/5 from ${site.reviewCount} Google reviews \u00b7 ${site.insuranceLabel} \u00b7 Brisbane, Sunshine Coast`,
     images: ["/images/house-wash.jpg"],
   },
   formatDetection: {

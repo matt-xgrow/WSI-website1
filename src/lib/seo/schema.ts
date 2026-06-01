@@ -19,6 +19,16 @@ const AREAS_SERVED = [
     name: "Sunshine Coast",
     sameAs: "https://en.wikipedia.org/wiki/Sunshine_Coast,_Queensland",
   },
+  {
+    "@type": "City" as const,
+    name: "Logan",
+    sameAs: "https://en.wikipedia.org/wiki/City_of_Logan",
+  },
+  {
+    "@type": "City" as const,
+    name: "Ipswich",
+    sameAs: "https://en.wikipedia.org/wiki/Ipswich,_Queensland",
+  },
 ];
 
 const SERVICE_AREA_GEO = {
