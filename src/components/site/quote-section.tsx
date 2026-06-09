@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { trackLeadSubmitted } from "@/lib/analytics";
 import { site } from "@/lib/site";
 
 const SERVICES = [
@@ -143,6 +144,11 @@ function QuoteForm() {
         return;
       }
       setStatus("success");
+      trackLeadSubmitted({
+        form_name: "quote_form",
+        service: data.service,
+        location: data.city,
+      });
     } catch {
       setStatus("error");
       setErrorMsg("Network error. Please call us.");

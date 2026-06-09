@@ -8,17 +8,25 @@ import { StickyCTA } from "@/components/site/sticky-cta";
 import { TopBar } from "@/components/site/top-bar";
 import { JsonLd } from "@/components/seo/json-ld";
 import {
+  AuthorCard,
+  GuideMeta,
+  QuickAnswer,
+  RelatedGuides,
+  articleSchemaFor,
+} from "@/components/site/guide-parts";
+import {
   breadcrumbSchema,
   faqPageSchemaFromList,
   graph,
 } from "@/lib/seo/schema";
-import { CONTENT_UPDATED, site, SITE_URL } from "@/lib/site";
+import { getGuide } from "@/lib/guides";
+import { site, SITE_URL } from "@/lib/site";
 
 const SLUG = "soft-wash-vs-pressure-wash";
+const GUIDE = getGuide(SLUG)!;
 const PAGE_URL = `${SITE_URL}/guides/${SLUG}`;
-const TITLE = "Soft Wash vs Pressure Wash — Which Does My Brisbane Property Need?";
-const DESCRIPTION =
-  "Soft washing uses chemistry under 500 PSI for render, paint and roof tiles. Pressure washing uses 1,500–4,000 PSI for concrete and pavers. Use this guide to pick the right method for every surface on your home.";
+const TITLE = GUIDE.title;
+const DESCRIPTION = GUIDE.description;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -28,16 +36,16 @@ export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
     url: `/guides/${SLUG}`,
-    images: [{ url: "/images/soft-wash.jpg" }],
+    images: [{ url: GUIDE.image }],
     type: "article",
-    publishedTime: CONTENT_UPDATED.services,
-    modifiedTime: CONTENT_UPDATED.services,
+    publishedTime: GUIDE.published,
+    modifiedTime: GUIDE.updated,
   },
   twitter: {
     card: "summary_large_image",
     title: TITLE,
     description: DESCRIPTION,
-    images: ["/images/soft-wash.jpg"],
+    images: [GUIDE.image],
   },
 };
 
@@ -179,24 +187,10 @@ const FAQS = [
 
 export default function ComparisonGuide() {
   const pageSchema = graph(
-    {
-      "@type": "Article",
-      "@id": `${PAGE_URL}#article`,
-      headline: TITLE,
-      description: DESCRIPTION,
-      url: PAGE_URL,
-      datePublished: CONTENT_UPDATED.services,
-      dateModified: CONTENT_UPDATED.services,
-      inLanguage: "en-AU",
-      author: { "@id": `${SITE_URL}/#organization` },
-      publisher: { "@id": `${SITE_URL}/#organization` },
-      isPartOf: { "@id": `${SITE_URL}/#website` },
-      mainEntityOfPage: { "@type": "WebPage", "@id": PAGE_URL },
-      image: `${SITE_URL}/images/soft-wash.jpg`,
-      about: { "@id": `${SITE_URL}/#business` },
-    },
+    articleSchemaFor({ guide: GUIDE, pageUrl: PAGE_URL, siteUrl: SITE_URL }),
     breadcrumbSchema([
       { name: "Home", url: "/" },
+      { name: "Guides", url: "/guides" },
       { name: "Soft wash vs pressure wash", url: `/guides/${SLUG}` },
     ]),
     faqPageSchemaFromList(FAQS, `${PAGE_URL}#faq`)
@@ -219,6 +213,7 @@ export default function ComparisonGuide() {
               Soft wash vs pressure wash —{" "}
               <em className="hl-orange">which</em> does my property need?
             </h1>
+            <GuideMeta guide={GUIDE} />
             <p>
               Render, paint, weatherboard and roof tiles need{" "}
               <strong>soft washing</strong> (under 500 PSI). Concrete,
@@ -243,11 +238,24 @@ export default function ComparisonGuide() {
               width={720}
               height={450}
               priority
+              fetchPriority="high"
+              sizes="(max-width: 900px) 100vw, 720px"
             />
           </div>
         </section>
 
         <section className="content-section service-lead">
+          <QuickAnswer>
+            <strong>Soft wash for anything you would repaint, pressure wash for anything you walk or drive on, deionised water for glass and solar panels.</strong>{" "}
+            Soft washing uses biodegradable detergent under 500 PSI to kill
+            mould, algae and lichen at the spore level — the only correct
+            method for render, paint, weatherboard, brick, fibre cement and
+            roof tiles. Pressure washing uses 1,500–4,000 PSI water to
+            mechanically remove ground-in dirt from concrete, exposed
+            aggregate, pavers and pool surrounds. Using the wrong method on
+            the wrong surface is the most common cause of exterior cleaning
+            failures.
+          </QuickAnswer>
           <p className="service-lead-text">
             Most exterior cleaning failures come from using the wrong method on
             the wrong surface. High-pressure washing on render, paint or roof
@@ -337,6 +345,8 @@ export default function ComparisonGuide() {
           </p>
         </section>
 
+        <AuthorCard />
+
         <section className="content-section service-faqs">
           <span className="eyebrow">
             <span className="eyebrow-line" />
@@ -358,32 +368,7 @@ export default function ComparisonGuide() {
           </div>
         </section>
 
-        <section className="content-section">
-          <span className="eyebrow">
-            <span className="eyebrow-line" />
-            Read next
-          </span>
-          <h2>Related services.</h2>
-          <ul className="suburb-list">
-            <li>
-              <Link href="/services/house-washing">House washing →</Link>
-            </li>
-            <li>
-              <Link href="/services/pressure-washing">Pressure washing →</Link>
-            </li>
-            <li>
-              <Link href="/services/roof-cleaning">Roof cleaning →</Link>
-            </li>
-            <li>
-              <Link href="/services/driveway-cleaning">Driveway cleaning →</Link>
-            </li>
-            <li>
-              <Link href="/services/solar-panel-cleaning">
-                Solar panel cleaning →
-              </Link>
-            </li>
-          </ul>
-        </section>
+        <RelatedGuides slug={SLUG} />
 
         <QuoteSection />
         <Footer />

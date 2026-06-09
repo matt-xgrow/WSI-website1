@@ -1,6 +1,3 @@
-"use client";
-
-import { useState } from "react";
 import { StarIcon } from "./icons";
 
 const REVIEWS = [
@@ -13,10 +10,6 @@ const REVIEWS = [
 ];
 
 export function Reviews() {
-  const [idx, setIdx] = useState(0);
-  const next = () => setIdx((idx + 1) % REVIEWS.length);
-  const prev = () => setIdx((idx - 1 + REVIEWS.length) % REVIEWS.length);
-
   return (
     <section className="reviews" id="reviews">
       <div className="section-head">
@@ -42,19 +35,12 @@ export function Reviews() {
               </span>
             </div>
             <div className="score-label">Based on 100+ Google reviews</div>
-            <div className="reviews-nav">
-              <button type="button" onClick={prev} aria-label="Previous review">←</button>
-              <button type="button" onClick={next} aria-label="Next review">→</button>
-            </div>
           </div>
         </div>
       </div>
 
-      <div className="reviews-track-wrap">
-        <div
-          className="reviews-track"
-          style={{ transform: `translateX(calc(-${idx} * (360px + 20px)))` }}
-        >
+      <div className="reviews-track-wrap reviews-scroll">
+        <div className="reviews-track">
           {REVIEWS.map((r) => (
             <article key={r.name} className="review-card">
               <div className="review-stars">

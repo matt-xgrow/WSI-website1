@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { GUIDES } from "@/lib/guides";
 import { CONTENT_UPDATED, locations, services, SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -16,20 +17,39 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   };
 
-  const guides: MetadataRoute.Sitemap = [
-    {
-      url: `${SITE_URL}/guides/soft-wash-vs-pressure-wash`,
-      lastModified: CONTENT_UPDATED.guides,
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-  ];
+  const guidesIndex: MetadataRoute.Sitemap[number] = {
+    url: `${SITE_URL}/guides`,
+    lastModified: CONTENT_UPDATED.guides,
+    changeFrequency: "weekly",
+    priority: 0.8,
+  };
+
+  const guides: MetadataRoute.Sitemap = GUIDES.map((g) => ({
+    url: `${SITE_URL}/guides/${g.slug}`,
+    lastModified: g.updated,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  }));
 
   const gallery: MetadataRoute.Sitemap[number] = {
     url: `${SITE_URL}/gallery`,
     lastModified: CONTENT_UPDATED.gallery,
     changeFrequency: "monthly",
     priority: 0.5,
+  };
+
+  const privacy: MetadataRoute.Sitemap[number] = {
+    url: `${SITE_URL}/privacy`,
+    lastModified: CONTENT_UPDATED.about,
+    changeFrequency: "yearly",
+    priority: 0.2,
+  };
+
+  const terms: MetadataRoute.Sitemap[number] = {
+    url: `${SITE_URL}/terms`,
+    lastModified: CONTENT_UPDATED.about,
+    changeFrequency: "yearly",
+    priority: 0.2,
   };
 
   const servicePages: MetadataRoute.Sitemap = services.map((service) => ({
@@ -49,5 +69,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: location.slug === "brisbane" ? 0.9 : 0.7,
   }));
 
-  return [home, about, ...guides, gallery, ...servicePages, ...locationPages];
+  return [
+    home,
+    about,
+    guidesIndex,
+    ...guides,
+    gallery,
+    ...servicePages,
+    ...locationPages,
+    privacy,
+    terms,
+  ];
 }

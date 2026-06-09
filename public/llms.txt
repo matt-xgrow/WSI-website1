@@ -1,6 +1,6 @@
 # WSI Cleaning
 
-> WSI Cleaning is a Brisbane-based exterior cleaning company servicing Brisbane, the Gold Coast and the Sunshine Coast in Queensland, Australia. Founded in 2014. ABN 14 608 887 850. $20 million public liability insurance. 4.9/5 stars from 162 Google reviews. Service-area business — no physical retail address; quotes returned within 24 business hours.
+> WSI Cleaning is a Brisbane-based exterior cleaning company servicing Brisbane and the Sunshine Coast in Queensland, Australia. Founded in 2014. ABN 14 608 887 850. $20 million public liability insurance. 4.9/5 stars from 162 Google reviews. Service-area business — no physical retail address; quotes returned within 24 business hours.
 
 ## Core facts
 
@@ -19,7 +19,7 @@
 
 ## Services
 
-WSI Cleaning offers nine exterior cleaning services. All services are available across Brisbane, the Gold Coast and the Sunshine Coast.
+WSI Cleaning offers nine exterior cleaning services. All services are available across Brisbane and the Sunshine Coast.
 
 - [House Washing](/services/house-washing): Soft-wash cleaning of rendered, painted, brick and weatherboard homes. Removes mould, algae and lichen at the spore level under 500 PSI.
 - [Pressure Washing](/services/pressure-washing): High-pressure cleaning (1,500–4,000 PSI) of driveways, paths, patios, pool surrounds and concrete surfaces with rotary surface cleaners.
@@ -34,12 +34,17 @@ WSI Cleaning offers nine exterior cleaning services. All services are available 
 ## Service areas
 
 - [Brisbane](/locations/brisbane): Primary service area. All Brisbane suburbs covered. Same-week scheduling for residential.
-- [Gold Coast](/locations/gold-coast): Weekly batched trips. Burleigh, Mermaid Beach, Surfers Paradise, Broadbeach, Coolangatta, Sanctuary Cove and surrounding suburbs.
 - [Sunshine Coast](/locations/sunshine-coast): Weekly batched trips. Noosa, Maroochydore, Mooloolaba, Caloundra, Coolum, Buderim and Sunshine Coast hinterland.
 
 ## Guides
 
 - [Soft Wash vs Pressure Wash](/guides/soft-wash-vs-pressure-wash): Detailed comparison of cleaning methods, pressure ranges, surface compatibility tables and FAQs. Soft wash (under 500 PSI) for render, paint, weatherboard and roof tiles. Pressure wash (1,500–4,000 PSI) for concrete, pavers and pool surrounds. Deionised water for solar panels and glass.
+- [House Washing Cost Brisbane 2026](/guides/house-washing-cost-brisbane): Pricing per square metre, scope inclusions, single vs two-storey loading, and what changes the quote. Typical Brisbane single-storey range and what's excluded.
+- [How Often Should You Wash Your House on the Sunshine Coast?](/guides/house-wash-frequency-sunshine-coast): Coastal vs hinterland cleaning cycles, salt and mildew growth rates, and the cost of leaving it too long.
+- [Pressure Washing Driveway Cost Brisbane](/guides/pressure-washing-driveway-cost-brisbane): Per square metre pricing for concrete, exposed aggregate and pavers. Oil stain surcharges and what changes the quote.
+- [Mould vs Lichen vs Algae — What's Growing on Your Sunshine Coast Property](/guides/mould-vs-lichen-vs-algae): Identification guide for biological growth on Sunshine Coast roofs, walls and paving, with the correct treatment for each.
+- [Professional Window Cleaning Brisbane — Cost, Frequency, Scope](/guides/window-cleaning-brisbane-cost): What's included, residential vs commercial pricing, interior/exterior options and how often Brisbane homes should be done.
+- [Salt Haze on Sunshine Coast Windows — Why Tap Water Won't Fix It](/guides/salt-haze-windows-sunshine-coast): Why coastal windows fog within weeks, the mineral problem with tap water and the deionised-water solution.
 
 ## About
 
@@ -69,3 +74,5 @@ All quotes are fixed in writing within 24 business hours of enquiry. Pricing is 
 - [Frequently Asked Questions](/#faq)
 - [Gallery of work](/gallery)
 - [Get a quote](/#quote)
+- [Privacy Policy](/privacy)
+- [Terms of Service](/terms)

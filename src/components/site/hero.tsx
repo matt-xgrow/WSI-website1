@@ -125,6 +125,7 @@ export function Hero() {
                       fill
                       sizes="(max-width: 900px) 100vw, 45vw"
                       priority={i === 0}
+                      fetchPriority={i === 0 ? "high" : "auto"}
                       className="hero-photo-img"
                     />
                   </div>

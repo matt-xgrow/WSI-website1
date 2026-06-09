@@ -2,6 +2,7 @@
 
 import { ArrowRight, CheckCircle2, Loader2, Phone } from "lucide-react";
 import { FormEvent, useState } from "react";
+import { trackLeadSubmitted } from "@/lib/analytics";
 import { site } from "@/lib/site";
 
 const serviceOptions = [
@@ -60,6 +61,11 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
     form.reset();
     setState("success");
     setMessage(result.message);
+    trackLeadSubmitted({
+      form_name: compact ? "compact_lead_form" : "lead_form",
+      service: payload.service,
+      location: payload.suburb,
+    });
   }
 
   return (
@@ -139,4 +145,3 @@ export function LeadForm({ compact = false }: { compact?: boolean }) {
     </form>
   );
 }
-

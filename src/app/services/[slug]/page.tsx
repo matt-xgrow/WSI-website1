@@ -184,6 +184,8 @@ export default async function ServicePage({ params }: PageProps) {
               width={720}
               height={450}
               priority
+              fetchPriority="high"
+              sizes="(max-width: 900px) 100vw, 720px"
             />
           </div>
         </section>

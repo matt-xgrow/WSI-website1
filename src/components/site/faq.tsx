@@ -1,12 +1,7 @@
-"use client";
-
-import { useState } from "react";
 import { FAQ_ITEMS } from "@/lib/faq";
 import { site } from "@/lib/site";
 
 export function FAQ() {
-  const [open, setOpen] = useState<number>(0);
-
   return (
     <section className="faq" id="faq">
       <div className="section-head">
@@ -29,16 +24,23 @@ export function FAQ() {
 
       <div className="faq-list">
         {FAQ_ITEMS.map((f, i) => (
-          <div key={f.q} className={`faq-item ${open === i ? "open" : ""}`}>
-            <button className="faq-q" type="button" onClick={() => setOpen(open === i ? -1 : i)}>
+          <details
+            key={f.q}
+            name="homepage-faq"
+            className="faq-item"
+            open={i === 0}
+          >
+            <summary className="faq-q">
               <span className="faq-num">Q{String(i + 1).padStart(2, "0")}</span>
               <span className="faq-qtext">{f.q}</span>
-              <span className="faq-plus">{open === i ? "−" : "+"}</span>
-            </button>
+              <span className="faq-plus" aria-hidden="true">
+                +
+              </span>
+            </summary>
             <div className="faq-a-wrap">
               <p className="faq-a">{f.a}</p>
             </div>
-          </div>
+          </details>
         ))}
       </div>
     </section>
