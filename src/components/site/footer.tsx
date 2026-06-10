@@ -134,9 +134,8 @@ export function Footer() {
             © {new Date().getFullYear()} {site.legalName}. All rights reserved.
           </span>
           <span className="footer-credit">
-            Designed &amp; developed by{" "}
             <a href="https://xgrow.com.au" target="_blank" rel="noopener">
-              Xgrow
+              XGROW Pty Ltd
             </a>
           </span>
           <div className="footer-bottom-links">
