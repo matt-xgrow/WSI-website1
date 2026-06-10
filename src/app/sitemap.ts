@@ -69,6 +69,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: location.slug === "brisbane" ? 0.9 : 0.7,
   }));
 
+  const serviceLocationPages: MetadataRoute.Sitemap = services.flatMap(
+    (service) =>
+      locations.map((location) => ({
+        url: `${SITE_URL}/services/${service.slug}/${location.slug}`,
+        lastModified: CONTENT_UPDATED.services,
+        changeFrequency: "monthly" as const,
+        priority: location.slug === "brisbane" ? 0.8 : 0.7,
+      })),
+  );
+
   return [
     home,
     about,
@@ -77,6 +87,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     gallery,
     ...servicePages,
     ...locationPages,
+    ...serviceLocationPages,
     privacy,
     terms,
   ];

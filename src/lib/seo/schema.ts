@@ -252,6 +252,53 @@ export function locationServiceSchema(input: LocationSchemaInput) {
   };
 }
 
+type ServiceLocationSchemaInput = {
+  serviceName: string;
+  cityName: string;
+  description: string;
+  serviceSlug: string;
+  citySlug: string;
+  image: string;
+};
+
+export function serviceLocationSchema(input: ServiceLocationSchemaInput) {
+  const url = `${SITE_URL}/services/${input.serviceSlug}/${input.citySlug}`;
+  return {
+    "@type": "Service",
+    "@id": `${url}#service`,
+    name: `${input.serviceName} ${input.cityName}`,
+    serviceType: input.serviceName,
+    description: input.description,
+    url,
+    image: input.image.startsWith("http")
+      ? input.image
+      : `${SITE_URL}${input.image}`,
+    category: "Exterior Cleaning",
+    provider: { "@id": ID.business },
+    areaServed: {
+      "@type": "City",
+      name: input.cityName,
+      address: {
+        "@type": "PostalAddress",
+        addressRegion: "QLD",
+        addressCountry: "AU",
+      },
+    },
+    offers: {
+      "@type": "Offer",
+      url: `${url}#quote`,
+      priceCurrency: "AUD",
+      availability: "https://schema.org/InStock",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        priceCurrency: "AUD",
+        description: "Fixed quote returned within 24 business hours",
+      },
+    },
+    termsOfService: `Fully insured (${site.insuranceLabel}). 24-hour satisfaction guarantee.`,
+  };
+}
+
 type Crumb = { name: string; url: string };
 
 export function breadcrumbSchema(crumbs: Crumb[]) {

@@ -185,7 +185,7 @@ export default async function LocationPage({ params }: PageProps) {
           <div className="location-areas-grid">
             {services.map((service) => (
               <Link
-                href={`/services/${service.slug}`}
+                href={`/services/${service.slug}/${location.slug}`}
                 key={service.slug}
                 aria-label={`${service.name} in ${location.name}`}
               >

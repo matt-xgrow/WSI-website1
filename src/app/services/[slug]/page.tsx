@@ -21,7 +21,7 @@ import {
   serviceSchema,
 } from "@/lib/seo/schema";
 import { getServiceContent } from "@/lib/service-content";
-import { getService, services, site, SITE_URL } from "@/lib/site";
+import { getService, locations, services, site, SITE_URL } from "@/lib/site";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -289,6 +289,24 @@ export default async function ServicePage({ params }: PageProps) {
             </div>
           </section>
         )}
+
+        <section className="content-section service-links">
+          <span className="eyebrow">
+            <span className="eyebrow-line" />
+            {service.name} by area
+          </span>
+          <h2>{service.name} in your city.</h2>
+          <div className="service-links-grid">
+            {locations.map((location) => (
+              <Link
+                key={location.slug}
+                href={`/services/${service.slug}/${location.slug}`}
+              >
+                {service.name} in {location.name} →
+              </Link>
+            ))}
+          </div>
+        </section>
 
         <QuoteSection />
         <Footer />

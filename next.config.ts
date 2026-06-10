@@ -37,20 +37,20 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // --- Service + city pages (old site) → new service pages ---
+      // --- Service + city pages (old site) → new service × city pages ---
       // Brisbane services
-      { source: "/pressure-washing-brisbane", destination: "/services/pressure-washing", permanent: true },
-      { source: "/commercial-pressure-washing-brisbane", destination: "/services/commercial-cleaning", permanent: true },
-      { source: "/strata-cleaning-brisbane", destination: "/services/strata-cleaning", permanent: true },
-      { source: "/gutter-cleaning-brisbane-benefits", destination: "/services/gutter-cleaning", permanent: true },
-      { source: "/gutter-cleaning-brisbane-3", destination: "/services/gutter-cleaning", permanent: true },
-      { source: "/driveway-cleaning-brisbane", destination: "/services/driveway-cleaning", permanent: true },
-      { source: "/window-cleaning-brisbane", destination: "/services/window-cleaning", permanent: true },
-      { source: "/house-washing-services-brisbane", destination: "/services/house-washing", permanent: true },
-      { source: "/tennis-court-cleaning-brisbane", destination: "/services/pressure-washing", permanent: true },
-      { source: "/pressure-washing-brisbane-solution", destination: "/services/pressure-washing", permanent: true },
-      { source: "/pressure-washing-services-in-brisbane", destination: "/services/pressure-washing", permanent: true },
-      { source: "/pressure-washing-services-brisbane-complete-exterior-cleaning-solutions", destination: "/services/pressure-washing", permanent: true },
+      { source: "/pressure-washing-brisbane", destination: "/services/pressure-washing/brisbane", permanent: true },
+      { source: "/commercial-pressure-washing-brisbane", destination: "/services/commercial-cleaning/brisbane", permanent: true },
+      { source: "/strata-cleaning-brisbane", destination: "/services/strata-cleaning/brisbane", permanent: true },
+      { source: "/gutter-cleaning-brisbane-benefits", destination: "/services/gutter-cleaning/brisbane", permanent: true },
+      { source: "/gutter-cleaning-brisbane-3", destination: "/services/gutter-cleaning/brisbane", permanent: true },
+      { source: "/driveway-cleaning-brisbane", destination: "/services/driveway-cleaning/brisbane", permanent: true },
+      { source: "/window-cleaning-brisbane", destination: "/services/window-cleaning/brisbane", permanent: true },
+      { source: "/house-washing-services-brisbane", destination: "/services/house-washing/brisbane", permanent: true },
+      { source: "/tennis-court-cleaning-brisbane", destination: "/services/pressure-washing/brisbane", permanent: true },
+      { source: "/pressure-washing-brisbane-solution", destination: "/services/pressure-washing/brisbane", permanent: true },
+      { source: "/pressure-washing-services-in-brisbane", destination: "/services/pressure-washing/brisbane", permanent: true },
+      { source: "/pressure-washing-services-brisbane-complete-exterior-cleaning-solutions", destination: "/services/pressure-washing/brisbane", permanent: true },
       { source: "/concrete-render-cleaning", destination: "/services/house-washing", permanent: true },
       { source: "/pest-control-brisbane", destination: "/", permanent: true },
 
@@ -73,9 +73,9 @@ const nextConfig: NextConfig = {
       { source: "/tennis-court-cleaning-sydney", destination: "/services/pressure-washing", permanent: true },
 
       // Sunshine Coast services
-      { source: "/pressure-cleaning-sunshine-coast", destination: "/services/pressure-washing", permanent: true },
-      { source: "/house-washing-sunshine-coast", destination: "/services/house-washing", permanent: true },
-      { source: "/home-washing-in-sunshine-restore-your-homes-fresh-clean-look", destination: "/services/house-washing", permanent: true },
+      { source: "/pressure-cleaning-sunshine-coast", destination: "/services/pressure-washing/sunshine-coast", permanent: true },
+      { source: "/house-washing-sunshine-coast", destination: "/services/house-washing/sunshine-coast", permanent: true },
+      { source: "/home-washing-in-sunshine-restore-your-homes-fresh-clean-look", destination: "/services/house-washing/sunshine-coast", permanent: true },
 
       // Generic service pages (no city)
       { source: "/gutter-cleaning", destination: "/services/gutter-cleaning", permanent: true },
@@ -95,10 +95,10 @@ const nextConfig: NextConfig = {
       { source: "/locations", destination: "/", permanent: true },
 
       // Blog posts → closest relevant page
-      { source: "/gutter-cleaning-in-brisbane-why-its-essential-for-every-home", destination: "/services/gutter-cleaning", permanent: true },
-      { source: "/gutter-cleaning-peregian-springs-professional-roof-gutter-cleaning", destination: "/services/gutter-cleaning", permanent: true },
-      { source: "/choosing-right-strata-cleaning-company-in-brisbane", destination: "/services/strata-cleaning", permanent: true },
-      { source: "/wizz-pressure-cleaning-vs-wsi-pressure-cleaning-who-is-best-for-pressure-cleaning-brisbane", destination: "/services/pressure-washing", permanent: true },
+      { source: "/gutter-cleaning-in-brisbane-why-its-essential-for-every-home", destination: "/services/gutter-cleaning/brisbane", permanent: true },
+      { source: "/gutter-cleaning-peregian-springs-professional-roof-gutter-cleaning", destination: "/services/gutter-cleaning/sunshine-coast", permanent: true },
+      { source: "/choosing-right-strata-cleaning-company-in-brisbane", destination: "/services/strata-cleaning/brisbane", permanent: true },
+      { source: "/wizz-pressure-cleaning-vs-wsi-pressure-cleaning-who-is-best-for-pressure-cleaning-brisbane", destination: "/services/pressure-washing/brisbane", permanent: true },
       { source: "/professional-cleaning-a-guide-to-choosing-the-right-pressure-washing-company", destination: "/guides/soft-wash-vs-pressure-wash", permanent: true },
       { source: "/top-rated-commercial-cleaning-companies-near-me", destination: "/services/commercial-cleaning", permanent: true },
       { source: "/wsi-cleaning-blog", destination: "/", permanent: true },
