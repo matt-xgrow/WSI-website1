@@ -38,12 +38,12 @@ export const site = {
 };
 
 export const CONTENT_UPDATED = {
-  home: "2026-04-26",
-  services: "2026-04-26",
-  locations: "2026-04-26",
-  gallery: "2026-04-26",
-  about: "2026-04-26",
-  guides: "2026-04-26",
+  home: "2026-06-10",
+  services: "2026-06-10",
+  locations: "2026-06-10",
+  gallery: "2026-06-10",
+  about: "2026-06-10",
+  guides: "2026-06-10",
 } as const;
 
 export const services = [
