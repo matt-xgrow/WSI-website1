@@ -139,14 +139,16 @@ export default async function LocationPage({ params }: PageProps) {
         )}
 
         {content && (
-          <section className="content-section">
-            <span className="eyebrow">
-              <span className="eyebrow-line" />
-              Local context
-            </span>
-            <h2>{content.climate.title}</h2>
-            <p>{content.climate.body}</p>
-          </section>
+          <div className="band-tint">
+            <section className="content-section">
+              <span className="eyebrow">
+                <span className="eyebrow-line" />
+                Local context
+              </span>
+              <h2>{content.climate.title}</h2>
+              <p>{content.climate.body}</p>
+            </section>
+          </div>
         )}
 
         <section className="content-section">

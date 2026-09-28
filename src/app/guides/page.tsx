@@ -175,54 +175,56 @@ export default function GuidesIndex() {
           </div>
         </section>
 
-        <section className="content-section" id="all-guides">
-          <span className="eyebrow">
-            <span className="eyebrow-line" />
-            All guides
-          </span>
-          <h2>Every guide we&rsquo;ve written.</h2>
+        <div className="band-tint">
+          <section className="content-section" id="all-guides">
+            <span className="eyebrow">
+              <span className="eyebrow-line" />
+              All guides
+            </span>
+            <h2>Every guide we&rsquo;ve written.</h2>
 
-          {CATEGORIES.map((cat) => {
-            const items = GUIDES.filter((g) => g.category === cat.key);
-            if (!items.length) return null;
-            return (
-              <div
-                key={cat.key}
-                id={`cat-${cat.key}`}
-                style={{ marginTop: 36 }}
-              >
-                <h3 style={{ marginBottom: 16, fontSize: 22 }}>
-                  {cat.label}
-                </h3>
-                <ul className="suburb-list">
-                  {items.map((g) => (
-                    <li key={g.slug}>
-                      <Link href={`/guides/${g.slug}`}>
-                        <strong>{g.headline.replace(/[.?]$/, "")}</strong>
-                        <br />
-                        <span
-                          style={{
-                            color: "var(--ink-1, #525866)",
-                            fontSize: 14,
-                          }}
-                        >
-                          {g.region} · {g.readingMinutes} min read · Updated{" "}
-                          {new Date(
-                            `${g.updated}T00:00:00`
-                          ).toLocaleDateString("en-AU", {
-                            day: "numeric",
-                            month: "short",
-                            year: "numeric",
-                          })}
-                        </span>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            );
-          })}
-        </section>
+            {CATEGORIES.map((cat) => {
+              const items = GUIDES.filter((g) => g.category === cat.key);
+              if (!items.length) return null;
+              return (
+                <div
+                  key={cat.key}
+                  id={`cat-${cat.key}`}
+                  style={{ marginTop: 36 }}
+                >
+                  <h3 style={{ marginBottom: 16, fontSize: 22 }}>
+                    {cat.label}
+                  </h3>
+                  <ul className="suburb-list">
+                    {items.map((g) => (
+                      <li key={g.slug}>
+                        <Link href={`/guides/${g.slug}`}>
+                          <strong>{g.headline.replace(/[.?]$/, "")}</strong>
+                          <br />
+                          <span
+                            style={{
+                              color: "var(--ink-1, #525866)",
+                              fontSize: 14,
+                            }}
+                          >
+                            {g.region} · {g.readingMinutes} min read · Updated{" "}
+                            {new Date(
+                              `${g.updated}T00:00:00`
+                            ).toLocaleDateString("en-AU", {
+                              day: "numeric",
+                              month: "short",
+                              year: "numeric",
+                            })}
+                          </span>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              );
+            })}
+          </section>
+        </div>
 
         <QuoteSection />
         <Footer />

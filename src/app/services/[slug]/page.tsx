@@ -216,14 +216,16 @@ export default async function ServicePage({ params }: PageProps) {
         </section>
 
         {content && (
-          <section className="content-section service-definition">
-            <span className="eyebrow">
-              <span className="eyebrow-line" />
-              The basics
-            </span>
-            <h2>{content.definition.title}</h2>
-            <p>{content.definition.body}</p>
-          </section>
+          <div className="band-tint">
+            <section className="content-section service-definition">
+              <span className="eyebrow">
+                <span className="eyebrow-line" />
+                The basics
+              </span>
+              <h2>{content.definition.title}</h2>
+              <p>{content.definition.body}</p>
+            </section>
+          </div>
         )}
 
         {content && (
@@ -268,26 +270,28 @@ export default async function ServicePage({ params }: PageProps) {
         )}
 
         {content && (
-          <section className="content-section service-faqs">
-            <span className="eyebrow">
-              <span className="eyebrow-line" />
-              Frequently asked
-            </span>
-            <h2>{service.name} questions, answered.</h2>
-            <div className="faq-list-inline">
-              {content.faqs.map((faq) => (
-                <details key={faq.q} className="faq-item-inline">
-                  <summary>
-                    <h3>{faq.q}</h3>
-                    <span aria-hidden="true" className="faq-toggle">
-                      +
-                    </span>
-                  </summary>
-                  <p>{faq.a}</p>
-                </details>
-              ))}
-            </div>
-          </section>
+          <div className="band-tint">
+            <section className="content-section service-faqs">
+              <span className="eyebrow">
+                <span className="eyebrow-line" />
+                Frequently asked
+              </span>
+              <h2>{service.name} questions, answered.</h2>
+              <div className="faq-list-inline">
+                {content.faqs.map((faq) => (
+                  <details key={faq.q} className="faq-item-inline">
+                    <summary>
+                      <h3>{faq.q}</h3>
+                      <span aria-hidden="true" className="faq-toggle">
+                        +
+                      </span>
+                    </summary>
+                    <p>{faq.a}</p>
+                  </details>
+                ))}
+              </div>
+            </section>
+          </div>
         )}
 
         <section className="content-section service-links">

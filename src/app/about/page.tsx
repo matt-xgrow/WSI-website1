@@ -144,75 +144,79 @@ export default function AboutPage() {
           </p>
         </section>
 
-        <section className="content-section">
-          <span className="eyebrow">
-            <span className="eyebrow-line" />
-            How we operate
-          </span>
-          <h2>The principles that guide every job.</h2>
-          <ul className="surfaces-grid">
-            {PRINCIPLES.map((p) => (
-              <li key={p.title}>
-                <h3 className="surface-name">{p.title}</h3>
-                <p className="surface-note">{p.body}</p>
-              </li>
-            ))}
-          </ul>
-        </section>
+        <div className="band-tint">
+          <section className="content-section">
+            <span className="eyebrow">
+              <span className="eyebrow-line" />
+              How we operate
+            </span>
+            <h2>The principles that guide every job.</h2>
+            <ul className="surfaces-grid">
+              {PRINCIPLES.map((p) => (
+                <li key={p.title}>
+                  <h3 className="surface-name">{p.title}</h3>
+                  <p className="surface-note">{p.body}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        </div>
 
-        <section className="content-section">
-          <span className="eyebrow">
-            <span className="eyebrow-line" />
-            Methodology
-          </span>
-          <h2>The right method for every surface.</h2>
-          <p>
-            Most exterior cleaning failures come from using the wrong tool on
-            the wrong surface — pressure-washing render and stripping the
-            coating, blasting roof tiles loose, scratching coated glass with
-            stiff brushes. Our entire process is built around matching method
-            to substrate, not the other way around.
-          </p>
-          <ul className="surfaces-grid">
-            <li>
-              <h3 className="surface-name">Soft washing (under 500 PSI)</h3>
-              <p className="surface-note">
-                Render, paint, weatherboard, fibre cement, roof tiles and
-                building facades. Detergent-led — chemistry kills mould and
-                algae at the spore level.
-              </p>
-            </li>
-            <li>
-              <h3 className="surface-name">
-                Pressure washing (1,500–4,000 PSI)
-              </h3>
-              <p className="surface-note">
-                Concrete, exposed aggregate, pavers, retaining walls,
-                driveways and pool surrounds. Surface-cleaner-led for even
-                results without zebra striping.
-              </p>
-            </li>
-            <li>
-              <h3 className="surface-name">Deionised water + soft brushes</h3>
-              <p className="surface-note">
-                Solar panels, glass facades and high-rise windows. Mineral-free
-                water dries with no spotting; warranty-safe on PV.
-              </p>
-            </li>
-            <li>
-              <h3 className="surface-name">EWP and rope access (heights)</h3>
-              <p className="surface-note">
-                EWP for buildings to 3 storeys; hired access for higher work.
-                Site-specific SWMS issued before every working-at-heights job.
-              </p>
-            </li>
-          </ul>
-          <p>
-            <Link href="/services/pressure-washing">
-              Read more on soft wash vs pressure wash →
-            </Link>
-          </p>
-        </section>
+        <div className="band-tint">
+          <section className="content-section">
+            <span className="eyebrow">
+              <span className="eyebrow-line" />
+              Methodology
+            </span>
+            <h2>The right method for every surface.</h2>
+            <p>
+              Most exterior cleaning failures come from using the wrong tool on
+              the wrong surface — pressure-washing render and stripping the
+              coating, blasting roof tiles loose, scratching coated glass with
+              stiff brushes. Our entire process is built around matching method
+              to substrate, not the other way around.
+            </p>
+            <ul className="surfaces-grid">
+              <li>
+                <h3 className="surface-name">Soft washing (under 500 PSI)</h3>
+                <p className="surface-note">
+                  Render, paint, weatherboard, fibre cement, roof tiles and
+                  building facades. Detergent-led — chemistry kills mould and
+                  algae at the spore level.
+                </p>
+              </li>
+              <li>
+                <h3 className="surface-name">
+                  Pressure washing (1,500–4,000 PSI)
+                </h3>
+                <p className="surface-note">
+                  Concrete, exposed aggregate, pavers, retaining walls,
+                  driveways and pool surrounds. Surface-cleaner-led for even
+                  results without zebra striping.
+                </p>
+              </li>
+              <li>
+                <h3 className="surface-name">Deionised water + soft brushes</h3>
+                <p className="surface-note">
+                  Solar panels, glass facades and high-rise windows. Mineral-free
+                  water dries with no spotting; warranty-safe on PV.
+                </p>
+              </li>
+              <li>
+                <h3 className="surface-name">EWP and rope access (heights)</h3>
+                <p className="surface-note">
+                  EWP for buildings to 3 storeys; hired access for higher work.
+                  Site-specific SWMS issued before every working-at-heights job.
+                </p>
+              </li>
+            </ul>
+            <p>
+              <Link href="/services/pressure-washing">
+                Read more on soft wash vs pressure wash →
+              </Link>
+            </p>
+          </section>
+        </div>
 
         <section className="content-section">
           <span className="eyebrow">

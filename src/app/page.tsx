@@ -26,12 +26,18 @@ export default function Home() {
         <Nav />
         <Hero />
         <Marquee />
-        <ServicesSection />
+        <div className="band-tint">
+          <ServicesSection />
+        </div>
         <BeforeAfter />
         <WhyUs />
-        <ServiceAreas />
+        <div className="band-tint">
+          <ServiceAreas />
+        </div>
         <Process />
-        <Reviews />
+        <div className="band-tint">
+          <Reviews />
+        </div>
         <FAQ />
         <QuoteSection />
         <Footer />

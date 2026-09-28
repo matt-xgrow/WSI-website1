@@ -42,6 +42,11 @@
   --line: oklch(0.90 0.01 80);
   --line-2: oklch(0.82 0.01 80);
 
+  /* Soft brand-blue section tint (same family as the map background #EAF4FB) */
+  --blue-tint: #EAF4FB;
+  --blue-tint-2: #F3F9FD;
+  --blue-tint-line: #D7E8F4;
+
   /* Typography — Next.js CSS variables */
   --font-display: var(--font-fraunces), ui-serif, Georgia, serif;
   --font-body: var(--font-geist), -apple-system, "Segoe UI", system-ui, sans-serif;
@@ -568,23 +573,27 @@ img, svg { display: block; max-width: 100%; }
 
 /* ── Marquee ────────────────────────────────────────────────────────────── */
 
+/* Static trust strip (was an animated marquee — mid-scroll screenshots showed
+   cut-off words like "Coast" and read as a rendering bug; now a centered,
+   wrapping bar where nothing is ever clipped) */
 .marquee {
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-  background: var(--warm-1);
-  padding: 16px 0;
-  overflow: hidden;
-  white-space: nowrap;
+  border-top: 1px solid var(--blue-tint-line);
+  border-bottom: 1px solid var(--blue-tint-line);
+  background: var(--blue-tint);
+  padding: 14px var(--pad);
   margin-top: 24px;
 }
 .marquee-track {
-  display: inline-flex;
-  gap: 48px;
-  animation: scroll 40s linear infinite;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px 40px;
+  max-width: var(--maxw);
+  margin: 0 auto;
 }
-.marquee-item { display: inline-flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--ink-1); letter-spacing: -0.01em; }
+.marquee-item { display: inline-flex; align-items: center; gap: 10px; font-size: 13.5px; font-weight: 500; color: var(--navy-ink); letter-spacing: -0.01em; opacity: 0.85; }
 .marquee-dot { color: var(--cyan-ink); font-size: 8px; }
-@keyframes scroll { to { transform: translateX(-33.33%); } }
 
 /* ── Section head ───────────────────────────────────────────────────────── */
 
@@ -598,7 +607,7 @@ img, svg { display: block; max-width: 100%; }
   align-items: end;
 }
 .section-head-right { padding-bottom: 6px; }
-.section-head-right p { font-size: 16px; line-height: 1.55; color: var(--ink-1); margin: 0 0 20px; max-width: 460px; }
+.section-head-right p { font-size: 16px; line-height: 1.55; color: var(--ink-1); margin: 0 0 20px; max-width: 460px; overflow-wrap: break-word; }
 .section-head-right-light p { color: var(--warm-3); }
 
 .section-title {
@@ -617,9 +626,20 @@ img, svg { display: block; max-width: 100%; }
   .section-head { grid-template-columns: 1fr; gap: 24px; padding: 40px var(--pad) 30px; }
 }
 
+/* ── Section banding (white → brand-blue tint → navy) ────────────────────
+   Alternating full-bleed backgrounds make each section's start and end
+   obvious. Tinted bands get a top border; inner sections keep their own
+   generous rhythm (60px head / 80–120px tail) inside the band. */
+
+.band-tint {
+  background: var(--blue-tint-2);
+  border-top: 1px solid var(--blue-tint-line);
+  border-bottom: 1px solid var(--blue-tint-line);
+}
+
 /* ── Services ───────────────────────────────────────────────────────────── */
 
-.services { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad) 80px; }
+.services { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--pad) 88px; }
 
 .services-filters { display: flex; gap: 8px; margin-bottom: 32px; flex-wrap: wrap; }
 .filter-chip {
@@ -702,7 +722,7 @@ img, svg { display: block; max-width: 100%; }
 .before-after {
   max-width: var(--maxw);
   margin: 0 auto;
-  padding: 0 var(--pad) 80px;
+  padding: 0 var(--pad) 88px;
 }
 
 .ba-stage {
