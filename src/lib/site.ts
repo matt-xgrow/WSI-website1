@@ -32,7 +32,22 @@ export const site = {
   insuranceLabel: "$20M public liability insurance",
   areas: ["Brisbane", "Sunshine Coast"],
   primaryArea: "Brisbane",
-  socialLinks: [] as string[],
+};
+
+/**
+ * Google Business Profile details. Fill from the live GBP profile.
+ * Empty strings are left out of the JSON-LD so the site does not invent an address.
+ * sameAs: Google Maps CID URL, Facebook, Instagram.
+ */
+export const gbpProfile = {
+  sameAs: [] as string[],
+  address: {
+    streetAddress: "",
+    addressLocality: "",
+    addressRegion: "QLD",
+    postalCode: "",
+    addressCountry: "AU",
+  },
 };
 
 export const CONTENT_UPDATED = {

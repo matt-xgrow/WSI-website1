@@ -134,11 +134,6 @@ export function Footer() {
             © {new Date().getFullYear()} {site.legalName}. All rights reserved.
           </span>
           <span className="footer-credit">
-            Managed by{" "}
-            <a href="https://rhinoclicks.com/" target="_blank" rel="noopener">
-              Rhino Clicks
-            </a>
-            {" · "}
             <a href="https://xgrow.com.au" target="_blank" rel="noopener">
               XGROW Pty Ltd
             </a>

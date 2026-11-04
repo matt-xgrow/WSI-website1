@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Footer } from "@/components/site/footer";
@@ -13,6 +14,7 @@ import {
   serviceSchema,
 } from "@/lib/seo/schema";
 import type { AdsPage } from "@/lib/ads-pages";
+import { ADS_REVIEWS, BRISBANE_SUBURBS } from "@/lib/ads-reviews";
 import { site, SITE_URL } from "@/lib/site";
 
 export function adsMetadata(page: AdsPage): Metadata {
@@ -72,7 +74,8 @@ export function AdsLanding({ page }: { page: AdsPage }) {
           </div>
         </section>
         <section className="content-section">
-          <h2>Built for Brisbane homes.</h2>
+          <h2>{page.introTitle}</h2>
+          <p>{page.intro}</p>
           <ul className="surfaces-grid">
             {page.points.map((point) => (
               <li key={point.title}>
@@ -83,13 +86,63 @@ export function AdsLanding({ page }: { page: AdsPage }) {
           </ul>
         </section>
         <section className="content-section">
-          <h2>What this clean covers.</h2>
+          <h2>{page.surfacesTitle}</h2>
+          <p>{page.surfacesIntro}</p>
           <ul className="surfaces-grid">
             {page.surfaces.map((surface) => (
               <li key={surface.title}>
                 <h3 className="surface-name">{surface.title}</h3>
                 <p className="surface-note">{surface.body}</p>
               </li>
+            ))}
+          </ul>
+        </section>
+        <section className="content-section">
+          <h2>Brisbane homes deserve real cleaning results.</h2>
+          <p>Use real job imagery instead of generic stock photos so the ad-to-page experience feels credible and consistent.</p>
+          <div className="surfaces-grid">
+            <figure>
+              <Image src="/design/pressure-1.jpg" alt="WSI Cleaning team member washing a residential exterior" width={720} height={480} />
+              <figcaption>Residential exterior wash. WSI Cleaning, Brisbane.</figcaption>
+            </figure>
+            <figure>
+              <Image src="/design/pressure-2.jpg" alt="WSI Cleaning technician cleaning an exterior property" width={720} height={480} />
+              <figcaption>Professional exterior cleaning. Controlled process, QLD.</figcaption>
+            </figure>
+          </div>
+        </section>
+        <section className="content-section">
+          <h2>{page.stepsTitle}</h2>
+          <p>{page.stepsIntro}</p>
+          <ol className="process-list">
+            {page.steps.map((step, index) => (
+              <li key={step.title}>
+                <span className="process-num">{String(index + 1).padStart(2, "0")}</span>
+                <div>
+                  <h3 className="process-step-title">{step.title}</h3>
+                  <p>{step.body}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+        <section className="content-section">
+          <h2>What Brisbane homeowners say</h2>
+          <p>Excellent. Trusted by local homeowners. 4.9/5 from {site.reviewCount} Google reviews.</p>
+          {ADS_REVIEWS.map((review) => (
+            <article key={review.name}>
+              <h3>{review.name}</h3>
+              <p>{review.when}. {review.text}</p>
+            </article>
+          ))}
+        </section>
+        <section className="content-section">
+          <h2>{page.areaTitle}</h2>
+          <p>{page.areaBody}</p>
+          <h3>Popular Brisbane suburbs we service</h3>
+          <ul className="suburb-list">
+            {BRISBANE_SUBURBS.map((suburb) => (
+              <li key={suburb}>{suburb}</li>
             ))}
           </ul>
         </section>
@@ -106,6 +159,10 @@ export function AdsLanding({ page }: { page: AdsPage }) {
               </details>
             ))}
           </div>
+        </section>
+        <section className="content-section">
+          <h2>{page.closingTitle}</h2>
+          <p>{page.closingBody}</p>
         </section>
         <QuoteSection />
         <Footer />

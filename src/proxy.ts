@@ -5,8 +5,13 @@ import redirectData from "@/lib/redirects.json";
 const CANONICAL_HOST = "wsicleaning.com";
 const CANONICAL_ORIGIN = "https://wsicleaning.com";
 
-const REDIRECTS = redirectData.redirects as Record<string, string>;
-const GONE = new Set(redirectData.gone as string[]);
+const REDIRECTS: Record<string, string> = {
+  ...(redirectData.redirects as Record<string, string>),
+  "/sitemap_index.xml": "/sitemap.xml",
+};
+const GONE = new Set(
+  (redirectData.gone as string[]).filter((path) => !path.startsWith("/_next")),
+);
 
 const NOINDEX_PATHS = new Set([
   "/thank-you",
@@ -36,6 +41,10 @@ function isProductionIndexHost(hostname: string) {
 }
 
 function applyRobots(response: NextResponse, host: string, barePath: string) {
+  if (barePath === "/thank-you") {
+    response.headers.set("X-Robots-Tag", "noindex, follow");
+    return response;
+  }
   if (!isProductionIndexHost(host) || NOINDEX_PATHS.has(barePath)) {
     response.headers.set(
       "X-Robots-Tag",
@@ -58,6 +67,11 @@ export function proxy(request: NextRequest) {
   }
 
   const barePath = stripSlash(decoded.toLowerCase()) || "/";
+
+  // Never redirect or 410 Next internals. A previous URL map marked a live font as gone.
+  if (barePath.startsWith("/_next") || decoded.toLowerCase().startsWith("/_next")) {
+    return applyRobots(NextResponse.next(), hostname, barePath);
+  }
 
   if (barePath === "/api" || barePath.startsWith("/api/")) {
     return applyRobots(NextResponse.next(), hostname, barePath);
@@ -107,8 +121,5 @@ export function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: [
-    "/((?!_next/static|_next/image|favicon.ico).*)",
-    "/_next/static/media/caa3a2e1cccd8315-s.p.09~u27dqhyhd6.woff2",
-  ],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
 };

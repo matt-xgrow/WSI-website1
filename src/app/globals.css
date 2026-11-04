@@ -1419,7 +1419,10 @@ details.faq-item > summary::marker { content: ""; }
   gap: 64px;
   align-items: center;
 }
-@media (max-width: 900px) { .sub-hero { grid-template-columns: 1fr; } }
+@media (max-width: 900px) {
+  .sub-hero { grid-template-columns: 1fr; gap: 24px; }
+  .sub-hero-img { order: -1; }
+}
 .sub-hero h1 {
   font-family: var(--font-display);
   font-weight: 400;

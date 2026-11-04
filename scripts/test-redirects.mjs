@@ -94,7 +94,12 @@ async function check(row) {
     }
   })();
 
-  if (host === "quote.wsicleaning.com" || action.startsWith("Fase") || action.startsWith("manter")) {
+  if (
+    host === "quote.wsicleaning.com" ||
+    action.startsWith("Fase") ||
+    action.startsWith("manter") ||
+    action.startsWith("IGNORAR")
+  ) {
     results.skip += 1;
     return;
   }
@@ -151,8 +156,11 @@ async function check(row) {
   }
 
   if (action.startsWith("404")) {
-    if (response.status !== 404) fail("expected 404");
-    else results.pass += 1;
+    const bare = oldPath.replace(/\/$/, "") || "/";
+    const vercelBlocksWp = ["/wp-admin", "/wp-login.php", "/wp-json", "/xmlrpc.php"].includes(bare);
+    if (response.status === 404 || (response.status === 403 && vercelBlocksWp)) {
+      results.pass += 1;
+    } else fail("expected 404");
     return;
   }
 
@@ -232,6 +240,42 @@ async function worker() {
   }
 }
 await Promise.all(Array.from({ length: concurrency }, () => worker()));
+
+const map = JSON.parse(readFileSync(resolve(process.cwd(), "src/lib/redirects.json"), "utf8"));
+const nextPaths = [
+  ...Object.keys(map.redirects || {}),
+  ...(map.gone || []),
+].filter((path) => path.startsWith("/_next"));
+if (nextPaths.length) {
+  results.fail += 1;
+  results.failures.push(`/_next must not be redirected or 410: ${nextPaths.join(", ")}`);
+}
+
+const headers = {
+  "user-agent": "wsi-redirect-test",
+  ...(process.env.REDIRECT_COOKIE ? { cookie: process.env.REDIRECT_COOKIE } : {}),
+};
+const fontUrl = new URL("/_next/static/media/caa3a2e1cccd8315-s.p.09~u27dqhyhd6.woff2", base);
+const fontResponse = await fetch(fontUrl, { redirect: "manual", headers });
+if (fontResponse.status === 410 || fontResponse.status >= 300 && fontResponse.status < 400) {
+  results.fail += 1;
+  results.failures.push(`font path must not redirect or 410 (got ${fontResponse.status})`);
+} else if (fontResponse.status !== 200) {
+  results.fail += 1;
+  results.failures.push(`font path expected 200 (got ${fontResponse.status})`);
+} else {
+  results.pass += 1;
+}
+
+const sitemapUrl = new URL("/sitemap_index.xml", base);
+const sitemapResponse = await fetch(sitemapUrl, { redirect: "manual", headers });
+const sitemapLocation = sitemapResponse.headers.get("location") || "";
+if (sitemapResponse.status === 301 && samePath(new URL(sitemapLocation, sitemapUrl).pathname, "/sitemap.xml")) {
+  results.pass += 1;
+} else {
+  results.fail += 1;
+  results.failures.push(`sitemap_index.xml expected 301 to /sitemap.xml (got ${sitemapResponse.status} -> ${sitemapLocation})`);
+}
 
 console.log(JSON.stringify({
   base: base.origin,

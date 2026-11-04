@@ -1,5 +1,5 @@
 import { FAQ_ITEMS } from "@/lib/faq";
-import { services, site, SITE_URL } from "@/lib/site";
+import { gbpProfile, services, site, SITE_URL } from "@/lib/site";
 
 const ID = {
   organization: `${SITE_URL}/#organization`,
@@ -31,6 +31,19 @@ const AREAS_SERVED = [
   },
 ];
 
+function businessAddress() {
+  const { streetAddress, addressLocality, addressRegion, postalCode, addressCountry } =
+    gbpProfile.address;
+  return {
+    "@type": "PostalAddress" as const,
+    ...(streetAddress ? { streetAddress } : {}),
+    ...(addressLocality ? { addressLocality } : {}),
+    addressRegion,
+    ...(postalCode ? { postalCode } : {}),
+    addressCountry,
+  };
+}
+
 const SERVICE_AREA_GEO = {
   "@type": "GeoCircle" as const,
   geoMidpoint: {
@@ -57,7 +70,7 @@ export function organizationSchema() {
     email: site.email,
     telephone: site.phoneE164,
     foundingDate: String(site.foundingYear),
-    sameAs: site.socialLinks,
+    sameAs: gbpProfile.sameAs,
     identifier: [
       {
         "@type": "PropertyValue",
@@ -98,11 +111,7 @@ export function localBusinessSchema() {
     parentOrganization: { "@id": ID.organization },
     areaServed: AREAS_SERVED,
     serviceArea: SERVICE_AREA_GEO,
-    address: {
-      "@type": "PostalAddress",
-      addressRegion: "QLD",
-      addressCountry: "AU",
-    },
+    address: businessAddress(),
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
@@ -119,13 +128,6 @@ export function localBusinessSchema() {
         closes: "19:00",
       },
     ],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: site.rating,
-      reviewCount: String(site.reviewCount),
-      bestRating: "5",
-      worstRating: "1",
-    },
     hasCredential: [
       {
         "@type": "EducationalOccupationalCredential",
@@ -152,7 +154,7 @@ export function localBusinessSchema() {
       "Driveway cleaning",
       "Commercial exterior cleaning",
     ],
-    sameAs: site.socialLinks,
+    sameAs: gbpProfile.sameAs,
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Exterior Cleaning Services",

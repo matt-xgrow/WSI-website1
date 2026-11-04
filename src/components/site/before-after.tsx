@@ -17,14 +17,14 @@ const SLIDES: SlideWithAlt[] = [
     id: 0,
     title: "Driveway restoration",
     service: "Pressure Washing",
-    src: "/images/before-after/driveway-1.jpg",
+    src: "/design/pressure-1.jpg",
     alt: "Before-and-after of a Brisbane concrete driveway restored by pressure washing",
   },
   {
     id: 1,
     title: "Concrete recovery",
     service: "Pressure Washing",
-    src: "/images/before-after/driveway-2.jpg",
+    src: "/design/pressure-2.jpg",
     alt: "Before-and-after of a stained concrete path returned to factory finish",
   },
 ];

@@ -1,3 +1,5 @@
+export type AdsBlock = { title: string; body: string };
+
 export type AdsPage = {
   path: string;
   eyebrow: string;
@@ -5,8 +7,19 @@ export type AdsPage = {
   lede: string;
   title: string;
   description: string;
-  points: { title: string; body: string }[];
-  surfaces: { title: string; body: string }[];
+  introTitle: string;
+  intro: string;
+  points: AdsBlock[];
+  surfacesTitle: string;
+  surfacesIntro: string;
+  surfaces: AdsBlock[];
+  stepsTitle: string;
+  stepsIntro: string;
+  steps: AdsBlock[];
+  areaTitle: string;
+  areaBody: string;
+  closingTitle: string;
+  closingBody: string;
   faqs: { q: string; a: string }[];
 };
 
@@ -19,6 +32,9 @@ export const HOUSE_WASH_LP: AdsPage = {
   title: "House Washing Brisbane - WSI Cleaning",
   description:
     "Professional house washing in Brisbane using safe soft-wash methods for render, brick, weatherboard and painted exteriors. $20M insured, 4.9/5 Google rating, free fixed quote.",
+  introTitle: "Clean the exterior without blasting the surface.",
+  intro:
+    "Brisbane’s humidity and warm conditions encourage mould, algae and grime on render, painted weatherboard and brick. Soft washing uses lower pressure and the right treatment to clean the surface without the damage associated with aggressive high pressure.",
   points: [
     {
       title: "Surface-safe soft washing",
@@ -39,6 +55,21 @@ export const HOUSE_WASH_LP: AdsPage = {
     { title: "Brick exteriors", body: "House washing for accumulated dirt, cobwebs and organic growth across brick facades and walls." },
     { title: "Fibre cement", body: "Gentler exterior cleaning for coated surfaces such as fibre cement and James Hardie products." },
   ],
+  surfacesTitle: "Exterior surfaces we wash.",
+  surfacesIntro: "A focused Brisbane house washing service for the exterior materials homeowners deal with most.",
+  stepsTitle: "Your house wash in four steps.",
+  stepsIntro: "A low-friction quote process built to move Brisbane homeowners from enquiry to clean exterior quickly.",
+  steps: [
+    { title: "Request your quote", body: "Send your name, phone and suburb/postcode. Add extra details only if you want to." },
+    { title: "Receive a fixed price", body: "WSI reviews the property details and returns a written quote, usually within one business day." },
+    { title: "Book the clean", body: "Choose a suitable appointment. Most residential work can be scheduled within the same week." },
+    { title: "Walk through the result", body: "Your exterior is cleaned using the method appropriate to the surface and checked before completion." },
+  ],
+  areaTitle: "Focused on Greater Brisbane.",
+  areaBody:
+    "This campaign page intentionally keeps location messaging Brisbane-specific so visitors coming from Brisbane house washing searches see one relevant service and one relevant service area. Greater Brisbane coverage includes inner city, western corridor, northern suburbs and bayside areas.",
+  closingTitle: "Get your Brisbane house washing quote.",
+  closingBody: "One service, one Brisbane-focused page and a short quote form designed to make the next step easy.",
   faqs: [
     { q: "How often should I wash my house in Brisbane?", a: "Most Brisbane homes benefit from a full exterior wash around every 12–18 months. Shaded walls, heavy tree cover and properties with faster mould build-up may need cleaning sooner." },
     { q: "Will soft washing damage render or paint?", a: "Soft washing is specifically used where high pressure may damage render, painted weatherboard, fibre cement or coated surfaces. The method relies on appropriate treatment and controlled pressure." },
@@ -58,17 +89,35 @@ export const PRESSURE_WASH_LP: AdsPage = {
   title: "Pressure Washing Brisbane - WSI Cleaning",
   description:
     "Professional pressure washing in Brisbane for driveways, concrete, patios, pavers and hard exterior surfaces. $20M insured, 4.9/5 Google rating, free fixed quote.",
+  introTitle: "Powerful cleaning, controlled for the surface.",
+  intro:
+    "Brisbane driveways, paths and outdoor surfaces collect dirt, mould, algae and traffic grime. Professional pressure washing combines the right equipment, pressure and technique to lift built-up contamination while protecting the surface beneath.",
   points: [
-    { title: "Professional pressure control", body: "Pressure, nozzle and distance are matched to the surface so concrete and pavers are cleaned without unnecessary damage." },
-    { title: "Built-up grime removed", body: "Oil, tyre marks, mould and ground-in dirt lifted from driveways, paths and hard outdoor areas." },
+    { title: "Professional pressure control", body: "Pressure, nozzle selection and working distance are adjusted to suit concrete, pavers and other hard exterior surfaces." },
+    { title: "Built-up grime removed", body: "The cleaning process targets dirt, mould, algae and weather staining that ordinary rinsing leaves behind." },
     { title: "Fixed quote before the job", body: "Know the agreed price before work begins — no hourly surprise at the end." },
   ],
+  surfacesTitle: "What we clean with pressure washing.",
+  surfacesIntro: "A focused Brisbane pressure washing service built around the surfaces homeowners need cleaned most.",
   surfaces: [
-    { title: "Driveways & concrete", body: "Surface-cleaner passes for an even finish on broom-finish concrete and exposed aggregate." },
-    { title: "Paths & walkways", body: "Dirt and algae removed from paths so they look even and are less slippery when wet." },
-    { title: "Patios & courtyards", body: "Outdoor living areas cleaned without zebra striping." },
-    { title: "Pavers & hard surfaces", body: "Controlled pressure for pavers, retaining walls and other hard exterior surfaces." },
+    { title: "Driveways & concrete", body: "Professional pressure washing for concrete driveways, parking areas and hardstand surfaces." },
+    { title: "Paths & walkways", body: "Remove built-up dirt, mould and grime from exterior paths and pedestrian areas." },
+    { title: "Patios & courtyards", body: "Refresh outdoor entertaining areas with controlled pressure cleaning suited to the surface." },
+    { title: "Pavers & hard surfaces", body: "Pressure cleaning for pavers and other durable exterior surfaces where higher pressure is appropriate." },
   ],
+  stepsTitle: "Your pressure washing in four steps.",
+  stepsIntro: "A low-friction quote process built to move Brisbane homeowners from enquiry to completed pressure washing quickly.",
+  steps: [
+    { title: "Request your quote", body: "Send your name, phone and suburb/postcode. Add extra details only if you want to." },
+    { title: "Receive a fixed price", body: "WSI reviews the property details and returns a written quote, usually within one business day." },
+    { title: "Book the clean", body: "Choose a suitable appointment. Most residential work can be scheduled within the same week." },
+    { title: "Walk through the result", body: "Your exterior is cleaned using the method appropriate to the surface and checked before completion." },
+  ],
+  areaTitle: "Focused on Greater Brisbane.",
+  areaBody:
+    "This campaign page intentionally keeps location messaging Brisbane-specific so visitors coming from Brisbane pressure washing searches see one relevant service and one relevant service area. Greater Brisbane coverage includes inner city, western corridor, northern suburbs and bayside areas.",
+  closingTitle: "Get your Brisbane pressure washing quote.",
+  closingBody: "One service, one Brisbane-focused page and a short quote form designed to make booking pressure washing easy.",
   faqs: [
     { q: "What surfaces can you pressure wash?", a: "Pressure washing is commonly used for concrete driveways, paths, patios, pavers, retaining walls and other hard exterior surfaces where controlled higher pressure is appropriate." },
     { q: "Can pressure washing damage concrete or pavers?", a: "Incorrect pressure, distance or nozzle choice can damage some surfaces. WSI uses professional equipment and adjusts the cleaning method to suit the material and condition." },
@@ -79,31 +128,13 @@ export const PRESSURE_WASH_LP: AdsPage = {
   ],
 };
 
+/** Live WordPress body (it duplicated the house-washing LP). The H1 stays the corrected window heading. */
 export const WINDOW_WASH_LP: AdsPage = {
+  ...HOUSE_WASH_LP,
   path: "/window-cleaning-brisane-lp/",
   eyebrow: "Window Cleaning · Brisbane QLD",
   h1: "Window Cleaning Brisbane – Get a Free Quote",
-  lede:
-    "Streak-free interior and exterior window cleaning for Brisbane homes, offices and shopfronts. Frames, sills, tracks and flyscreens included.",
   title: "Window Cleaning Brisbane - WSI Cleaning",
   description:
     "Professional window cleaning in Brisbane for homes, offices and shopfronts. Streak-free glass, frames and sills. $20M insured, free fixed quote.",
-  points: [
-    { title: "Streak-free glass", body: "Detergent and squeegee on accessible glass, or deionised water on a pole for upper storeys, so the finish dries without spots." },
-    { title: "Frames, sills and tracks", body: "Dirt is removed from the frame before the glass is finished, so dust is not washed back onto clean panes." },
-    { title: "Fixed quote before the job", body: "Know the agreed price before work begins — no hourly surprise at the end." },
-  ],
-  surfaces: [
-    { title: "Home windows", body: "Interior and exterior glass for houses and townhouses across Brisbane." },
-    { title: "Shopfronts", body: "Street-facing glass cleaned so the business looks open and cared for." },
-    { title: "Office glass", body: "Regular or one-off cleans for offices and strata foyers." },
-    { title: "Flyscreens", body: "Screens removed, rinsed and refitted where access allows." },
-  ],
-  faqs: [
-    { q: "Do you clean inside and outside?", a: "Yes. A standard clean covers both sides where we can reach them safely, plus frames, sills and tracks." },
-    { q: "How often should Brisbane windows be cleaned?", a: "Most homes look right on a quarterly clean. Properties with more dust, trees or river exposure are often booked monthly." },
-    { q: "How quickly can I get a quote?", a: "Quotes are normally returned within 24 business hours, with many residential jobs scheduled within the same week." },
-    { q: "Is WSI Cleaning insured?", a: "Yes. WSI Cleaning carries $20 million in public liability insurance." },
-    { q: "Do I need to be home?", a: "For exterior-only work, not always. Interior glass needs someone on site to let the crew in." },
-  ],
 };

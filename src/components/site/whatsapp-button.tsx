@@ -3,7 +3,7 @@ import { site } from "@/lib/site";
 export function WhatsAppButton() {
   return (
     <a
-      className="whatsapp-button"
+      className="whatsapp-button joinchat__button"
       href={site.whatsappHref}
       target="_blank"
       rel="noopener noreferrer"

@@ -216,12 +216,12 @@
     "/home-2": "/",
     "/sunshine-coast-house-washing-pressure-washing-experts-quote": "/sunshine-coast/",
     "/wsi-cleaning-blog/page/5": "/guides/",
-    "/contact-us": "/contact/"
+    "/contact-us": "/contact/",
+    "/sitemap_index.xml": "/sitemap.xml"
   },
   "gone": [
     "/2026/07/28/hello-world",
     "/8fa21e1e-704f-42fe-81f7-62c2f0b30a51",
-    "/_next/static/media/caa3a2e1cccd8315-s.p.09~u27dqhyhd6.woff2",
     "/author/ovc0l",
     "/category/pest-control",
     "/category/uncategorized",

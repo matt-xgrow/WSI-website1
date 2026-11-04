@@ -442,7 +442,7 @@ export default function WindowCleaningBrisbaneCostGuide() {
             need mineral-free water. Tap water makes salt haze worse because
             you&rsquo;re adding more minerals on top of what&rsquo;s already
             there. See our dedicated{" "}
-            <Link href="/guides/salt-haze-windows-sunshine-coast">
+            <Link href="/guides/salt-haze-windows-sunshine-coast/">
               salt haze guide
             </Link>{" "}
             for the chemistry.

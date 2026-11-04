@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { AdsConversion } from "@/components/analytics/ads-conversion";
 import { JsonLd } from "@/components/seo/json-ld";
 import { Footer } from "@/components/site/footer";
 import { Nav } from "@/components/site/nav";
@@ -15,7 +14,7 @@ export const metadata: Metadata = {
   title: { absolute: meta.title },
   description: meta.description,
   alternates: { canonical: "/thank-you/" },
-  robots: { index: false, follow: false },
+  robots: { index: false, follow: true },
 };
 
 type PageProps = {
@@ -34,7 +33,6 @@ export default async function ThankYouPage({ searchParams }: PageProps) {
 
   return (
     <>
-      <AdsConversion />
       <JsonLd
         data={graph(
           breadcrumbSchema([

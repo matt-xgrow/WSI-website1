@@ -169,15 +169,29 @@ export function ServicePage({ slug }: { slug: string }) {
             </div>
           </div>
           <div className="sub-hero-img">
-            <Image
-              src={heroImage}
-              alt={heroAlt}
-              width={720}
-              height={450}
-              priority
-              fetchPriority="high"
-              sizes="(max-width: 900px) 100vw, 720px"
-            />
+            {service.slug === "pressure-washing" || service.slug === "driveway-cleaning" ? (
+              <>
+                <link rel="preload" as="image" href="/images/heroes/hard-surface.webp" fetchPriority="high" />
+                <img
+                  src="/images/heroes/hard-surface.webp"
+                  alt={heroAlt}
+                  width={960}
+                  height={600}
+                  fetchPriority="high"
+                  decoding="async"
+                />
+              </>
+            ) : (
+              <Image
+                src={heroImage}
+                alt={heroAlt}
+                width={720}
+                height={450}
+                priority
+                fetchPriority="high"
+                sizes="(max-width: 900px) 100vw, 720px"
+              />
+            )}
           </div>
         </section>
 
