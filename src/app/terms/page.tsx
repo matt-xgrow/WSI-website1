@@ -8,21 +8,21 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbSchema, graph } from "@/lib/seo/schema";
 import { site, SITE_URL } from "@/lib/site";
 
-const PAGE_URL = `${SITE_URL}/terms`;
-const TITLE = "Terms of Service";
+const PAGE_URL = `${SITE_URL}/terms/`;
+const TITLE = "Terms - WSI Cleaning";
 const DESCRIPTION =
   "Terms that apply when you request a quote, book a clean or use the WSI Cleaning website.";
 const UPDATED = "2026-04-26";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: TITLE },
   description: DESCRIPTION,
-  alternates: { canonical: "/terms" },
+  alternates: { canonical: "/terms/" },
   robots: { index: true, follow: true },
   openGraph: {
     title: `${TITLE} — WSI Cleaning`,
     description: DESCRIPTION,
-    url: "/terms",
+    url: "/terms/",
     type: "article",
     publishedTime: UPDATED,
     modifiedTime: UPDATED,
@@ -45,7 +45,7 @@ export default function TermsPage() {
     },
     breadcrumbSchema([
       { name: "Home", url: "/" },
-      { name: "Terms of Service", url: "/terms" },
+      { name: "Terms of Service", url: "/terms/" },
     ])
   );
 

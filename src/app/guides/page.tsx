@@ -11,20 +11,19 @@ import { breadcrumbSchema, graph } from "@/lib/seo/schema";
 import { GUIDES } from "@/lib/guides";
 import { CONTENT_UPDATED, SITE_URL } from "@/lib/site";
 
-const PAGE_URL = `${SITE_URL}/guides`;
-const TITLE =
-  "Exterior Cleaning Guides — Brisbane & Sunshine Coast Cost, Method & Frequency";
+const PAGE_URL = `${SITE_URL}/guides/`;
+const TITLE = "Guides - WSI Cleaning";
 const DESCRIPTION =
   "Pricing guides, method comparisons and frequency calendars for house washing, pressure cleaning and window cleaning across Brisbane and the Sunshine Coast. Written from real jobs — not generic templates.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: TITLE },
   description: DESCRIPTION,
-  alternates: { canonical: "/guides" },
+  alternates: { canonical: "/guides/" },
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,
-    url: "/guides",
+    url: "/guides/",
     type: "website",
     images: [{ url: "/images/soft-wash.jpg" }],
   },
@@ -77,7 +76,7 @@ export default function GuidesIndex() {
     itemListElement: GUIDES.map((g, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      url: `${SITE_URL}/guides/${g.slug}`,
+      url: `${SITE_URL}/guides/${g.slug}/`,
       name: g.title,
     })),
   };
@@ -100,7 +99,7 @@ export default function GuidesIndex() {
     itemListSchema,
     breadcrumbSchema([
       { name: "Home", url: "/" },
-      { name: "Guides", url: "/guides" },
+      { name: "Guides", url: "/guides/" },
     ])
   );
 
@@ -198,7 +197,7 @@ export default function GuidesIndex() {
                   <ul className="suburb-list">
                     {items.map((g) => (
                       <li key={g.slug}>
-                        <Link href={`/guides/${g.slug}`}>
+                        <Link href={`/guides/${g.slug}/`}>
                           <strong>{g.headline.replace(/[.?]$/, "")}</strong>
                           <br />
                           <span

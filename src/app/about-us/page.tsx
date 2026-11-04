@@ -11,13 +11,13 @@ import { breadcrumbSchema, graph } from "@/lib/seo/schema";
 import { services, site, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About WSI Cleaning",
+  title: { absolute: "About Us - WSI Cleaning" },
   description: `Brisbane-based exterior cleaning company operating across South East Queensland since ${site.foundingYear}. ABN ${site.abnDisplay}. ${site.insuranceLabel}. ${site.rating}/5 from ${site.reviewCount} Google reviews.`,
-  alternates: { canonical: "/about" },
+  alternates: { canonical: "/about-us/" },
   openGraph: {
     title: "About WSI Cleaning",
     description: `Exterior cleaning specialists since ${site.foundingYear}. ${site.insuranceLabel}. Brisbane, Sunshine Coast.`,
-    url: "/about",
+    url: "/about-us/",
     images: [{ url: "/images/wsi-team.jpg" }],
     type: "website",
   },
@@ -69,12 +69,12 @@ export default function AboutPage() {
   const pageSchema = graph(
     breadcrumbSchema([
       { name: "Home", url: "/" },
-      { name: "About", url: "/about" },
+      { name: "About", url: "/about-us/" },
     ]),
     {
       "@type": "AboutPage",
-      "@id": `${SITE_URL}/about#about`,
-      url: `${SITE_URL}/about`,
+      "@id": `${SITE_URL}/about-us/#about`,
+      url: `${SITE_URL}/about-us/`,
       name: "About WSI Cleaning",
       description: `Exterior cleaning specialists serving Brisbane and Sunshine Coast since ${site.foundingYear}. ABN ${site.abnDisplay}.`,
       mainEntity: { "@id": `${SITE_URL}/#business` },
@@ -211,7 +211,7 @@ export default function AboutPage() {
               </li>
             </ul>
             <p>
-              <Link href="/services/pressure-washing">
+              <Link href="/pressure-washing/">
                 Read more on soft wash vs pressure wash →
               </Link>
             </p>
@@ -254,10 +254,10 @@ export default function AboutPage() {
           </p>
           <ul className="suburb-list">
             <li>
-              <Link href="/locations/brisbane">Brisbane →</Link>
+              <Link href="/brisbane/">Brisbane →</Link>
             </li>
             <li>
-              <Link href="/locations/sunshine-coast">Sunshine Coast →</Link>
+              <Link href="/sunshine-coast/">Sunshine Coast →</Link>
             </li>
           </ul>
         </section>
@@ -276,7 +276,7 @@ export default function AboutPage() {
           <ul className="suburb-list">
             {services.map((service) => (
               <li key={service.slug}>
-                <Link href={`/services/${service.slug}`}>
+                <Link href={`/${service.slug}/`}>
                   {service.name} →
                 </Link>
               </li>

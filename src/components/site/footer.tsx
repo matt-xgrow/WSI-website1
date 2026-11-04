@@ -93,7 +93,7 @@ export function Footer() {
             <ul>
               {featuredServices.map((service) => (
                 <li key={service.slug}>
-                  <Link href={`/services/${service.slug}`}>{service.name}</Link>
+                  <Link href={`/${service.slug}/`}>{service.name}</Link>
                 </li>
               ))}
             </ul>
@@ -104,7 +104,7 @@ export function Footer() {
             <ul>
               {locations.map((location) => (
                 <li key={location.slug}>
-                  <Link href={`/locations/${location.slug}`}>
+                  <Link href={`/${location.slug}/`}>
                     {location.name}
                   </Link>
                 </li>
@@ -134,13 +134,19 @@ export function Footer() {
             © {new Date().getFullYear()} {site.legalName}. All rights reserved.
           </span>
           <span className="footer-credit">
+            Managed by{" "}
+            <a href="https://rhinoclicks.com/" target="_blank" rel="noopener">
+              Rhino Clicks
+            </a>
+            {" · "}
             <a href="https://xgrow.com.au" target="_blank" rel="noopener">
               XGROW Pty Ltd
             </a>
           </span>
           <div className="footer-bottom-links">
-            <Link href="/privacy">Privacy</Link>
-            <Link href="/terms">Terms</Link>
+            <Link href="/contact/">Contact</Link>
+            <Link href="/privacy-policy/">Privacy</Link>
+            <Link href="/terms/">Terms</Link>
             <a href="/sitemap.xml">Sitemap</a>
           </div>
         </div>

@@ -8,21 +8,21 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbSchema, graph } from "@/lib/seo/schema";
 import { site, SITE_URL } from "@/lib/site";
 
-const PAGE_URL = `${SITE_URL}/privacy`;
-const TITLE = "Privacy Policy";
+const PAGE_URL = `${SITE_URL}/privacy-policy/`;
+const TITLE = "Privacy Policy - WSI Cleaning";
 const DESCRIPTION =
   "How WSI Cleaning collects, uses, stores and protects your personal information when you request a quote or use our website.";
 const UPDATED = "2026-04-26";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: TITLE },
   description: DESCRIPTION,
-  alternates: { canonical: "/privacy" },
+  alternates: { canonical: "/privacy-policy/" },
   robots: { index: true, follow: true },
   openGraph: {
     title: `${TITLE} — WSI Cleaning`,
     description: DESCRIPTION,
-    url: "/privacy",
+    url: "/privacy-policy/",
     type: "article",
     publishedTime: UPDATED,
     modifiedTime: UPDATED,
@@ -45,7 +45,7 @@ export default function PrivacyPage() {
     },
     breadcrumbSchema([
       { name: "Home", url: "/" },
-      { name: "Privacy Policy", url: "/privacy" },
+      { name: "Privacy Policy", url: "/privacy-policy/" },
     ])
   );
 

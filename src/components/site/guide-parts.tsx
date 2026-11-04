@@ -135,7 +135,7 @@ export function RelatedGuides({ slug }: { slug: string }) {
       <ul className="suburb-list">
         {related.map((g) => (
           <li key={g.slug}>
-            <Link href={`/guides/${g.slug}`}>
+            <Link href={`/guides/${g.slug}/`}>
               {g.categoryLabel}: {g.headline.replace(/[.?]$/, "")} →
             </Link>
           </li>

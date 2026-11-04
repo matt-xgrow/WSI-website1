@@ -7,15 +7,15 @@ import { site, locations } from "@/lib/site";
 import { PhoneIcon } from "./icons";
 
 const NAV_SERVICES = [
-  { name: "House Washing", href: "/services/house-washing" },
-  { name: "Pressure Washing", href: "/services/pressure-washing" },
-  { name: "Window Cleaning", href: "/services/window-cleaning" },
-  { name: "Gutter Cleaning", href: "/services/gutter-cleaning" },
-  { name: "Roof Cleaning", href: "/services/roof-cleaning" },
-  { name: "Driveway Cleaning", href: "/services/driveway-cleaning" },
-  { name: "Solar Panel Cleaning", href: "/services/solar-panel-cleaning" },
-  { name: "Strata Cleaning", href: "/services/strata-cleaning" },
-  { name: "Commercial Buildings", href: "/services/commercial-cleaning" },
+  { name: "House Washing", href: "/house-washing/" },
+  { name: "Pressure Washing", href: "/pressure-washing/" },
+  { name: "Window Cleaning", href: "/window-cleaning/" },
+  { name: "Gutter Cleaning", href: "/gutter-cleaning/" },
+  { name: "Roof Cleaning", href: "/roof-cleaning/" },
+  { name: "Driveway Cleaning", href: "/driveway-cleaning/" },
+  { name: "Solar Panel Cleaning", href: "/solar-panel-cleaning/" },
+  { name: "Strata Cleaning", href: "/strata-cleaning/" },
+  { name: "Commercial Buildings", href: "/commercial-cleaning/" },
 ];
 
 type MenuKey = "services" | "locations" | null;
@@ -91,7 +91,8 @@ export function Nav() {
         </Link>
 
         <div className="nav-links">
-          <Link href="/about">About</Link>
+          <Link href="/about-us/">About</Link>
+          <Link href="/contact/">Contact</Link>
           <div
             className="nav-dropdown"
             onMouseEnter={() => setOpenMenu("services")}
@@ -150,7 +151,7 @@ export function Nav() {
                   {locations.map((l) => (
                     <Link
                       key={l.slug}
-                      href={`/locations/${l.slug}`}
+                      href={`/${l.slug}/`}
                       className="dropdown-item"
                       onClick={() => setOpenMenu(null)}
                     >
@@ -162,8 +163,8 @@ export function Nav() {
               </div>
             )}
           </div>
-          <Link href="/guides">Guides</Link>
-          <Link href="/gallery">Gallery</Link>
+          <Link href="/guides/">Guides</Link>
+          <Link href="/gallery/">Gallery</Link>
           <Link href="/#reviews">Reviews</Link>
           <Link href="/#faq">FAQ</Link>
         </div>
@@ -194,8 +195,11 @@ export function Nav() {
         id="nav-mobile-panel"
         className={`nav-mobile ${mobileOpen ? "open" : ""}`}
       >
-        <Link href="/about" onClick={closeMobile}>
+        <Link href="/about-us/" onClick={closeMobile}>
           About
+        </Link>
+        <Link href="/contact/" onClick={closeMobile}>
+          Contact
         </Link>
 
         <div className="nav-mobile-group">
@@ -234,7 +238,7 @@ export function Nav() {
               {locations.map((l) => (
                 <Link
                   key={l.slug}
-                  href={`/locations/${l.slug}`}
+                  href={`/${l.slug}/`}
                   onClick={closeMobile}
                 >
                   {l.name}
@@ -244,10 +248,10 @@ export function Nav() {
           )}
         </div>
 
-        <Link href="/guides" onClick={closeMobile}>
+        <Link href="/guides/" onClick={closeMobile}>
           Guides
         </Link>
-        <Link href="/gallery" onClick={closeMobile}>
+        <Link href="/gallery/" onClick={closeMobile}>
           Gallery
         </Link>
         <Link href="/#reviews" onClick={closeMobile}>

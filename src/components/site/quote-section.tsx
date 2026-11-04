@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { trackLeadSubmitted } from "@/lib/analytics";
+import { readCampaignParams } from "@/lib/campaign";
 import { site } from "@/lib/site";
 
 const SERVICES = [
@@ -14,27 +15,27 @@ const SERVICES = [
   "Solar Panel Cleaning",
   "Strata Cleaning",
   "Commercial Buildings",
-  "Other",
+  "Not sure / general enquiry",
 ];
 
-const CITIES = ["Brisbane", "Sunshine Coast"];
-
 type Data = {
-  service: string;
+  services: string[];
   name: string;
   phone: string;
   email: string;
-  city: string;
+  suburb: string;
   notes: string;
+  company_website: string;
 };
 
 const INITIAL: Data = {
-  service: "",
+  services: [],
   name: "",
   phone: "",
   email: "",
-  city: "",
+  suburb: "",
   notes: "",
+  company_website: "",
 };
 
 export function QuoteSection() {
@@ -112,14 +113,27 @@ function QuoteForm() {
   const update = <K extends keyof Data>(k: K, v: Data[K]) =>
     setData((d) => ({ ...d, [k]: v }));
 
+  const toggleService = (service: string) => {
+    setData((current) => {
+      const has = current.services.includes(service);
+      return {
+        ...current,
+        services: has
+          ? current.services.filter((item) => item !== service)
+          : [...current.services, service],
+      };
+    });
+  };
+
   const canSubmit =
-    !!data.service && !!data.name && !!data.phone && !!data.city;
+    data.services.length > 0 && !!data.name && !!data.phone && !!data.suburb;
 
   const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!canSubmit) return;
     setStatus("loading");
     setErrorMsg("");
+    const campaign = readCampaignParams();
     try {
       const res = await fetch("/api/leads", {
         method: "POST",
@@ -128,30 +142,42 @@ function QuoteForm() {
           name: data.name,
           phone: data.phone,
           email: data.email,
-          suburb: data.city,
-          location: data.city,
-          service: data.service,
-          propertyType: "",
+          suburb: data.suburb,
+          service: data.services.join(", "),
           message: data.notes.trim(),
-          sourcePath:
-            typeof window !== "undefined" ? window.location.pathname : "/",
+          company_website: data.company_website,
+          sourcePath: window.location.pathname,
+          ...campaign,
         }),
       });
       const result = await res.json().catch(() => ({}));
       if (!res.ok) {
         setStatus("error");
-        setErrorMsg(result.message ?? "Something went wrong. Please call us.");
+        setErrorMsg(
+          result.message ??
+            `Something went wrong. Please call us on ${site.phoneDisplay}.`,
+        );
         return;
       }
-      setStatus("success");
       trackLeadSubmitted({
-        form_name: "quote_form",
-        service: data.service,
-        location: data.city,
+        form_name: "quote_section_form",
+        service: data.services.join(", "),
+        location: data.suburb,
       });
+      const redirectParams = new URLSearchParams();
+      for (const [key, value] of Object.entries(campaign)) {
+        if (value) redirectParams.set(key, value);
+      }
+      redirectParams.set("service", data.services.join(", "));
+      redirectParams.set("suburb", data.suburb);
+      redirectParams.set("city", data.suburb);
+      redirectParams.set("lead_name", data.name.split(" ")[0] || data.name);
+      window.location.assign(`/thank-you/?${redirectParams.toString()}`);
     } catch {
       setStatus("error");
-      setErrorMsg("Network error. Please call us.");
+      setErrorMsg(
+        `Network error. Please call us on ${site.phoneDisplay}.`,
+      );
     }
   };
 
@@ -180,12 +206,12 @@ function QuoteForm() {
         <p>
           Thanks {data.name.split(" ")[0]}. We&rsquo;ll be in touch within 24
           business hours with a fixed quote for your{" "}
-          {data.service.toLowerCase()} job in {data.city}.
+          {data.services.join(", ").toLowerCase()} job in {data.suburb}.
         </p>
         <div className="success-meta">
           <div>
             <span>Service</span>
-            <strong>{data.service}</strong>
+            <strong>{data.services.join(", ")}</strong>
           </div>
           <div>
             <span>Contact</span>
@@ -210,40 +236,36 @@ function QuoteForm() {
     <form className="quote-form" onSubmit={submit}>
       <div className="q-row">
         <div className="q-field">
-          <label htmlFor="qf-service">Service</label>
-          <select
-            id="qf-service"
-            value={data.service}
-            onChange={(e) => update("service", e.target.value)}
-            required
-          >
-            <option value="" disabled>
-              Select a service
-            </option>
-            {SERVICES.map((s) => (
-              <option key={s} value={s}>
-                {s}
-              </option>
+          <label id="qf-service-label">
+            Service <span>(select all that apply)</span>
+          </label>
+          <div className="service-checks" role="group" aria-labelledby="qf-service-label">
+            {SERVICES.map((service) => (
+              <label key={service} className="service-check">
+                <input
+                  type="checkbox"
+                  name="service"
+                  value={service}
+                  checked={data.services.includes(service)}
+                  onChange={() => toggleService(service)}
+                />
+                <span>{service}</span>
+              </label>
             ))}
-          </select>
+          </div>
         </div>
         <div className="q-field">
-          <label htmlFor="qf-city">City</label>
-          <select
-            id="qf-city"
-            value={data.city}
-            onChange={(e) => update("city", e.target.value)}
+          <label htmlFor="qf-suburb">Suburb</label>
+          <input
+            id="qf-suburb"
+            name="suburb"
+            type="text"
+            value={data.suburb}
+            onChange={(e) => update("suburb", e.target.value)}
+            placeholder="e.g. Paddington"
+            autoComplete="address-level2"
             required
-          >
-            <option value="" disabled>
-              Select a city
-            </option>
-            {CITIES.map((c) => (
-              <option key={c} value={c}>
-                {c}
-              </option>
-            ))}
-          </select>
+          />
         </div>
       </div>
 
@@ -284,6 +306,19 @@ function QuoteForm() {
           onChange={(e) => update("email", e.target.value)}
           placeholder="you@example.com"
           autoComplete="email"
+        />
+      </div>
+
+      <div className="quote-honeypot" aria-hidden="true">
+        <label htmlFor="qf-company">Company website</label>
+        <input
+          id="qf-company"
+          name="company_website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={data.company_website}
+          onChange={(e) => update("company_website", e.target.value)}
         />
       </div>
 

@@ -67,10 +67,11 @@ export function Hero() {
           <p className="hero-sub">
             WSI Cleaning is a Brisbane-based exterior cleaning company,
             operating across Brisbane and the Sunshine Coast
-            since {site.foundingYear}. We soft-wash homes, pressure-clean
-            driveways and paving, polish windows, clear gutters and restore
-            roofs — backed by {site.insuranceLabel.toLowerCase()},{" "}
-            {site.rating}/5 from {site.reviewCount} Google reviews and{" "}
+            since {site.foundingYear}. We specialise in external house wash
+            Brisbane services, soft-washing homes, pressure-cleaning
+            driveways and paving, polishing windows, clearing gutters and
+            restoring roofs — backed by {site.insuranceLabel.toLowerCase()}, a{" "}
+            {site.rating}/5 rating from 190+ Google reviews and{" "}
             {site.yearsInBusiness}+ years on the ground.
           </p>
 
@@ -88,7 +89,7 @@ export function Hero() {
           <div className="hero-stats">
             <div className="stat">
               <div className="stat-num">
-                <AnimatedNum to={site.reviewCount} />
+                <AnimatedNum to={190} suffix="+" />
               </div>
               <div className="stat-label">5-star Google reviews</div>
             </div>
@@ -173,7 +174,7 @@ export function Hero() {
             </div>
             <div className="badge-text">
               <strong>{site.rating} / 5</strong>
-              <span>from {site.reviewCountLabel} reviews on Google</span>
+              <span>from 190+ reviews on Google</span>
             </div>
           </div>
         </div>

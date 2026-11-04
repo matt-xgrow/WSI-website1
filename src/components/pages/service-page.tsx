@@ -21,26 +21,18 @@ import {
   serviceSchema,
 } from "@/lib/seo/schema";
 import { getServiceContent } from "@/lib/service-content";
-import { getService, locations, services, site, SITE_URL } from "@/lib/site";
+import { getService, locations, site, SITE_URL } from "@/lib/site";
 
-type PageProps = {
-  params: Promise<{ slug: string }>;
-};
+import { baselineFor } from "@/lib/seo/baseline-meta";
 
-export function generateStaticParams() {
-  return services.map((service) => ({ slug: service.slug }));
-}
-
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+export function serviceMetadata(slug: string): Metadata {
   const service = getService(slug);
   if (!service) return {};
-  const canonical = `/services/${service.slug}`;
+  const canonical = `/${service.slug}/`;
+  const baseline = baselineFor(canonical);
   return {
-    title: service.title,
-    description: service.description,
+    title: { absolute: baseline?.title ?? service.title },
+    description: baseline?.description ?? service.description,
     alternates: { canonical },
     openGraph: {
       title: service.title,
@@ -91,8 +83,7 @@ const HERO_ALT_MAP: Record<string, string> = {
     "Commercial facade cleaning of an office building in Brisbane CBD",
 };
 
-export default async function ServicePage({ params }: PageProps) {
-  const { slug } = await params;
+export function ServicePage({ slug }: { slug: string }) {
   const service = getService(slug);
   if (!service) notFound();
 
@@ -101,7 +92,7 @@ export default async function ServicePage({ params }: PageProps) {
     HERO_ALT_MAP[service.slug] ??
     `${service.name} job by WSI Cleaning in Brisbane`;
   const content = getServiceContent(service.slug);
-  const canonical = `/services/${service.slug}`;
+  const canonical = `/${service.slug}/`;
   const pageId = `${SITE_URL}${canonical}#faq`;
 
   const pageSchema = graph(
@@ -132,7 +123,7 @@ export default async function ServicePage({ params }: PageProps) {
               <span className="eyebrow-dot" />
               {service.eyebrow}
             </span>
-            <h1>{service.name}</h1>
+            <h1>{baselineFor(canonical)?.h1 ?? service.name}</h1>
             <p>{service.description}</p>
             <div className="hero-actions">
               <Link className="btn btn-orange btn-lg" href="#quote">
@@ -304,7 +295,7 @@ export default async function ServicePage({ params }: PageProps) {
             {locations.map((location) => (
               <Link
                 key={location.slug}
-                href={`/services/${service.slug}/${location.slug}`}
+                href={`/${location.slug}/`}
               >
                 {service.name} in {location.name} →
               </Link>

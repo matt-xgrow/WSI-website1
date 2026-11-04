@@ -15,32 +15,24 @@ import {
   locationServiceSchema,
 } from "@/lib/seo/schema";
 import { getLocationContent } from "@/lib/location-content";
-import { getLocation, locations, services, site, SITE_URL } from "@/lib/site";
+import { getLocation, services, site, SITE_URL } from "@/lib/site";
 
-type PageProps = {
-  params: Promise<{ slug: string }>;
-};
+import { baselineFor } from "@/lib/seo/baseline-meta";
 
 const LOCATION_HERO: Record<string, string> = {
   brisbane: "/images/commercial-pressure.jpg",
   "sunshine-coast": "/images/glass-wash.jpg",
 };
 
-export function generateStaticParams() {
-  return locations.map((location) => ({ slug: location.slug }));
-}
-
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+export function locationMetadata(slug: string): Metadata {
   const location = getLocation(slug);
   if (!location) return {};
-  const canonical = `/locations/${location.slug}`;
+  const canonical = `/${location.slug}/`;
+  const baseline = baselineFor(canonical);
   const heroImage = LOCATION_HERO[location.slug] ?? "/images/aerial-clean.jpg";
   return {
-    title: location.title,
-    description: location.description,
+    title: { absolute: baseline?.title ?? location.title },
+    description: baseline?.description ?? location.description,
     alternates: { canonical },
     openGraph: {
       title: location.title,
@@ -58,14 +50,13 @@ export async function generateMetadata({
   };
 }
 
-export default async function LocationPage({ params }: PageProps) {
-  const { slug } = await params;
+export function LocationPage({ slug }: { slug: string }) {
   const location = getLocation(slug);
   if (!location) notFound();
 
   const heroImg = LOCATION_HERO[location.slug] ?? "/images/aerial-clean.jpg";
   const content = getLocationContent(location.slug);
-  const canonical = `/locations/${location.slug}`;
+  const canonical = `/${location.slug}/`;
   const faqId = `${SITE_URL}${canonical}#faq`;
 
   const pageSchema = graph(
@@ -187,7 +178,7 @@ export default async function LocationPage({ params }: PageProps) {
           <div className="location-areas-grid">
             {services.map((service) => (
               <Link
-                href={`/services/${service.slug}/${location.slug}`}
+                href={`/${service.slug}/`}
                 key={service.slug}
                 aria-label={`${service.name} in ${location.name}`}
               >

@@ -2108,6 +2108,49 @@ details.faq-item > summary::marker { content: ""; }
 }
 
 /* reduced motion */
+.service-checks {
+  display: grid;
+  gap: 8px;
+  margin-top: 8px;
+}
+.service-check {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  font-size: 14px;
+}
+.quote-honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.whatsapp-button {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  z-index: 40;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #25d366;
+  color: #073018;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 12px 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+.whatsapp-button span {
+  font-size: 14px;
+}
+@media (max-width: 720px) {
+  .whatsapp-button {
+    bottom: 76px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

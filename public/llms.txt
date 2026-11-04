@@ -1,78 +1,44 @@
 # WSI Cleaning
 
-> WSI Cleaning is a Brisbane-based exterior cleaning company servicing Brisbane and the Sunshine Coast in Queensland, Australia. Founded in 2014. ABN 14 608 887 850. $20 million public liability insurance. 4.9/5 stars from 162 Google reviews. Service-area business — no physical retail address; quotes returned within 24 business hours.
+> WSI Cleaning is a Brisbane-based exterior cleaning company servicing Brisbane and the Sunshine Coast in Queensland, Australia. Founded in 2014. ABN 14 608 887 850. $20 million public liability insurance. Phone 0451 371 212 (+61 451 371 212). Email info@wsicleaning.com.
 
-## Core facts
+## Sitemaps
 
-- Legal name: WSI Cleaning Services
-- Trading name: WSI Cleaning
-- Founded: 2014 (12+ years operating)
-- Australian Business Number: 14 608 887 850
-- Public liability insurance: $20,000,000 (AUD)
-- Google rating: 4.9 / 5 stars
-- Google review count: 162
-- Phone: 0426 400 029 (international: +61 426 400 029)
-- Email: info@wsicleaning.com
-- Operating hours: 7am–7pm, 7 days a week
-- Service-area model: no physical storefront; service delivered on-site at customer property
-- Coverage radius: South East Queensland, approximately 120 km from Brisbane CBD
+- [XML Sitemap](https://wsicleaning.com/sitemap.xml): Indexable URLs only. Ads landing pages and /thank-you/ are excluded.
 
 ## Services
 
-WSI Cleaning offers nine exterior cleaning services. All services are available across Brisbane and the Sunshine Coast.
-
-- [House Washing](/services/house-washing): Soft-wash cleaning of rendered, painted, brick and weatherboard homes. Removes mould, algae and lichen at the spore level under 500 PSI.
-- [Pressure Washing](/services/pressure-washing): High-pressure cleaning (1,500–4,000 PSI) of driveways, paths, patios, pool surrounds and concrete surfaces with rotary surface cleaners.
-- [Window Cleaning](/services/window-cleaning): Interior and exterior glass, frames, sills, screens and tracks. Deionised-water pole system for spot-free finish on coastal and high-glazing properties.
-- [Gutter Cleaning](/services/gutter-cleaning): Hand-clearing and downpipe flushing before South East Queensland storm season (October–March). Photo documentation of each elevation.
-- [Roof Cleaning](/services/roof-cleaning): Soft-wash treatment of tile, terracotta and Colorbond roofs. Treats moss and lichen at the spore level for 3–5 year cleanliness intervals.
-- [Driveway Cleaning](/services/driveway-cleaning): Pressure restoration of concrete, exposed aggregate, paver and brick driveways. Oil and tyre stain removal.
-- [Solar Panel Cleaning](/services/solar-panel-cleaning): Deionised-water cleaning of PV panels with soft brushes. Recovers 10–20% of lost output on most installs without voiding warranty.
-- [Strata Cleaning](/services/strata-cleaning): Scheduled body corporate exterior maintenance — quarterly common-area paving, twice-yearly gutters, on-demand facade work. Cm3, Rapid Global and Avetta inducted.
-- [Commercial Cleaning](/services/commercial-cleaning): Office, retail, hospitality and industrial exterior cleaning. Out-of-hours scheduling. Working-at-heights with EWP up to 3 storeys; rope access available higher.
+- [House Washing](https://wsicleaning.com/house-washing/): Soft-wash cleaning of rendered, painted, brick and weatherboard homes.
+- [Pressure Washing](https://wsicleaning.com/pressure-washing/): High-pressure cleaning of driveways, paths, patios and concrete.
+- [Window Cleaning](https://wsicleaning.com/window-cleaning/): Interior and exterior glass, frames, sills and screens.
+- [Gutter Cleaning](https://wsicleaning.com/gutter-cleaning/): Gutter clearing and downpipe flushing before storm season.
+- [Roof Cleaning](https://wsicleaning.com/roof-cleaning/): Soft-wash treatment of tile, terracotta and metal roofs.
+- [Driveway Cleaning](https://wsicleaning.com/driveway-cleaning/): Pressure cleaning of concrete, exposed aggregate and pavers.
+- [Solar Panel Cleaning](https://wsicleaning.com/solar-panel-cleaning/): Deionised-water cleaning of rooftop solar panels.
+- [Strata Cleaning](https://wsicleaning.com/strata-cleaning/): Exterior maintenance for body corporate properties.
+- [Commercial Cleaning](https://wsicleaning.com/commercial-cleaning/): Exterior washing for offices, warehouses and shopfronts.
 
 ## Service areas
 
-- [Brisbane](/locations/brisbane): Primary service area. All Brisbane suburbs covered. Same-week scheduling for residential.
-- [Sunshine Coast](/locations/sunshine-coast): Weekly batched trips. Noosa, Maroochydore, Mooloolaba, Caloundra, Coolum, Buderim and Sunshine Coast hinterland.
+- [Brisbane](https://wsicleaning.com/brisbane/): Primary service area.
+- [Sunshine Coast](https://wsicleaning.com/sunshine-coast/): Secondary service area.
+
+## Company
+
+- [Home](https://wsicleaning.com/)
+- [About](https://wsicleaning.com/about-us/)
+- [Gallery](https://wsicleaning.com/gallery/)
+- [Contact](https://wsicleaning.com/contact/)
+- [Guides](https://wsicleaning.com/guides/)
+- [Privacy policy](https://wsicleaning.com/privacy-policy/)
+- [Terms](https://wsicleaning.com/terms/)
 
 ## Guides
 
-- [Soft Wash vs Pressure Wash](/guides/soft-wash-vs-pressure-wash): Detailed comparison of cleaning methods, pressure ranges, surface compatibility tables and FAQs. Soft wash (under 500 PSI) for render, paint, weatherboard and roof tiles. Pressure wash (1,500–4,000 PSI) for concrete, pavers and pool surrounds. Deionised water for solar panels and glass.
-- [House Washing Cost Brisbane 2026](/guides/house-washing-cost-brisbane): Pricing per square metre, scope inclusions, single vs two-storey loading, and what changes the quote. Typical Brisbane single-storey range and what's excluded.
-- [How Often Should You Wash Your House on the Sunshine Coast?](/guides/house-wash-frequency-sunshine-coast): Coastal vs hinterland cleaning cycles, salt and mildew growth rates, and the cost of leaving it too long.
-- [Pressure Washing Driveway Cost Brisbane](/guides/pressure-washing-driveway-cost-brisbane): Per square metre pricing for concrete, exposed aggregate and pavers. Oil stain surcharges and what changes the quote.
-- [Mould vs Lichen vs Algae — What's Growing on Your Sunshine Coast Property](/guides/mould-vs-lichen-vs-algae): Identification guide for biological growth on Sunshine Coast roofs, walls and paving, with the correct treatment for each.
-- [Professional Window Cleaning Brisbane — Cost, Frequency, Scope](/guides/window-cleaning-brisbane-cost): What's included, residential vs commercial pricing, interior/exterior options and how often Brisbane homes should be done.
-- [Salt Haze on Sunshine Coast Windows — Why Tap Water Won't Fix It](/guides/salt-haze-windows-sunshine-coast): Why coastal windows fog within weeks, the mineral problem with tap water and the deionised-water solution.
-
-## About
-
-- [About WSI Cleaning](/about): Brand story, methodology, compliance credentials and operating principles.
-
-## Methodology
-
-WSI Cleaning chooses cleaning method by surface type:
-- **Soft washing (under 500 PSI)** — render, paint, weatherboard, brick, fibre cement, roof tiles, building facades. Detergent-led approach kills biological growth at the spore level.
-- **Pressure washing (1,500–4,000 PSI)** — concrete, exposed aggregate, pavers, retaining walls, brick paths, pool surrounds. Surface-cleaner-led approach with degreaser pre-treat for oil stains.
-- **Deionised water with soft brushes** — solar panels, glass facades, high-rise windows. No detergent on glass; mineral-free water leaves no spotting.
-
-## Pricing
-
-All quotes are fixed in writing within 24 business hours of enquiry. Pricing is per surface (square metreage, condition, access) — no hourly rates. Most residential jobs are scheduled the same week; commercial and strata work is calendared per cycle. Discounts are offered for recurring schedules (weekly, fortnightly, monthly, quarterly). Payment methods accepted: card, bank transfer, Apple Pay, Google Pay, PayPal, Afterpay; invoice terms available for commercial and strata clients.
-
-## Compliance
-
-- $20M public liability insurance — certificates of currency issued on request
-- ABN-registered Australian business (ABN 14 608 887 850)
-- Site-specific SWMS for all working-at-heights work
-- Inducted on major Australian contractor management systems: Cm3, Rapid Global, Avetta
-- 24-hour satisfaction guarantee — re-attendance at no extra cost if issues raised within 24 hours of completion
-
-## Optional
-
-- [Frequently Asked Questions](/#faq)
-- [Gallery of work](/gallery)
-- [Get a quote](/#quote)
-- [Privacy Policy](/privacy)
-- [Terms of Service](/terms)
+- [Soft wash vs pressure wash](https://wsicleaning.com/guides/soft-wash-vs-pressure-wash/)
+- [House washing cost Brisbane](https://wsicleaning.com/guides/house-washing-cost-brisbane/)
+- [House wash frequency Sunshine Coast](https://wsicleaning.com/guides/house-wash-frequency-sunshine-coast/)
+- [Pressure washing driveway cost Brisbane](https://wsicleaning.com/guides/pressure-washing-driveway-cost-brisbane/)
+- [Mould vs lichen vs algae](https://wsicleaning.com/guides/mould-vs-lichen-vs-algae/)
+- [Window cleaning Brisbane cost](https://wsicleaning.com/guides/window-cleaning-brisbane-cost/)
+- [Salt haze windows Sunshine Coast](https://wsicleaning.com/guides/salt-haze-windows-sunshine-coast/)

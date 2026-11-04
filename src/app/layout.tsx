@@ -1,11 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { GoogleAnalytics } from "@next/third-parties/google";
 import { Fraunces, Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
+import { GtmNoScript, TrackingScripts } from "@/components/analytics/tracking-scripts";
 import { TrackingEvents } from "@/components/analytics/tracking-events";
 import { JsonLd } from "@/components/seo/json-ld";
+import { WhatsAppButton } from "@/components/site/whatsapp-button";
+import { BASELINE_META } from "@/lib/seo/baseline-meta";
 import {
   graph,
   localBusinessSchema,
@@ -14,8 +16,8 @@ import {
 } from "@/lib/seo/schema";
 import { site, SITE_URL } from "@/lib/site";
 
-const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
 const clarityProjectId = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID;
+const homeMeta = BASELINE_META["/"];
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -49,11 +51,10 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default:
-      "WSI Cleaning — Premium Exterior Cleaning Brisbane & Sunshine Coast",
+    default: homeMeta.title,
     template: "%s | WSI Cleaning",
   },
-  description: `Brisbane exterior cleaning since ${site.foundingYear}. Pressure washing, house washing, roof, gutter, window & solar cleaning — ${site.insuranceLabel.toLowerCase()}, ${site.rating}/5 from ${site.reviewCount} reviews.`,
+  description: homeMeta.description,
   applicationName: site.name,
   authors: [{ name: site.legalName }],
   creator: site.legalName,
@@ -62,12 +63,13 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  verification: {
+    google: "TIm6oNA-_X5XqEUOLnBjYqJsBrpqJEHKYlGWrw5xHF4",
+  },
   openGraph: {
-    title:
-      "WSI Cleaning — Premium Exterior Cleaning Brisbane & Sunshine Coast",
-    description:
-      "Pressure washing, house washing, roof and gutter cleaning across South East Queensland. $20M insured. 162 five-star Google reviews. Fixed quotes in 24 hours.",
-    url: SITE_URL,
+    title: homeMeta.title,
+    description: homeMeta.description,
+    url: `${SITE_URL}/`,
     siteName: site.name,
     images: [
       {
@@ -111,10 +113,13 @@ export default function RootLayout({
       className={`${fraunces.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
     >
       <body>
+        <GtmNoScript />
         <JsonLd data={globalSchema} />
         <TrackingEvents />
         {children}
+        <WhatsAppButton />
         <SpeedInsights />
+        <TrackingScripts />
       </body>
       {clarityProjectId ? (
         <Script id="microsoft-clarity" strategy="afterInteractive">
@@ -127,7 +132,6 @@ export default function RootLayout({
           `}
         </Script>
       ) : null}
-      {gaMeasurementId ? <GoogleAnalytics gaId={gaMeasurementId} /> : null}
     </html>
   );
 }

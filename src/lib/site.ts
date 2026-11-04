@@ -1,14 +1,7 @@
-function resolveSiteUrl() {
-  const explicit = process.env.NEXT_PUBLIC_SITE_URL?.trim();
-  if (explicit) return explicit.replace(/\/$/, "");
-  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-  return "http://localhost:3000";
-}
-
-export const SITE_URL = resolveSiteUrl();
-export const IS_PRODUCTION_HOST =
-  process.env.VERCEL_ENV === "production" ||
-  (!!process.env.NEXT_PUBLIC_SITE_URL && !process.env.VERCEL_ENV);
+/** Canonical origin. Preview hosts must not appear in canonicals, schema or the sitemap. */
+export const CANONICAL_ORIGIN = "https://wsicleaning.com";
+export const SITE_URL = CANONICAL_ORIGIN;
+export const IS_PRODUCTION_HOST = process.env.VERCEL_ENV === "production";
 
 const FOUNDING_YEAR = 2014;
 const CURRENT_YEAR = new Date().getFullYear();
@@ -18,9 +11,14 @@ export const site = {
   name: "WSI Cleaning",
   legalName: "WSI Cleaning Services",
   url: SITE_URL,
-  phoneDisplay: "0426 400 029",
-  phoneE164: "+61426400029",
-  phoneHref: "tel:+61426400029",
+  phoneDisplay: "0451 371 212",
+  phoneE164: "+61451371212",
+  phoneHref: "tel:+61451371212",
+  whatsappHref:
+    "https://wa.me/61451371212?text=" +
+    encodeURIComponent(
+      "Hi WSI Cleaning! I need more info about your services. I Saw your Ad on Google",
+    ),
   email: "info@wsicleaning.com",
   abn: "14 608 887 850",
   abnDisplay: "14 608 887 850",

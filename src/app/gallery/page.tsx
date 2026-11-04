@@ -6,9 +6,9 @@ import { TopBar } from "@/components/site/top-bar";
 import { GalleryClient } from "@/components/site/gallery-client";
 
 export const metadata: Metadata = {
-  title: "Gallery | WSI Cleaning",
+  title: { absolute: "Gallery - WSI Cleaning" },
   description: "Explore our portfolio of exterior cleaning projects across Brisbane and Queensland, including house washing, pressure cleaning, and commercial maintenance.",
-  alternates: { canonical: "/gallery" },
+  alternates: { canonical: "/gallery/" },
 };
 
 export default function GalleryPage() {

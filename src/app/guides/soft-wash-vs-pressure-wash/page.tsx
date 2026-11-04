@@ -24,18 +24,18 @@ import { site, SITE_URL } from "@/lib/site";
 
 const SLUG = "soft-wash-vs-pressure-wash";
 const GUIDE = getGuide(SLUG)!;
-const PAGE_URL = `${SITE_URL}/guides/${SLUG}`;
+const PAGE_URL = `${SITE_URL}/guides/${SLUG}/`;
 const TITLE = GUIDE.title;
 const DESCRIPTION = GUIDE.description;
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  alternates: { canonical: `/guides/${SLUG}` },
+  alternates: { canonical: `/guides/${SLUG}/` },
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,
-    url: `/guides/${SLUG}`,
+    url: `/guides/${SLUG}/`,
     images: [{ url: GUIDE.image }],
     type: "article",
     publishedTime: GUIDE.published,
@@ -190,8 +190,8 @@ export default function ComparisonGuide() {
     articleSchemaFor({ guide: GUIDE, pageUrl: PAGE_URL, siteUrl: SITE_URL }),
     breadcrumbSchema([
       { name: "Home", url: "/" },
-      { name: "Guides", url: "/guides" },
-      { name: "Soft wash vs pressure wash", url: `/guides/${SLUG}` },
+      { name: "Guides", url: "/guides/" },
+      { name: "Soft wash vs pressure wash", url: `/guides/${SLUG}/` },
     ]),
     faqPageSchemaFromList(FAQS, `${PAGE_URL}#faq`)
   );

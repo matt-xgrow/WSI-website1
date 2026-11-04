@@ -28,6 +28,15 @@ export function TrackingEvents() {
         return;
       }
 
+      if (href.includes("wa.me") || href.includes("api.whatsapp.com")) {
+        trackEvent("click_whatsapp", {
+          link_text: label,
+          link_url: href,
+          page_path: window.location.pathname,
+        });
+        return;
+      }
+
       if (href === "#quote" || href.endsWith("/#quote")) {
         trackEvent("click_quote_cta", {
           link_text: label,

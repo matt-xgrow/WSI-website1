@@ -47,7 +47,7 @@ export function organizationSchema() {
     "@id": ID.organization,
     name: site.legalName,
     alternateName: site.name,
-    url: SITE_URL,
+    url: `${SITE_URL}/`,
     logo: {
       "@type": "ImageObject",
       url: `${SITE_URL}/design/logo-color.png`,
@@ -72,7 +72,7 @@ export function websiteSchema() {
   return {
     "@type": "WebSite",
     "@id": ID.website,
-    url: SITE_URL,
+    url: `${SITE_URL}/`,
     name: site.name,
     publisher: { "@id": ID.organization },
     inLanguage: "en-AU",
@@ -87,7 +87,7 @@ export function localBusinessSchema() {
     alternateName: site.name,
     description:
       "Exterior cleaning specialists serving Brisbane and Sunshine Coast — pressure washing, soft-wash house cleaning, roof, gutter, window, solar panel, driveway, strata and commercial cleaning.",
-    url: SITE_URL,
+    url: `${SITE_URL}/`,
     telephone: site.phoneE164,
     email: site.email,
     image: `${SITE_URL}/images/house-wash.jpg`,
@@ -161,7 +161,7 @@ export function localBusinessSchema() {
         itemOffered: {
           "@type": "Service",
           name: service.name,
-          url: `${SITE_URL}/services/${service.slug}`,
+          url: `${SITE_URL}/${service.slug}/`,
         },
       })),
     },
@@ -191,7 +191,7 @@ type ServiceSchemaInput = {
 };
 
 export function serviceSchema(input: ServiceSchemaInput) {
-  const url = `${SITE_URL}/services/${input.slug}`;
+  const url = `${SITE_URL}/${input.slug}/`;
   return {
     "@type": "Service",
     "@id": `${url}#service`,
@@ -230,7 +230,7 @@ type LocationSchemaInput = {
 };
 
 export function locationServiceSchema(input: LocationSchemaInput) {
-  const url = `${SITE_URL}/locations/${input.slug}`;
+  const url = `${SITE_URL}/${input.slug}/`;
   return {
     "@type": "Service",
     "@id": `${url}#service`,
@@ -301,6 +301,13 @@ export function serviceLocationSchema(input: ServiceLocationSchemaInput) {
 
 type Crumb = { name: string; url: string };
 
+function absoluteUrl(url: string) {
+  if (url.startsWith("http")) return url;
+  const [path, hash] = url.split("#");
+  const base = path === "" || path === "/" ? "/" : path.endsWith("/") ? path : `${path}/`;
+  return `${SITE_URL}${base === "/" ? "/" : base}${hash ? `#${hash}` : ""}`;
+}
+
 export function breadcrumbSchema(crumbs: Crumb[]) {
   return {
     "@type": "BreadcrumbList",
@@ -308,7 +315,7 @@ export function breadcrumbSchema(crumbs: Crumb[]) {
       "@type": "ListItem",
       position: index + 1,
       name: crumb.name,
-      item: crumb.url.startsWith("http") ? crumb.url : `${SITE_URL}${crumb.url}`,
+      item: absoluteUrl(crumb.url),
     })),
   };
 }

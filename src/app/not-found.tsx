@@ -61,7 +61,7 @@ export default function NotFound() {
         >
           {services.map((service) => (
             <li key={service.slug}>
-              <Link href={`/services/${service.slug}`}>{service.name} →</Link>
+              <Link href={`/${service.slug}/`}>{service.name} →</Link>
             </li>
           ))}
         </ul>
@@ -85,7 +85,7 @@ export default function NotFound() {
         >
           {locations.map((location) => (
             <li key={location.slug}>
-              <Link href={`/locations/${location.slug}`}>
+              <Link href={`/${location.slug}/`}>
                 {location.name} →
               </Link>
             </li>
