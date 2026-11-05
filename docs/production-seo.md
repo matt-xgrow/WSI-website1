@@ -47,7 +47,7 @@ The form posts to the same HighLevel webhook as the live site:
 
 ## Google Business Profile fields
 
-`gbpProfile` in `src/lib/site.ts` is the place to paste `sameAs` (Maps, Facebook, Instagram) and the street, locality and postcode from the GBP. Empty strings are omitted from the JSON-LD. `aggregateRating` is not emitted.
+`gbpProfile` in `src/lib/site.ts` supplies `sameAs` (Maps, Facebook, Instagram, LinkedIn), `alternateName`, `areaServed` (Brisbane, Logan, Ipswich) and the address. The GBP hides the street address, so schema publishes `addressRegion` and `addressCountry` only. `aggregateRating` is not emitted.
 
 ## Redirect test
 

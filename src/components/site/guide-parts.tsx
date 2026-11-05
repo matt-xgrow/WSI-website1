@@ -88,12 +88,12 @@ export function AuthorCard() {
       <div className="author-card-body">
         <p className="author-card-name">The WSI Cleaning crew</p>
         <p className="author-card-role">
-          Brisbane &amp; Sunshine Coast exterior cleaning specialists
+          Greater Brisbane exterior cleaning specialists
         </p>
         <p className="author-card-bio">
           Operating since 2014 — 12+ years of soft washing, pressure cleaning
-          and window care on South East Queensland properties. $20M public
-          liability insured, ABN-registered, 4.9/5 from 162 Google reviews.
+          and window care on Greater Brisbane properties. $20M public
+          liability insured, ABN-registered, rated 4.9 on Google.
           Every guide on this site is written from jobs we&rsquo;ve actually done,
           not from generic templates.
         </p>

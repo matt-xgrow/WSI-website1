@@ -69,7 +69,7 @@ export function AdsLanding({ page }: { page: AdsPage }) {
               </a>
             </div>
             <p>
-              {site.rating}/5 from {site.reviewCount} Google reviews · {site.insuranceLabel} · Local Brisbane team · Free fixed quote
+              Rated {site.rating} on Google · {site.insuranceLabel} · Local Brisbane team · Free fixed quote
             </p>
           </div>
         </section>
@@ -98,16 +98,30 @@ export function AdsLanding({ page }: { page: AdsPage }) {
           </ul>
         </section>
         <section className="content-section">
-          <h2>Brisbane homes deserve real cleaning results.</h2>
-          <p>Use real job imagery instead of generic stock photos so the ad-to-page experience feels credible and consistent.</p>
+          <h2>Recent Brisbane jobs.</h2>
+          <p>House washes and driveway cleans photographed on Greater Brisbane properties.</p>
           <div className="surfaces-grid">
             <figure>
-              <Image src="/design/pressure-1.jpg" alt="WSI Cleaning team member washing a residential exterior" width={720} height={480} />
-              <figcaption>Residential exterior wash. WSI Cleaning, Brisbane.</figcaption>
+              <Image
+                src="/images/jobs/house-washing-brisbane-townhouse-facade.webp"
+                alt="House washing a two-storey townhouse exterior in Brisbane"
+                width={1600}
+                height={1067}
+                sizes="(max-width: 700px) 100vw, 50vw"
+                loading="lazy"
+              />
+              <figcaption>House washing a townhouse exterior in Brisbane.</figcaption>
             </figure>
             <figure>
-              <Image src="/design/pressure-2.jpg" alt="WSI Cleaning technician cleaning an exterior property" width={720} height={480} />
-              <figcaption>Professional exterior cleaning. Controlled process, QLD.</figcaption>
+              <Image
+                src="/images/jobs/driveway-pressure-cleaning-brisbane-townhouse.webp"
+                alt="WSI Cleaning technician pressure washing a townhouse facade and driveway in Brisbane"
+                width={1600}
+                height={1067}
+                sizes="(max-width: 700px) 100vw, 50vw"
+                loading="lazy"
+              />
+              <figcaption>Pressure washing a townhouse driveway in Brisbane.</figcaption>
             </figure>
           </div>
         </section>
@@ -128,7 +142,7 @@ export function AdsLanding({ page }: { page: AdsPage }) {
         </section>
         <section className="content-section">
           <h2>What Brisbane homeowners say</h2>
-          <p>Excellent. Trusted by local homeowners. 4.9/5 from {site.reviewCount} Google reviews.</p>
+          <p>Excellent. Trusted by local homeowners. Rated 4.9 on Google.</p>
           {ADS_REVIEWS.map((review) => (
             <article key={review.name}>
               <h3>{review.name}</h3>

@@ -1,7 +1,7 @@
 const MARQUEE_ITEMS = [
-  "Brisbane & Sunshine Coast",
+  "Greater Brisbane",
   "$20M insured",
-  "100+ ★ reviews",
+  "Rated 4.9 on Google",
   "Same-week bookings",
   "Afterpay accepted",
   "10+ years trading",

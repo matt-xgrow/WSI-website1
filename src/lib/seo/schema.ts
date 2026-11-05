@@ -8,38 +8,23 @@ const ID = {
   faq: `${SITE_URL}/#faq`,
 } as const;
 
-const AREAS_SERVED = [
-  {
-    "@type": "City" as const,
-    name: "Brisbane",
-    sameAs: "https://en.wikipedia.org/wiki/Brisbane",
-  },
-  {
-    "@type": "City" as const,
-    name: "Sunshine Coast",
-    sameAs: "https://en.wikipedia.org/wiki/Sunshine_Coast,_Queensland",
-  },
-  {
-    "@type": "City" as const,
-    name: "Logan",
-    sameAs: "https://en.wikipedia.org/wiki/City_of_Logan",
-  },
-  {
-    "@type": "City" as const,
-    name: "Ipswich",
-    sameAs: "https://en.wikipedia.org/wiki/Ipswich,_Queensland",
-  },
-];
+const CITY_SAME_AS: Record<string, string> = {
+  Brisbane: "https://en.wikipedia.org/wiki/Brisbane",
+  Logan: "https://en.wikipedia.org/wiki/City_of_Logan",
+  Ipswich: "https://en.wikipedia.org/wiki/Ipswich,_Queensland",
+};
+
+const AREAS_SERVED = gbpProfile.areaServed.map((name) => ({
+  "@type": "City" as const,
+  name,
+  ...(CITY_SAME_AS[name] ? { sameAs: CITY_SAME_AS[name] } : {}),
+}));
 
 function businessAddress() {
-  const { streetAddress, addressLocality, addressRegion, postalCode, addressCountry } =
-    gbpProfile.address;
+  const { addressRegion, addressCountry } = gbpProfile.address;
   return {
     "@type": "PostalAddress" as const,
-    ...(streetAddress ? { streetAddress } : {}),
-    ...(addressLocality ? { addressLocality } : {}),
     addressRegion,
-    ...(postalCode ? { postalCode } : {}),
     addressCountry,
   };
 }
@@ -51,7 +36,7 @@ const SERVICE_AREA_GEO = {
     latitude: -27.4698,
     longitude: 153.0251,
   },
-  geoRadius: "120000",
+  geoRadius: "50000",
 };
 
 export function organizationSchema() {
@@ -59,7 +44,7 @@ export function organizationSchema() {
     "@type": "Organization",
     "@id": ID.organization,
     name: site.legalName,
-    alternateName: site.name,
+    alternateName: gbpProfile.alternateName,
     url: `${SITE_URL}/`,
     logo: {
       "@type": "ImageObject",
@@ -97,9 +82,9 @@ export function localBusinessSchema() {
     "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
     "@id": ID.business,
     name: site.legalName,
-    alternateName: site.name,
+    alternateName: gbpProfile.alternateName,
     description:
-      "Exterior cleaning specialists serving Brisbane and Sunshine Coast — pressure washing, soft-wash house cleaning, roof, gutter, window, solar panel, driveway, strata and commercial cleaning.",
+      "Exterior cleaning specialists serving Greater Brisbane, including Brisbane, Logan and Ipswich — pressure washing, soft-wash house cleaning, roof, gutter, window, solar panel, driveway, strata and commercial cleaning.",
     url: `${SITE_URL}/`,
     telephone: site.phoneE164,
     email: site.email,

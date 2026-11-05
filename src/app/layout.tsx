@@ -85,7 +85,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "WSI Cleaning — Exterior Cleaning Brisbane",
-    description: `${site.rating}/5 from ${site.reviewCount} Google reviews \u00b7 ${site.insuranceLabel} \u00b7 Brisbane, Sunshine Coast`,
+    description: `Rated ${site.rating} on Google \u00b7 ${site.insuranceLabel} \u00b7 Greater Brisbane`,
     images: ["/images/house-wash.jpg"],
   },
   formatDetection: {

@@ -21,7 +21,6 @@ import { baselineFor } from "@/lib/seo/baseline-meta";
 
 const LOCATION_HERO: Record<string, string> = {
   brisbane: "/images/commercial-pressure.jpg",
-  "sunshine-coast": "/images/glass-wash.jpg",
 };
 
 export function locationMetadata(slug: string): Metadata {

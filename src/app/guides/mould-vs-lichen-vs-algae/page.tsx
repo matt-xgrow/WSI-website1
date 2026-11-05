@@ -74,7 +74,7 @@ const FAQS = [
     a: "It's slippery, which is the most common cause of slip injuries on residential property in South East Queensland — particularly around pools and on shaded paths after rain. Green algae also accelerates surface degradation on concrete and pavers because of acidic by-products. Treat it as soon as you can see a continuous film.",
   },
   {
-    q: "Why does the lichen come back so fast on my Sunshine Coast roof?",
+    q: "Why does the lichen come back so fast on my Brisbane roof?",
     a: "Pressure-washing alone leaves lichen spores embedded in the substrate; you've removed the visible colony but not killed it. Subtropical UV plus humidity allows the colony to regrow inside 12–18 months. A proper soft-wash treatment kills the spores; expected regrowth then sits at 3–5 years on a roof.",
   },
   {
@@ -121,7 +121,7 @@ const ORGANISM_ID = [
     where:
       "Roof tiles (concrete, terracotta, Colorbond), render walls under tree cover, fibre cement.",
     trigger:
-      "Tree cover + humidity + UV. Worst on shaded hinterland roofs in Maleny, Buderim, hinterland Brisbane (Mt Coot-tha, Mt Gravatt).",
+      "Tree cover + humidity + UV. Worst on shaded Brisbane hills (Mt Coot-tha, Mt Gravatt, The Gap).",
     treatment:
       "Soft-wash, longer dwell (10–15 min). Mature colonies need a second pass. 3–5 year regrowth after correct kill.",
   },
@@ -205,7 +205,7 @@ export default function MouldVsLichenVsAlgaeGuide() {
           <div>
             <span className="hero-eyebrow">
               <span className="eyebrow-dot" />
-              Diagnosis guide · Sunshine Coast & Brisbane
+              Diagnosis guide · Brisbane
             </span>
             <h1>
               Mould vs lichen vs algae — what&rsquo;s actually growing on your{" "}
@@ -275,7 +275,7 @@ export default function MouldVsLichenVsAlgaeGuide() {
           </span>
           <h2>The three-organism visual ID.</h2>
           <p>
-            Most Brisbane and Sunshine Coast properties carry at least two of
+            Most Brisbane properties carry at least two of
             these three organisms at any given time. Identifying them
             correctly is the difference between booking the right service and
             paying for a clean that doesn&rsquo;t last.
@@ -377,7 +377,7 @@ export default function MouldVsLichenVsAlgaeGuide() {
             On roofs, lichen is the single biggest threat to tile and
             Colorbond longevity. It traps moisture, releases mild acid as it
             grows and lifts ridge capping over years. On render walls under
-            heavy tree cover (common in Maleny, Montville, Mt Coot-tha and
+            heavy tree cover (common around Mt Coot-tha, The Gap and
             inner-Brisbane heritage suburbs) it spreads in shaded patches and
             slowly degrades the coating.
           </p>

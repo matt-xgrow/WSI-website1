@@ -52,9 +52,6 @@ export const BASELINE_META: Record<string, BaselineMeta> = {
     description:
       "Get professional Brisbane exterior cleaning from WSI Cleaning. Keep your home or business looking fresh with reliable pressure washing and exterior cleaning.",
   },
-  "/sunshine-coast/": {
-    title: "Sunshine Coast - WSI Cleaning",
-  },
   "/about-us/": {
     title: "About Us - WSI Cleaning",
   },
@@ -72,12 +69,12 @@ export const BASELINE_META: Record<string, BaselineMeta> = {
   "/terms/": {
     title: "Terms - WSI Cleaning",
     description:
-      "Terms of use for the WSI Cleaning website and exterior cleaning services in Brisbane and the Sunshine Coast.",
+      "Terms of use for the WSI Cleaning website and exterior cleaning services in Greater Brisbane.",
   },
   "/contact/": {
     title: "Contact - WSI Cleaning",
     description:
-      "Request a fixed quote from WSI Cleaning or call 0451 371 212. Exterior cleaning across Brisbane and the Sunshine Coast.",
+      "Request a fixed quote from WSI Cleaning or call 0451 371 212. Exterior cleaning across Greater Brisbane.",
   },
   "/thank-you/": {
     title: "Thank you - WSI Cleaning",

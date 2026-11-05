@@ -45,7 +45,7 @@ export default function ContactPage() {
             </span>
             <h1>Get a fixed quote, or call us.</h1>
             <p>
-              Exterior cleaning across Brisbane and the Sunshine Coast. Quotes in writing within 24 business hours. ABN {site.abnDisplay}. {site.insuranceLabel}.
+              Exterior cleaning across Greater Brisbane. Quotes in writing within 24 business hours. ABN {site.abnDisplay}. {site.insuranceLabel}.
             </p>
             <ul>
               <li>

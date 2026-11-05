@@ -34,7 +34,7 @@ export function Reviews() {
                 ))}
               </span>
             </div>
-            <div className="score-label">Based on 100+ Google reviews</div>
+            <div className="score-label">Rated 4.9 on Google</div>
           </div>
         </div>
       </div>

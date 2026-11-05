@@ -67,9 +67,9 @@ export const HOUSE_WASH_LP: AdsPage = {
   ],
   areaTitle: "Focused on Greater Brisbane.",
   areaBody:
-    "This campaign page intentionally keeps location messaging Brisbane-specific so visitors coming from Brisbane house washing searches see one relevant service and one relevant service area. Greater Brisbane coverage includes inner city, western corridor, northern suburbs and bayside areas.",
+    "Our team washes homes throughout Greater Brisbane, including the inner city, western corridor, northern suburbs and bayside areas.",
   closingTitle: "Get your Brisbane house washing quote.",
-  closingBody: "One service, one Brisbane-focused page and a short quote form designed to make the next step easy.",
+  closingBody: "Tell us about the exterior and we'll send a fixed price for the house wash.",
   faqs: [
     { q: "How often should I wash my house in Brisbane?", a: "Most Brisbane homes benefit from a full exterior wash around every 12–18 months. Shaded walls, heavy tree cover and properties with faster mould build-up may need cleaning sooner." },
     { q: "Will soft washing damage render or paint?", a: "Soft washing is specifically used where high pressure may damage render, painted weatherboard, fibre cement or coated surfaces. The method relies on appropriate treatment and controlled pressure." },
@@ -115,9 +115,9 @@ export const PRESSURE_WASH_LP: AdsPage = {
   ],
   areaTitle: "Focused on Greater Brisbane.",
   areaBody:
-    "This campaign page intentionally keeps location messaging Brisbane-specific so visitors coming from Brisbane pressure washing searches see one relevant service and one relevant service area. Greater Brisbane coverage includes inner city, western corridor, northern suburbs and bayside areas.",
+    "Our team pressure washes driveways and hard surfaces throughout Greater Brisbane, including the inner city, western corridor, northern suburbs and bayside areas.",
   closingTitle: "Get your Brisbane pressure washing quote.",
-  closingBody: "One service, one Brisbane-focused page and a short quote form designed to make booking pressure washing easy.",
+  closingBody: "Tell us about the surfaces and we'll send a fixed price for the pressure wash.",
   faqs: [
     { q: "What surfaces can you pressure wash?", a: "Pressure washing is commonly used for concrete driveways, paths, patios, pavers, retaining walls and other hard exterior surfaces where controlled higher pressure is appropriate." },
     { q: "Can pressure washing damage concrete or pavers?", a: "Incorrect pressure, distance or nozzle choice can damage some surfaces. WSI uses professional equipment and adjusts the cleaning method to suit the material and condition." },
@@ -128,13 +128,59 @@ export const PRESSURE_WASH_LP: AdsPage = {
   ],
 };
 
-/** Live WordPress body (it duplicated the house-washing LP). The H1 stays the corrected window heading. */
 export const WINDOW_WASH_LP: AdsPage = {
-  ...HOUSE_WASH_LP,
   path: "/window-cleaning-brisane-lp/",
   eyebrow: "Window Cleaning · Brisbane QLD",
   h1: "Window Cleaning Brisbane – Get a Free Quote",
+  lede:
+    "Clear, streak-free glass for Brisbane homes, offices and shopfronts — with frames, sills, tracks and fly screens cleaned as part of the job.",
   title: "Window Cleaning Brisbane - WSI Cleaning",
   description:
-    "Professional window cleaning in Brisbane for homes, offices and shopfronts. Streak-free glass, frames and sills. $20M insured, free fixed quote.",
+    "Professional window cleaning in Brisbane for homes, offices and shopfronts. Glass, frames, sills, tracks and screens. $20M insured, free fixed quote.",
+  introTitle: "More than a quick wipe of the glass.",
+  intro:
+    "Dust, pollen, cobwebs and water marks build up quickly on Brisbane windows, and dirty frames and tracks wash straight back onto the glass if they are skipped. A professional clean works from the outside in: frames and sills first, then a two-stage glass wash finished by hand at the edges and corners.",
+  points: [
+    {
+      title: "Two-stage glass clean",
+      body: "A microfibre and detergent wash lifts the grime, then a squeegee or a deionised-water rinse leaves the glass clear.",
+    },
+    {
+      title: "Upper storeys handled safely",
+      body: "Hard-to-reach and second-storey windows are cleaned with a water-fed pole using deionised water, which dries without spotting.",
+    },
+    {
+      title: "Fixed quote before the job",
+      body: "Know the agreed price before work begins — no hourly surprise at the end.",
+    },
+  ],
+  surfacesTitle: "Glass and frames we clean.",
+  surfacesIntro: "A focused Brisbane window cleaning service for the glass and fittings property owners ask about most.",
+  surfaces: [
+    { title: "Windows & sliding doors", body: "Single and double-glazed glass cleaned inside and out where access allows, with frames, sills and tracks." },
+    { title: "Fly screens", body: "Screens are removed, rinsed, dried and refitted. Damaged screens are shown to you rather than put back broken." },
+    { title: "Tinted glass", body: "Cleaned with soft microfibre only, with no abrasives that could dull the tint." },
+    { title: "Balustrades & pool fences", body: "Detergent wash and deionised-water rinse for a spot-free finish on glass balustrades and pool fencing." },
+  ],
+  stepsTitle: "Your window clean in four steps.",
+  stepsIntro: "A simple quote process that takes Brisbane property owners from enquiry to clear windows quickly.",
+  steps: [
+    { title: "Request your quote", body: "Send your name, phone and suburb/postcode. Let us know if you need inside, outside or both." },
+    { title: "Receive a fixed price", body: "WSI reviews the property details and returns a written quote, usually within one business day." },
+    { title: "Book the clean", body: "Choose a one-off clean or a regular schedule — fortnightly, monthly or quarterly." },
+    { title: "Walk through the result", body: "Edges and corners are detailed by hand, and every side of the property is checked with you before completion." },
+  ],
+  areaTitle: "Window cleaning across Greater Brisbane.",
+  areaBody:
+    "Our team cleans windows for homes, offices, shopfronts and body corporate properties throughout Greater Brisbane, including the inner city, western corridor, northern suburbs and bayside areas.",
+  closingTitle: "Get your Brisbane window cleaning quote.",
+  closingBody: "Tell us about your windows and we'll send a fixed price — inside, outside or both.",
+  faqs: [
+    { q: "What is included in a window clean?", a: "The glass (both sides where access permits), frames, sills, tracks and fly screens. Edges and corners are finished by hand." },
+    { q: "How often should I have my windows cleaned?", a: "For most Brisbane homes, quarterly is the most common cycle. Street-front shops often book fortnightly or monthly to keep their glass presentable." },
+    { q: "Can you clean upstairs windows?", a: "Yes. Upper-storey and difficult-access glass is cleaned with a water-fed pole and deionised water, which dries without water spots." },
+    { q: "Can you clean windows in the rain?", a: "Light rain is fine because rainwater on clean glass dries spot-free. In heavy rain we reschedule at no callout fee." },
+    { q: "Is WSI Cleaning insured?", a: "Yes. WSI Cleaning carries $20 million in public liability insurance." },
+    { q: "What happens if I am not happy with the result?", a: "If you report a problem within 24 hours of completion, the team will return to address it at no extra cost." },
+  ],
 };

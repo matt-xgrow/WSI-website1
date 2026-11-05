@@ -1,4 +1,4 @@
-import { BeforeAfter } from "@/components/site/before-after";
+import { JobGallery } from "@/components/site/job-gallery";
 import { FAQ } from "@/components/site/faq";
 import { Footer } from "@/components/site/footer";
 import { Hero } from "@/components/site/hero";
@@ -37,14 +37,14 @@ export default function Home() {
             Your home deserves the best residential exterior cleaning in Brisbane
           </h2>
           <p>
-            Your home deserves to look its best with professional residential exterior cleaning Brisbane services from WSI Cleaning. Since 2014, we’ve helped Brisbane and Sunshine Coast homeowners refresh and protect their properties with expert soft washing, pressure cleaning, window polishing, gutter cleaning and roof restoration. With $20m public liability insurance, a 4.9/5 rating from 162 Google reviews and over 12 years of local experience, you can trust our team to deliver reliable, high-quality results every time.
+            Your home deserves to look its best with professional residential exterior cleaning Brisbane services from WSI Cleaning. Since 2014, we’ve helped Greater Brisbane homeowners refresh and protect their properties with expert soft washing, pressure cleaning, window polishing, gutter cleaning and roof restoration. With $20m public liability insurance, a 4.9 rating on Google and over 12 years of local experience, you can trust our team to deliver reliable, high-quality results every time.
           </p>
           <h2>Professional residential exterior cleaning Brisbane services</h2>
           <p>
-            Keep your home looking its best with WSI Cleaning’s professional residential exterior cleaning Brisbane services. We remove dirt, mould, algae, grime, and stains from walls, driveways, roofs, patios, fences, and other outdoor surfaces using safe, effective cleaning methods. Our experienced team delivers reliable results that enhance your property’s appearance, protect exterior surfaces, and improve curb appeal. Trust WSI Cleaning for affordable, high-quality residential exterior cleaning services tailored to Brisbane homes and the Sunshine Coast.
+            Keep your home looking its best with WSI Cleaning’s professional residential exterior cleaning Brisbane services. We remove dirt, mould, algae, grime, and stains from walls, driveways, roofs, patios, fences, and other outdoor surfaces using safe, effective cleaning methods. Our experienced team delivers reliable results that enhance your property’s appearance, protect exterior surfaces, and improve curb appeal. Trust WSI Cleaning for affordable, high-quality residential exterior cleaning services tailored to Greater Brisbane homes.
           </p>
         </section>
-        <BeforeAfter />
+        <JobGallery />
         <WhyUs />
         <div className="band-tint">
           <ServiceAreas />

@@ -14,7 +14,7 @@ import { CONTENT_UPDATED, SITE_URL } from "@/lib/site";
 const PAGE_URL = `${SITE_URL}/guides/`;
 const TITLE = "Guides - WSI Cleaning";
 const DESCRIPTION =
-  "Pricing guides, method comparisons and frequency calendars for house washing, pressure cleaning and window cleaning across Brisbane and the Sunshine Coast. Written from real jobs — not generic templates.";
+  "Pricing guides, method comparisons and frequency calendars for house washing, pressure cleaning and window cleaning across Greater Brisbane. Written from real jobs — not generic templates.";
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -50,7 +50,7 @@ const CATEGORIES: {
     key: "house-washing",
     label: "House washing",
     blurb:
-      "Cost, frequency and what's included for soft-washed house exteriors across Brisbane and the Sunshine Coast.",
+      "Cost, frequency and what's included for soft-washed house exteriors across Greater Brisbane.",
   },
   {
     key: "pressure-washing",
@@ -62,7 +62,7 @@ const CATEGORIES: {
     key: "window-cleaning",
     label: "Window cleaning",
     blurb:
-      "Per-pane pricing, frequency by property type, and the salt-haze problem on coastal Sunshine Coast glass.",
+      "Per-pane pricing, frequency by property type, and how Brisbane glass stays clear between cleans.",
   },
 ];
 
@@ -122,7 +122,7 @@ export default function GuidesIndex() {
             <p>
               Pricing guides, method comparisons and frequency calendars for
               house washing, pressure washing and window cleaning across
-              Brisbane and the Sunshine Coast. Written from real jobs — not
+              Greater Brisbane. Written from real jobs — not
               generic templates.
             </p>
             <div className="hero-actions">
@@ -137,7 +137,7 @@ export default function GuidesIndex() {
           <div className="sub-hero-img">
             <Image
               src="/images/soft-wash.jpg"
-              alt="Exterior cleaning guides for Brisbane and Sunshine Coast properties"
+              alt="Exterior cleaning guides for Greater Brisbane properties"
               width={720}
               height={450}
               priority

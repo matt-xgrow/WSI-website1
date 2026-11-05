@@ -47,7 +47,7 @@ export default function HouseWashingBrisbanePage() {
               Exterior cleaning, <em className="hl-orange">done right</em>, quoted fixed.
             </h1>
             <p>
-              House washing, pressure cleaning, windows, gutters, roofs, driveways, solar panels and more — one trusted local crew, fully insured, {site.rating}/5 from {site.reviewCount} Google reviews.
+              House washing, pressure cleaning, windows, gutters, roofs, driveways, solar panels and more — one trusted local crew, fully insured, rated {site.rating} on Google.
             </p>
             <div className="hero-actions">
               <a className="btn btn-orange btn-lg" href="#quote">
