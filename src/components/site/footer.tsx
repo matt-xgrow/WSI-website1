@@ -93,7 +93,7 @@ export function Footer() {
             <ul>
               {featuredServices.map((service) => (
                 <li key={service.slug}>
-                  <Link href={`/services/${service.slug}`}>{service.name}</Link>
+                  <Link href={`/${service.slug}/`}>{service.name}</Link>
                 </li>
               ))}
             </ul>
@@ -104,7 +104,7 @@ export function Footer() {
             <ul>
               {locations.map((location) => (
                 <li key={location.slug}>
-                  <Link href={`/locations/${location.slug}`}>
+                  <Link href={`/${location.slug}/`}>
                     {location.name}
                   </Link>
                 </li>
@@ -125,24 +125,35 @@ export function Footer() {
               <li>
                 ABN {site.abnDisplay} · {site.insuranceLabel}
               </li>
+              <li>
+                <Link href="/privacy-policy/">Privacy</Link>
+              </li>
+              <li>
+                <Link href="/terms/">Terms</Link>
+              </li>
             </ul>
           </div>
         </div>
 
         <div className="footer-bottom">
-          <span>
-            © {new Date().getFullYear()} {site.legalName}. All rights reserved.
-          </span>
+          <span>© {new Date().getFullYear()} {site.name}</span>
           <span className="footer-credit">
-            <a href="https://xgrow.com.au" target="_blank" rel="noopener">
-              XGROW Pty Ltd
+            <span>Website by</span>
+            <a
+              href="https://www.xgrow.com.au"
+              target="_blank"
+              rel="noopener"
+              aria-label="XGROW — Business Automation & Marketing"
+            >
+              <Image
+                src="/images/xgrow-logo-white.png"
+                alt="XGROW"
+                width={158}
+                height={44}
+              />
             </a>
           </span>
-          <div className="footer-bottom-links">
-            <Link href="/privacy">Privacy</Link>
-            <Link href="/terms">Terms</Link>
-            <a href="/sitemap.xml">Sitemap</a>
-          </div>
+          <span>Brisbane, Queensland</span>
         </div>
       </footer>
     </>

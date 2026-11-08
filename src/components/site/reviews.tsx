@@ -5,8 +5,8 @@ const REVIEWS = [
   { name: "Sarah Kelly", suburb: "Bulimba, QLD", text: "Exceptional window clean on very short notice — arrived within a few hours of my initial call. Already booking in again in a few months.", service: "Window cleaning" },
   { name: "Benjamin Ghibely", suburb: "Broadbeach, QLD", text: "My company has been using WSI regularly for years to clean our office. Efficient, professional, and I look forward to working with them for years to come.", service: "Commercial" },
   { name: "Daniel Broilo", suburb: "New Farm, QLD", text: "An excellent company that offers a high standard of quality service. The management team is very responsive and takes care that everything agreed will be accomplished.", service: "Pressure wash" },
-  { name: "Tais Sombini", suburb: "Mosman, NSW", text: "Easy to book, arrived on time, reasonable price and very efficient. WSI go the extra mile to make customers happy.", service: "Soft wash" },
-  { name: "Stephanus Potgieter", suburb: "Noosa, QLD", text: "Very decent, trustworthy and does a fantastic job. Will definitely make use of the team again.", service: "Roof cleaning" },
+  { name: "Tais Sombini", suburb: "Brisbane, QLD", text: "Easy to book, arrived on time, reasonable price and very efficient. WSI go the extra mile to make customers happy.", service: "Soft wash" },
+  { name: "Stephanus Potgieter", suburb: "Brisbane, QLD", text: "Very decent, trustworthy and does a fantastic job. Will definitely make use of the team again.", service: "Roof cleaning" },
 ];
 
 export function Reviews() {
@@ -34,7 +34,7 @@ export function Reviews() {
                 ))}
               </span>
             </div>
-            <div className="score-label">Based on 100+ Google reviews</div>
+            <div className="score-label">Rated 4.9 on Google</div>
           </div>
         </div>
       </div>

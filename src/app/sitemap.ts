@@ -2,58 +2,42 @@ import type { MetadataRoute } from "next";
 import { GUIDES } from "@/lib/guides";
 import { CONTENT_UPDATED, locations, services, SITE_URL } from "@/lib/site";
 
+function url(path: string) {
+  if (path === "/") return `${SITE_URL}/`;
+  return `${SITE_URL}${path.endsWith("/") ? path : `${path}/`}`;
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const home: MetadataRoute.Sitemap[number] = {
-    url: SITE_URL,
+    url: url("/"),
     lastModified: CONTENT_UPDATED.home,
     changeFrequency: "weekly",
     priority: 1,
   };
 
-  const about: MetadataRoute.Sitemap[number] = {
-    url: `${SITE_URL}/about`,
-    lastModified: CONTENT_UPDATED.about,
-    changeFrequency: "monthly",
-    priority: 0.7,
-  };
+  const pages: MetadataRoute.Sitemap = [
+    { path: "/about-us/", updated: CONTENT_UPDATED.about, freq: "monthly" as const, priority: 0.7 },
+    { path: "/contact/", updated: CONTENT_UPDATED.about, freq: "monthly" as const, priority: 0.6 },
+    { path: "/guides/", updated: CONTENT_UPDATED.guides, freq: "weekly" as const, priority: 0.8 },
+    { path: "/gallery/", updated: CONTENT_UPDATED.gallery, freq: "monthly" as const, priority: 0.5 },
+    { path: "/privacy-policy/", updated: CONTENT_UPDATED.about, freq: "yearly" as const, priority: 0.2 },
+    { path: "/terms/", updated: CONTENT_UPDATED.about, freq: "yearly" as const, priority: 0.2 },
+  ].map((page) => ({
+    url: url(page.path),
+    lastModified: page.updated,
+    changeFrequency: page.freq,
+    priority: page.priority,
+  }));
 
-  const guidesIndex: MetadataRoute.Sitemap[number] = {
-    url: `${SITE_URL}/guides`,
-    lastModified: CONTENT_UPDATED.guides,
-    changeFrequency: "weekly",
-    priority: 0.8,
-  };
-
-  const guides: MetadataRoute.Sitemap = GUIDES.map((g) => ({
-    url: `${SITE_URL}/guides/${g.slug}`,
-    lastModified: g.updated,
+  const guides: MetadataRoute.Sitemap = GUIDES.map((guide) => ({
+    url: url(`/guides/${guide.slug}/`),
+    lastModified: guide.updated,
     changeFrequency: "monthly" as const,
     priority: 0.8,
   }));
 
-  const gallery: MetadataRoute.Sitemap[number] = {
-    url: `${SITE_URL}/gallery`,
-    lastModified: CONTENT_UPDATED.gallery,
-    changeFrequency: "monthly",
-    priority: 0.5,
-  };
-
-  const privacy: MetadataRoute.Sitemap[number] = {
-    url: `${SITE_URL}/privacy`,
-    lastModified: CONTENT_UPDATED.about,
-    changeFrequency: "yearly",
-    priority: 0.2,
-  };
-
-  const terms: MetadataRoute.Sitemap[number] = {
-    url: `${SITE_URL}/terms`,
-    lastModified: CONTENT_UPDATED.about,
-    changeFrequency: "yearly",
-    priority: 0.2,
-  };
-
   const servicePages: MetadataRoute.Sitemap = services.map((service) => ({
-    url: `${SITE_URL}/services/${service.slug}`,
+    url: url(`/${service.slug}/`),
     lastModified: CONTENT_UPDATED.services,
     changeFrequency: "monthly" as const,
     priority:
@@ -63,32 +47,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const locationPages: MetadataRoute.Sitemap = locations.map((location) => ({
-    url: `${SITE_URL}/locations/${location.slug}`,
+    url: url(`/${location.slug}/`),
     lastModified: CONTENT_UPDATED.locations,
     changeFrequency: "monthly" as const,
     priority: location.slug === "brisbane" ? 0.9 : 0.7,
   }));
 
-  const serviceLocationPages: MetadataRoute.Sitemap = services.flatMap(
-    (service) =>
-      locations.map((location) => ({
-        url: `${SITE_URL}/services/${service.slug}/${location.slug}`,
-        lastModified: CONTENT_UPDATED.services,
-        changeFrequency: "monthly" as const,
-        priority: location.slug === "brisbane" ? 0.8 : 0.7,
-      })),
-  );
-
-  return [
-    home,
-    about,
-    guidesIndex,
-    ...guides,
-    gallery,
-    ...servicePages,
-    ...locationPages,
-    ...serviceLocationPages,
-    privacy,
-    terms,
-  ];
+  return [home, ...servicePages, ...locationPages, ...pages, ...guides];
 }

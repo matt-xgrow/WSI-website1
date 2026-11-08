@@ -1,5 +1,5 @@
 export const FAQ_ITEMS = [
-  { q: "What areas do you service?", a: "We're based in Brisbane and cover the greater Brisbane region and the Sunshine Coast. For jobs outside these metro areas, contact us — we travel for larger jobs." },
+  { q: "What areas do you service?", a: "We're based in Brisbane and service Greater Brisbane, including Logan and Ipswich. If your property is outside that area, contact us and we'll say whether we can take the job." },
   { q: "How quickly can you get to my property?", a: "Quotes are returned within 24 business hours. Most residential jobs are scheduled within the same week. We keep a storm-response crew on call for urgent gutter and roof work." },
   { q: "How are your prices calculated?", a: "We price per surface, not per hour. That means a fixed quote you see before we start — no surprise invoices at the end. Pricing depends on surface type, square metreage, access and current condition." },
   { q: "Are you insured?", a: "Yes. We carry $20 million in public liability insurance. Certificates of currency are issued on request for strata, commercial and government jobs." },

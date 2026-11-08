@@ -3,25 +3,19 @@
 import { useState } from "react";
 import { site } from "@/lib/site";
 
-type AreaKey = "brisbane" | "sunshine-coast";
+type AreaKey = "brisbane";
 
 const AREAS: Record<AreaKey, {
   name: string;
   state: string;
   suburbs: string[];
-  stats: { jobs: string; reviews: string; response: string };
+  stats: { jobs: string; rating: string; response: string };
 }> = {
   brisbane: {
-    name: "Brisbane",
+    name: "Greater Brisbane",
     state: "QLD",
-    suburbs: ["New Farm", "Hamilton", "Ascot", "Bulimba", "Teneriffe", "Paddington", "Toowong", "Indooroopilly", "Chelmer", "Graceville", "Wilston", "Clayfield"],
-    stats: { jobs: "1,800+", reviews: "68", response: "24h" },
-  },
-  "sunshine-coast": {
-    name: "Sunshine Coast",
-    state: "QLD",
-    suburbs: ["Noosa", "Maroochydore", "Mooloolaba", "Caloundra", "Coolum", "Peregian", "Buderim", "Sunrise Beach", "Twin Waters"],
-    stats: { jobs: "410+", reviews: "12", response: "48h" },
+    suburbs: ["New Farm", "Ascot", "Bulimba", "Paddington", "Toowong", "Indooroopilly", "Clayfield", "Wynnum", "Carindale", "Logan", "Springfield", "Ipswich"],
+    stats: { jobs: "1,800+", rating: "4.9", response: "24h" },
   },
 };
 
@@ -38,13 +32,13 @@ export function ServiceAreas() {
             Where we work
           </span>
           <h2 className="section-title">
-            We work across <em className="hl-orange">Queensland</em>.
+            We work across <em className="hl-orange">Greater Brisbane</em>.
           </h2>
         </div>
         <div className="section-head-right">
           <p>
-            Two metro hubs, dozens of suburbs. Click a city to see what
-            we&rsquo;ve been up to there recently.
+            Brisbane, Logan and Ipswich. One local crew, with same-week
+            scheduling for most residential jobs.
           </p>
         </div>
       </div>
@@ -89,8 +83,8 @@ export function ServiceAreas() {
                 <div className="area-stat-lbl">Jobs completed</div>
               </div>
               <div>
-                <div className="area-stat-num">{a.stats.reviews}</div>
-                <div className="area-stat-lbl">Local 5★ reviews</div>
+                <div className="area-stat-num">{a.stats.rating}</div>
+                <div className="area-stat-lbl">Rated on Google</div>
               </div>
               <div>
                 <div className="area-stat-num">{a.stats.response}</div>
@@ -149,25 +143,11 @@ function MapSVG({ active, onSelect }: { active: string; onSelect: (k: AreaKey) =
           opacity="0.85"
         />
 
-        {/* QLD / NSW border (dashed diagonal line) */}
-        <path
-          d="M 320 -20 C 300 120, 280 260, 240 420 C 220 500, 200 560, 180 620"
-          fill="none"
-          stroke="#1F2A66"
-          strokeWidth="1.5"
-          strokeDasharray="6 6"
-          opacity="0.35"
-        />
+        <text x="60" y="520" fontFamily="var(--font-mono)" fontSize="14" fill="#1F2A66" fontWeight="600" letterSpacing="3" opacity="0.45">Q L D</text>
 
-        {/* State labels */}
-        <text x="60" y="500" fontFamily="var(--font-mono)" fontSize="14" fill="#1F2A66" fontWeight="600" letterSpacing="3" opacity="0.45">Q L D</text>
-        <text x="60" y="555" fontFamily="var(--font-mono)" fontSize="14" fill="#1F2A66" fontWeight="600" letterSpacing="3" opacity="0.45">N S W</text>
-
-        {/* Pins */}
-        <MapPin x={420} y={130} label="Sunshine Coast" active={active === "Sunshine Coast"} onSelect={() => onSelect("sunshine-coast")} />
-        <MapPin x={380} y={310} label="Brisbane" active={active === "Brisbane"} onSelect={() => onSelect("brisbane")} />
+        <MapPin x={380} y={310} label="Greater Brisbane" active={active === "Greater Brisbane"} onSelect={() => onSelect("brisbane")} />
       </svg>
-      <div className="map-legend">Tap a region to see local services</div>
+      <div className="map-legend">Greater Brisbane service area</div>
     </div>
   );
 }

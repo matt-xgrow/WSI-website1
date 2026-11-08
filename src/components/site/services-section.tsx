@@ -24,7 +24,7 @@ const SERVICES: ServiceEntry[] = [
     img: "/images/residential-aerial.jpg",
     alt: "Aerial view of a soft-washed Brisbane home with clean rendered walls",
     kind: "residential",
-    href: "/services/house-washing",
+    href: "/house-washing/",
   },
   {
     id: "pressure-washing",
@@ -34,7 +34,7 @@ const SERVICES: ServiceEntry[] = [
     img: "/images/commercial-pressure.jpg",
     alt: "Commercial-grade pressure washer restoring a Brisbane concrete surface",
     kind: "residential",
-    href: "/services/pressure-washing",
+    href: "/pressure-washing/",
   },
   {
     id: "window-cleaning",
@@ -44,7 +44,7 @@ const SERVICES: ServiceEntry[] = [
     img: "/images/commercial-windows.jpg",
     alt: "Streak-free window cleaning of a Brisbane residential exterior",
     kind: "residential",
-    href: "/services/window-cleaning",
+    href: "/window-cleaning/",
   },
   {
     id: "gutter-cleaning",
@@ -54,7 +54,7 @@ const SERVICES: ServiceEntry[] = [
     img: "/images/soft-wash.jpg",
     alt: "Roof gutter cleaning ahead of South East Queensland storm season",
     kind: "residential",
-    href: "/services/gutter-cleaning",
+    href: "/gutter-cleaning/",
   },
   {
     id: "roof-cleaning",
@@ -64,7 +64,7 @@ const SERVICES: ServiceEntry[] = [
     img: "/images/aerial-clean.jpg",
     alt: "Soft-washed tile roof in Brisbane after WSI Cleaning treatment",
     kind: "residential",
-    href: "/services/roof-cleaning",
+    href: "/roof-cleaning/",
   },
   {
     id: "driveway-cleaning",
@@ -74,7 +74,7 @@ const SERVICES: ServiceEntry[] = [
     img: "/images/commercial-aerial.jpg",
     alt: "Restored concrete driveway after pressure cleaning in Brisbane",
     kind: "residential",
-    href: "/services/driveway-cleaning",
+    href: "/driveway-cleaning/",
   },
   {
     id: "solar-panel",
@@ -84,7 +84,7 @@ const SERVICES: ServiceEntry[] = [
     img: "/images/drone-aerial.jpg",
     alt: "Rooftop solar panel array cleaned with deionised water in Brisbane",
     kind: "residential",
-    href: "/services/solar-panel-cleaning",
+    href: "/solar-panel-cleaning/",
   },
   {
     id: "strata",
@@ -94,7 +94,7 @@ const SERVICES: ServiceEntry[] = [
     img: "/images/wsi-team.jpg",
     alt: "WSI Cleaning crew on a strata complex common-area maintenance day",
     kind: "commercial",
-    href: "/services/strata-cleaning",
+    href: "/strata-cleaning/",
   },
   {
     id: "commercial",
@@ -104,7 +104,7 @@ const SERVICES: ServiceEntry[] = [
     img: "/images/glass-wash.jpg",
     alt: "Commercial glass facade wash on a Brisbane office building",
     kind: "commercial",
-    href: "/services/commercial-cleaning",
+    href: "/commercial-cleaning/",
   },
 ];
 

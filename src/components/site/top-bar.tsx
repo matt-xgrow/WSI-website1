@@ -6,7 +6,7 @@ export function TopBar() {
       <div className="topbar-inner">
         <span className="topbar-tag">
           <span className="pulse-dot" />
-          Fast response — storm clean-up across QLD & NSW
+          Fast response — storm clean-up across Greater Brisbane
         </span>
         <div className="topbar-links">
           <a href={`mailto:${site.email}`}>{site.email}</a>

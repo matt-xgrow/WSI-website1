@@ -1,14 +1,7 @@
-function resolveSiteUrl() {
-  const explicit = process.env.NEXT_PUBLIC_SITE_URL?.trim();
-  if (explicit) return explicit.replace(/\/$/, "");
-  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`;
-  return "http://localhost:3000";
-}
-
-export const SITE_URL = resolveSiteUrl();
-export const IS_PRODUCTION_HOST =
-  process.env.VERCEL_ENV === "production" ||
-  (!!process.env.NEXT_PUBLIC_SITE_URL && !process.env.VERCEL_ENV);
+/** Canonical origin. Preview hosts must not appear in canonicals, schema or the sitemap. */
+export const CANONICAL_ORIGIN = "https://wsicleaning.com";
+export const SITE_URL = CANONICAL_ORIGIN;
+export const IS_PRODUCTION_HOST = process.env.VERCEL_ENV === "production";
 
 const FOUNDING_YEAR = 2014;
 const CURRENT_YEAR = new Date().getFullYear();
@@ -18,9 +11,14 @@ export const site = {
   name: "WSI Cleaning",
   legalName: "WSI Cleaning Services",
   url: SITE_URL,
-  phoneDisplay: "0426 400 029",
-  phoneE164: "+61426400029",
-  phoneHref: "tel:+61426400029",
+  phoneDisplay: "0451 371 212",
+  phoneE164: "+61451371212",
+  phoneHref: "tel:+61451371212",
+  whatsappHref:
+    "https://wa.me/61451371212?text=" +
+    encodeURIComponent(
+      "Hi WSI Cleaning! I need more info about your services. I Saw your Ad on Google",
+    ),
   email: "info@wsicleaning.com",
   abn: "14 608 887 850",
   abnDisplay: "14 608 887 850",
@@ -28,13 +26,30 @@ export const site = {
   yearsInBusiness: YEARS_IN_BUSINESS,
   experienceLabel: `${YEARS_IN_BUSINESS}+ years`,
   rating: "4.9",
-  reviewCount: 162,
-  reviewCountLabel: "162",
   insuranceAmount: 20_000_000,
   insuranceLabel: "$20M public liability insurance",
-  areas: ["Brisbane", "Sunshine Coast"],
+  areas: ["Brisbane"],
   primaryArea: "Brisbane",
-  socialLinks: [] as string[],
+};
+
+/**
+ * Google Business Profile details verified 4 Nov 2026.
+ * The GBP is a service-area business with a hidden street address, so schema
+ * publishes region and country only.
+ */
+export const gbpProfile = {
+  sameAs: [
+    "https://maps.google.com/?cid=14567544063191065928",
+    "https://www.facebook.com/wsicleaning",
+    "https://www.instagram.com/wsicleaning/",
+    "https://www.linkedin.com/company/wsi-cleaning-brisbane",
+  ],
+  address: {
+    addressRegion: "QLD",
+    addressCountry: "AU",
+  },
+  areaServed: ["Brisbane", "Logan", "Ipswich"],
+  alternateName: ["WSI Cleaning", "WSI Pressure Cleaning"],
 };
 
 export const CONTENT_UPDATED = {
@@ -51,7 +66,7 @@ export const services = [
     slug: "house-washing",
     name: "House Washing",
     eyebrow: "Priority service",
-    title: "House Washing Brisbane & Sunshine Coast",
+    title: "House Washing Brisbane",
     description:
       "Soft washing for rendered, painted, brick and weatherboard homes, built to remove mould, algae and grime without blasting delicate surfaces.",
     image: "/images/house-wash.jpg",
@@ -64,7 +79,7 @@ export const services = [
     slug: "pressure-washing",
     name: "Pressure Washing",
     eyebrow: "High-demand service",
-    title: "Pressure Washing Brisbane & Sunshine Coast",
+    title: "Pressure Washing Brisbane",
     description:
       "Professional pressure washing for driveways, paths, patios, pool surrounds and hard exterior surfaces where dirt, oil and organic growth have built up.",
     image: "/images/pressure-cleaning.jpg",
@@ -76,7 +91,7 @@ export const services = [
     slug: "window-cleaning",
     name: "Window Cleaning",
     eyebrow: "Residential and commercial",
-    title: "Window Cleaning Brisbane & Sunshine Coast",
+    title: "Window Cleaning Brisbane",
     description:
       "Interior and exterior window cleaning for homes, offices, shopfronts and body corporate properties.",
     image: "/images/window-cleaning.jpg",
@@ -88,7 +103,7 @@ export const services = [
     slug: "gutter-cleaning",
     name: "Gutter Cleaning",
     eyebrow: "Maintenance service",
-    title: "Gutter Cleaning Brisbane & Sunshine Coast",
+    title: "Gutter Cleaning Brisbane",
     description:
       "Gutter cleaning for homes and small commercial properties, helping reduce overflow, blockages and water damage risks during storm season.",
     image: "/images/gutter-cleaning.jpg",
@@ -100,7 +115,7 @@ export const services = [
     slug: "roof-cleaning",
     name: "Roof Cleaning",
     eyebrow: "Specialized service",
-    title: "Roof Cleaning Brisbane & Sunshine Coast",
+    title: "Roof Cleaning Brisbane",
     description: "Safe and effective roof cleaning for tiles, metal, and terracotta roofs, removing moss, lichen, and dirt build-up.",
     image: "/images/soft-wash.jpg",
     intent: "For homeowners looking to restore their roof's appearance and prevent long-term damage from organic growth.",
@@ -111,7 +126,7 @@ export const services = [
     slug: "driveway-cleaning",
     name: "Driveway Cleaning",
     eyebrow: "Curb appeal boost",
-    title: "Driveway Cleaning Brisbane & Sunshine Coast",
+    title: "Driveway Cleaning Brisbane",
     description: "High-pressure driveway cleaning to remove oil stains, tyre marks, dirt, and mould from concrete, exposed aggregate, and pavers.",
     image: "/images/pressure-cleaning.jpg",
     intent: "For properties needing an instant facelift to their entrance or removing slippery moss and algae.",
@@ -122,7 +137,7 @@ export const services = [
     slug: "solar-panel-cleaning",
     name: "Solar Panel Cleaning",
     eyebrow: "Efficiency boost",
-    title: "Solar Panel Cleaning Brisbane & Sunshine Coast",
+    title: "Solar Panel Cleaning Brisbane",
     description: "Gentle, pure-water solar panel cleaning to maximize energy output by removing dust, bird droppings, and pollution.",
     image: "/images/glass-wash.jpg",
     intent: "For homeowners and businesses wanting to maintain peak efficiency of their solar energy system.",
@@ -160,16 +175,8 @@ export const locations = [
     name: "Brisbane",
     title: "Exterior Cleaning Services Brisbane",
     description:
-      "The primary service area for WSI Cleaning, with priority availability for house washing, pressure cleaning, window cleaning and gutter cleaning.",
+      "The primary service area for WSI Cleaning, with priority availability for house washing, pressure cleaning, window cleaning and gutter cleaning across Greater Brisbane, including Logan and Ipswich.",
     priority: "Primary focus area",
-  },
-  {
-    slug: "sunshine-coast",
-    name: "Sunshine Coast",
-    title: "Exterior Cleaning Services Sunshine Coast",
-    description:
-      "Selective exterior cleaning availability for Sunshine Coast properties, with Brisbane remaining the highest-priority area.",
-    priority: "Secondary service area",
   },
 ];
 

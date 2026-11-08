@@ -27,16 +27,16 @@ import { site, SITE_URL } from "@/lib/site";
 
 const SLUG = "window-cleaning-brisbane-cost";
 const GUIDE = getGuide(SLUG)!;
-const PAGE_URL = `${SITE_URL}/guides/${SLUG}`;
+const PAGE_URL = `${SITE_URL}/guides/${SLUG}/`;
 
 export const metadata: Metadata = {
   title: GUIDE.title,
   description: GUIDE.description,
-  alternates: { canonical: `/guides/${SLUG}` },
+  alternates: { canonical: `/guides/${SLUG}/` },
   openGraph: {
     title: GUIDE.title,
     description: GUIDE.description,
-    url: `/guides/${SLUG}`,
+    url: `/guides/${SLUG}/`,
     images: [{ url: GUIDE.image }],
     type: "article",
     publishedTime: GUIDE.published,
@@ -75,7 +75,7 @@ const FAQS = [
   },
   {
     q: "How often should I clean my windows in Brisbane?",
-    a: "Quarterly is the sweet spot for most Brisbane homes (every 3 months). Inner-city homes with high glazing and homes within a kilometre of the river benefit from bi-monthly cycles because of dust and pollen. Sunshine Coast coastal homes need 6–8 week cycles because of salt haze. Commercial shopfronts are usually fortnightly or monthly.",
+    a: "Quarterly is the sweet spot for most Brisbane homes (every 3 months). Inner-city homes with high glazing and homes within a kilometre of the river benefit from bi-monthly cycles because of dust and pollen. Commercial shopfronts are usually fortnightly or monthly.",
   },
   {
     q: "Do you do interior windows?",
@@ -195,8 +195,8 @@ export default function WindowCleaningBrisbaneCostGuide() {
     articleSchemaFor({ guide: GUIDE, pageUrl: PAGE_URL, siteUrl: SITE_URL }),
     breadcrumbSchema([
       { name: "Home", url: "/" },
-      { name: "Guides", url: "/guides" },
-      { name: "Window cleaning Brisbane cost", url: `/guides/${SLUG}` },
+      { name: "Guides", url: "/guides/" },
+      { name: "Window cleaning Brisbane cost", url: `/guides/${SLUG}/` },
     ]),
     faqPageSchemaFromList(FAQS, `${PAGE_URL}#faq`)
   );
@@ -402,9 +402,8 @@ export default function WindowCleaningBrisbaneCostGuide() {
               construction or arterial roads.
             </li>
             <li>
-              <strong>Monthly.</strong> Coastal Sunshine Coast homes within
-              500 m of sand. Commercial shopfronts and offices in customer-
-              facing locations.
+              <strong>Monthly.</strong> Commercial shopfronts and offices in
+              customer-facing locations, and homes on busy arterial roads.
             </li>
             <li>
               <strong>Twice-yearly.</strong> Minimum viable cycle for any
@@ -423,7 +422,7 @@ export default function WindowCleaningBrisbaneCostGuide() {
           </span>
           <h2>Why DIY window cleaning streaks (and what works instead).</h2>
           <p>
-            Tap water in Brisbane and the Sunshine Coast is around 60–120 ppm
+            Tap water in Brisbane is around 60–120 ppm
             of dissolved minerals (calcium, magnesium, silicates).
             When the water evaporates off glass it leaves those minerals
             behind as a streak or spot. Squeegee technique can hide it on a
@@ -437,15 +436,11 @@ export default function WindowCleaningBrisbaneCostGuide() {
             professional pole work doesn&rsquo;t streak and DIY does. The
             equipment is the difference, not the technique.
           </p>
-          <Callout title="Coastal note">
-            On the Sunshine Coast, salt deposits on coastal glass actively
-            need mineral-free water. Tap water makes salt haze worse because
-            you&rsquo;re adding more minerals on top of what&rsquo;s already
-            there. See our dedicated{" "}
-            <Link href="/guides/salt-haze-windows-sunshine-coast">
-              salt haze guide
-            </Link>{" "}
-            for the chemistry.
+          <Callout title="Mineral spots">
+            Brisbane tap water leaves dissolved minerals on the glass as it
+            dries. A deionised-water pole system takes those minerals out
+            before the water touches the pane, so upstairs glass dries clear
+            without a squeegee.
           </Callout>
         </section>
 

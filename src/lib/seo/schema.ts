@@ -1,5 +1,5 @@
 import { FAQ_ITEMS } from "@/lib/faq";
-import { services, site, SITE_URL } from "@/lib/site";
+import { gbpProfile, services, site, SITE_URL } from "@/lib/site";
 
 const ID = {
   organization: `${SITE_URL}/#organization`,
@@ -8,28 +8,26 @@ const ID = {
   faq: `${SITE_URL}/#faq`,
 } as const;
 
-const AREAS_SERVED = [
-  {
-    "@type": "City" as const,
-    name: "Brisbane",
-    sameAs: "https://en.wikipedia.org/wiki/Brisbane",
-  },
-  {
-    "@type": "City" as const,
-    name: "Sunshine Coast",
-    sameAs: "https://en.wikipedia.org/wiki/Sunshine_Coast,_Queensland",
-  },
-  {
-    "@type": "City" as const,
-    name: "Logan",
-    sameAs: "https://en.wikipedia.org/wiki/City_of_Logan",
-  },
-  {
-    "@type": "City" as const,
-    name: "Ipswich",
-    sameAs: "https://en.wikipedia.org/wiki/Ipswich,_Queensland",
-  },
-];
+const CITY_SAME_AS: Record<string, string> = {
+  Brisbane: "https://en.wikipedia.org/wiki/Brisbane",
+  Logan: "https://en.wikipedia.org/wiki/City_of_Logan",
+  Ipswich: "https://en.wikipedia.org/wiki/Ipswich,_Queensland",
+};
+
+const AREAS_SERVED = gbpProfile.areaServed.map((name) => ({
+  "@type": "City" as const,
+  name,
+  ...(CITY_SAME_AS[name] ? { sameAs: CITY_SAME_AS[name] } : {}),
+}));
+
+function businessAddress() {
+  const { addressRegion, addressCountry } = gbpProfile.address;
+  return {
+    "@type": "PostalAddress" as const,
+    addressRegion,
+    addressCountry,
+  };
+}
 
 const SERVICE_AREA_GEO = {
   "@type": "GeoCircle" as const,
@@ -38,7 +36,7 @@ const SERVICE_AREA_GEO = {
     latitude: -27.4698,
     longitude: 153.0251,
   },
-  geoRadius: "120000",
+  geoRadius: "50000",
 };
 
 export function organizationSchema() {
@@ -46,8 +44,8 @@ export function organizationSchema() {
     "@type": "Organization",
     "@id": ID.organization,
     name: site.legalName,
-    alternateName: site.name,
-    url: SITE_URL,
+    alternateName: gbpProfile.alternateName,
+    url: `${SITE_URL}/`,
     logo: {
       "@type": "ImageObject",
       url: `${SITE_URL}/design/logo-color.png`,
@@ -57,7 +55,7 @@ export function organizationSchema() {
     email: site.email,
     telephone: site.phoneE164,
     foundingDate: String(site.foundingYear),
-    sameAs: site.socialLinks,
+    sameAs: gbpProfile.sameAs,
     identifier: [
       {
         "@type": "PropertyValue",
@@ -72,7 +70,7 @@ export function websiteSchema() {
   return {
     "@type": "WebSite",
     "@id": ID.website,
-    url: SITE_URL,
+    url: `${SITE_URL}/`,
     name: site.name,
     publisher: { "@id": ID.organization },
     inLanguage: "en-AU",
@@ -84,10 +82,10 @@ export function localBusinessSchema() {
     "@type": ["LocalBusiness", "HomeAndConstructionBusiness"],
     "@id": ID.business,
     name: site.legalName,
-    alternateName: site.name,
+    alternateName: gbpProfile.alternateName,
     description:
-      "Exterior cleaning specialists serving Brisbane and Sunshine Coast — pressure washing, soft-wash house cleaning, roof, gutter, window, solar panel, driveway, strata and commercial cleaning.",
-    url: SITE_URL,
+      "Exterior cleaning specialists serving Greater Brisbane, including Brisbane, Logan and Ipswich — pressure washing, soft-wash house cleaning, roof, gutter, window, solar panel, driveway, strata and commercial cleaning.",
+    url: `${SITE_URL}/`,
     telephone: site.phoneE164,
     email: site.email,
     image: `${SITE_URL}/images/house-wash.jpg`,
@@ -98,11 +96,7 @@ export function localBusinessSchema() {
     parentOrganization: { "@id": ID.organization },
     areaServed: AREAS_SERVED,
     serviceArea: SERVICE_AREA_GEO,
-    address: {
-      "@type": "PostalAddress",
-      addressRegion: "QLD",
-      addressCountry: "AU",
-    },
+    address: businessAddress(),
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
@@ -119,13 +113,6 @@ export function localBusinessSchema() {
         closes: "19:00",
       },
     ],
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: site.rating,
-      reviewCount: String(site.reviewCount),
-      bestRating: "5",
-      worstRating: "1",
-    },
     hasCredential: [
       {
         "@type": "EducationalOccupationalCredential",
@@ -152,7 +139,7 @@ export function localBusinessSchema() {
       "Driveway cleaning",
       "Commercial exterior cleaning",
     ],
-    sameAs: site.socialLinks,
+    sameAs: gbpProfile.sameAs,
     hasOfferCatalog: {
       "@type": "OfferCatalog",
       name: "Exterior Cleaning Services",
@@ -161,7 +148,7 @@ export function localBusinessSchema() {
         itemOffered: {
           "@type": "Service",
           name: service.name,
-          url: `${SITE_URL}/services/${service.slug}`,
+          url: `${SITE_URL}/${service.slug}/`,
         },
       })),
     },
@@ -191,7 +178,7 @@ type ServiceSchemaInput = {
 };
 
 export function serviceSchema(input: ServiceSchemaInput) {
-  const url = `${SITE_URL}/services/${input.slug}`;
+  const url = `${SITE_URL}/${input.slug}/`;
   return {
     "@type": "Service",
     "@id": `${url}#service`,
@@ -230,7 +217,7 @@ type LocationSchemaInput = {
 };
 
 export function locationServiceSchema(input: LocationSchemaInput) {
-  const url = `${SITE_URL}/locations/${input.slug}`;
+  const url = `${SITE_URL}/${input.slug}/`;
   return {
     "@type": "Service",
     "@id": `${url}#service`,
@@ -301,6 +288,13 @@ export function serviceLocationSchema(input: ServiceLocationSchemaInput) {
 
 type Crumb = { name: string; url: string };
 
+function absoluteUrl(url: string) {
+  if (url.startsWith("http")) return url;
+  const [path, hash] = url.split("#");
+  const base = path === "" || path === "/" ? "/" : path.endsWith("/") ? path : `${path}/`;
+  return `${SITE_URL}${base === "/" ? "/" : base}${hash ? `#${hash}` : ""}`;
+}
+
 export function breadcrumbSchema(crumbs: Crumb[]) {
   return {
     "@type": "BreadcrumbList",
@@ -308,7 +302,7 @@ export function breadcrumbSchema(crumbs: Crumb[]) {
       "@type": "ListItem",
       position: index + 1,
       name: crumb.name,
-      item: crumb.url.startsWith("http") ? crumb.url : `${SITE_URL}${crumb.url}`,
+      item: absoluteUrl(crumb.url),
     })),
   };
 }

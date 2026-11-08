@@ -27,16 +27,16 @@ import { site, SITE_URL } from "@/lib/site";
 
 const SLUG = "house-washing-cost-brisbane";
 const GUIDE = getGuide(SLUG)!;
-const PAGE_URL = `${SITE_URL}/guides/${SLUG}`;
+const PAGE_URL = `${SITE_URL}/guides/${SLUG}/`;
 
 export const metadata: Metadata = {
   title: GUIDE.title,
   description: GUIDE.description,
-  alternates: { canonical: `/guides/${SLUG}` },
+  alternates: { canonical: `/guides/${SLUG}/` },
   openGraph: {
     title: GUIDE.title,
     description: GUIDE.description,
-    url: `/guides/${SLUG}`,
+    url: `/guides/${SLUG}/`,
     images: [{ url: GUIDE.image }],
     type: "article",
     publishedTime: GUIDE.published,
@@ -174,8 +174,8 @@ export default function HouseWashingCostBrisbaneGuide() {
     articleSchemaFor({ guide: GUIDE, pageUrl: PAGE_URL, siteUrl: SITE_URL }),
     breadcrumbSchema([
       { name: "Home", url: "/" },
-      { name: "Guides", url: "/guides" },
-      { name: "House washing cost Brisbane", url: `/guides/${SLUG}` },
+      { name: "Guides", url: "/guides/" },
+      { name: "House washing cost Brisbane", url: `/guides/${SLUG}/` },
     ]),
     faqPageSchemaFromList(FAQS, `${PAGE_URL}#faq`)
   );

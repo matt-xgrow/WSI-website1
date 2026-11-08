@@ -16,7 +16,7 @@ export type Guide = {
   categoryLabel: string;
   topic: GuideTopic;
   topicLabel: string;
-  region: "Brisbane" | "Sunshine Coast" | "South East Queensland";
+  region: "Brisbane" | "South East Queensland";
   image: string;
   imageAlt: string;
   readingMinutes: number;
@@ -65,27 +65,6 @@ export const GUIDES: Guide[] = [
     updated: "2026-05-12",
   },
   {
-    slug: "house-wash-frequency-sunshine-coast",
-    title:
-      "How Often Should You Wash Your House on the Sunshine Coast?",
-    headline: "How often should you wash your house on the Sunshine Coast?",
-    description:
-      "Coastal Sunshine Coast homes need a full wash every 9–12 months; hinterland homes every 6–9 months. Salt, humidity and tree cover drive the cycle. Here's the per-suburb cleaning calendar.",
-    excerpt:
-      "On the Sunshine Coast the cleaning cycle splits in two: salt-driven on the coastal strip, mildew-driven in the hinterland. Same house type, different cycles.",
-    category: "house-washing",
-    categoryLabel: "House Washing",
-    topic: "frequency",
-    topicLabel: "Frequency",
-    region: "Sunshine Coast",
-    image: "/images/residential-aerial.jpg",
-    imageAlt:
-      "Aerial view of a Sunshine Coast home with subtropical tree cover and humid hinterland conditions",
-    readingMinutes: 7,
-    published: "2026-05-08",
-    updated: "2026-05-12",
-  },
-  {
     slug: "pressure-washing-driveway-cost-brisbane",
     title:
       "Pressure Washing Driveway Cost Brisbane — 2026 Per Square Metre Guide",
@@ -109,20 +88,20 @@ export const GUIDES: Guide[] = [
   {
     slug: "mould-vs-lichen-vs-algae",
     title:
-      "Mould vs Lichen vs Algae — What's Growing on Your Sunshine Coast Property",
+      "Mould vs Lichen vs Algae — What's Growing on Your Brisbane Property",
     headline: "Mould vs lichen vs algae — how to tell them apart.",
     description:
       "Black streaks on a roof are mould. Crusty grey-green patches are lichen. Slippery green film on paving is algae. Each one needs a different treatment — and the wrong one wastes the clean.",
     excerpt:
-      "Brisbane and Sunshine Coast properties grow three very different organisms — mould, lichen and algae — and each one needs its own treatment. Visual ID guide inside.",
+      "Brisbane properties grow three very different organisms — mould, lichen and algae — and each one needs its own treatment. Visual ID guide inside.",
     category: "pressure-washing",
     categoryLabel: "Diagnosis",
     topic: "diagnosis",
     topicLabel: "Diagnosis",
-    region: "Sunshine Coast",
+    region: "Brisbane",
     image: "/images/soft-wash.jpg",
     imageAlt:
-      "Close-up of black mould streaks, grey lichen patches and green algae growth on a Sunshine Coast roof and paving",
+      "Close-up of black mould streaks, grey lichen patches and green algae growth on a Brisbane roof and paving",
     readingMinutes: 7,
     published: "2026-05-08",
     updated: "2026-05-12",
@@ -146,28 +125,6 @@ export const GUIDES: Guide[] = [
     imageAlt:
       "Professional window cleaner using a deionised-water pole system on a Brisbane Queenslander",
     readingMinutes: 8,
-    published: "2026-05-08",
-    updated: "2026-05-12",
-  },
-  {
-    slug: "salt-haze-windows-sunshine-coast",
-    title:
-      "Salt Haze on Sunshine Coast Windows — Why Tap Water Won't Fix It",
-    headline:
-      "Salt haze on Sunshine Coast windows — why tap water won't fix it.",
-    description:
-      "Coastal Sunshine Coast windows fog within weeks from salt-laden sea spray. Tap water leaves mineral spotting that makes it worse. Deionised water is the only finish that stays clear on salt-exposed glass.",
-    excerpt:
-      "Salt haze is a chemistry problem, not a dirt problem. That's why DIY tap-water cleaning leaves Sunshine Coast windows worse than before. The fix is mineral-free water.",
-    category: "window-cleaning",
-    categoryLabel: "Window Cleaning",
-    topic: "method",
-    topicLabel: "Method",
-    region: "Sunshine Coast",
-    image: "/images/glass-wash.jpg",
-    imageAlt:
-      "Salt haze on coastal Sunshine Coast glass cleaned with a deionised-water pole system",
-    readingMinutes: 7,
     published: "2026-05-08",
     updated: "2026-05-12",
   },

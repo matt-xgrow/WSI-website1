@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
+import { preload } from "react-dom";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/site/footer";
 import { Nav } from "@/components/site/nav";
@@ -21,26 +22,18 @@ import {
   serviceSchema,
 } from "@/lib/seo/schema";
 import { getServiceContent } from "@/lib/service-content";
-import { getService, locations, services, site, SITE_URL } from "@/lib/site";
+import { getService, locations, site, SITE_URL } from "@/lib/site";
 
-type PageProps = {
-  params: Promise<{ slug: string }>;
-};
+import { baselineFor } from "@/lib/seo/baseline-meta";
 
-export function generateStaticParams() {
-  return services.map((service) => ({ slug: service.slug }));
-}
-
-export async function generateMetadata({
-  params,
-}: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+export function serviceMetadata(slug: string): Metadata {
   const service = getService(slug);
   if (!service) return {};
-  const canonical = `/services/${service.slug}`;
+  const canonical = `/${service.slug}/`;
+  const baseline = baselineFor(canonical);
   return {
-    title: service.title,
-    description: service.description,
+    title: { absolute: baseline?.title ?? service.title },
+    description: baseline?.description ?? service.description,
     alternates: { canonical },
     openGraph: {
       title: service.title,
@@ -91,8 +84,7 @@ const HERO_ALT_MAP: Record<string, string> = {
     "Commercial facade cleaning of an office building in Brisbane CBD",
 };
 
-export default async function ServicePage({ params }: PageProps) {
-  const { slug } = await params;
+export function ServicePage({ slug }: { slug: string }) {
   const service = getService(slug);
   if (!service) notFound();
 
@@ -100,8 +92,19 @@ export default async function ServicePage({ params }: PageProps) {
   const heroAlt =
     HERO_ALT_MAP[service.slug] ??
     `${service.name} job by WSI Cleaning in Brisbane`;
+  const hardSurfaceHero =
+    service.slug === "pressure-washing" || service.slug === "driveway-cleaning";
+  if (hardSurfaceHero) {
+    preload("/images/heroes/hard-surface-800.webp", {
+      as: "image",
+      fetchPriority: "high",
+      imageSrcSet:
+        "/images/heroes/hard-surface-800.webp 800w, /images/heroes/hard-surface.webp 960w",
+      imageSizes: "(max-width: 900px) 100vw, 720px",
+    });
+  }
   const content = getServiceContent(service.slug);
-  const canonical = `/services/${service.slug}`;
+  const canonical = `/${service.slug}/`;
   const pageId = `${SITE_URL}${canonical}#faq`;
 
   const pageSchema = graph(
@@ -126,13 +129,27 @@ export default async function ServicePage({ params }: PageProps) {
         <TopBar />
         <Nav />
 
-        <section className="sub-hero">
+        <section className={hardSurfaceHero ? "sub-hero sub-hero-lcp" : "sub-hero"}>
+          {hardSurfaceHero ? (
+            <div className="sub-hero-img">
+              <img
+                src="/images/heroes/hard-surface-800.webp"
+                srcSet="/images/heroes/hard-surface-800.webp 800w, /images/heroes/hard-surface.webp 960w"
+                sizes="(max-width: 900px) 100vw, 720px"
+                alt={heroAlt}
+                width={960}
+                height={600}
+                fetchPriority="high"
+                loading="eager"
+              />
+            </div>
+          ) : null}
           <div>
             <span className="hero-eyebrow">
               <span className="eyebrow-dot" />
               {service.eyebrow}
             </span>
-            <h1>{service.name}</h1>
+            <h1>{baselineFor(canonical)?.h1 ?? service.name}</h1>
             <p>{service.description}</p>
             <div className="hero-actions">
               <Link className="btn btn-orange btn-lg" href="#quote">
@@ -148,15 +165,15 @@ export default async function ServicePage({ params }: PageProps) {
                 <GoogleGIcon />
                 <div
                   className="trust-stars"
-                  aria-label={`${site.rating} out of 5 from ${site.reviewCount} Google reviews`}
+                  aria-label={`Rated ${site.rating} on Google`}
                 >
                   {Array.from({ length: 5 }).map((_, i) => (
                     <StarIcon key={i} style={{ color: "#FBBC05" }} />
                   ))}
                 </div>
                 <div className="trust-text">
-                  <strong>{site.rating}</strong>
-                  <span>{site.reviewCountLabel} Google reviews</span>
+                  <strong>Rated {site.rating}</strong>
+                  <span>on Google</span>
                 </div>
               </div>
               <div className="trust-divider" />
@@ -177,17 +194,19 @@ export default async function ServicePage({ params }: PageProps) {
               </div>
             </div>
           </div>
+          {hardSurfaceHero ? null : (
           <div className="sub-hero-img">
-            <Image
-              src={heroImage}
-              alt={heroAlt}
-              width={720}
-              height={450}
-              priority
-              fetchPriority="high"
-              sizes="(max-width: 900px) 100vw, 720px"
-            />
+              <Image
+                src={heroImage}
+                alt={heroAlt}
+                width={720}
+                height={450}
+                priority
+                fetchPriority="high"
+                sizes="(max-width: 900px) 100vw, 720px"
+              />
           </div>
+          )}
         </section>
 
         {content && (
@@ -304,7 +323,7 @@ export default async function ServicePage({ params }: PageProps) {
             {locations.map((location) => (
               <Link
                 key={location.slug}
-                href={`/services/${service.slug}/${location.slug}`}
+                href={`/${location.slug}/`}
               >
                 {service.name} in {location.name} →
               </Link>

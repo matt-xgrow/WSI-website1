@@ -11,20 +11,19 @@ import { breadcrumbSchema, graph } from "@/lib/seo/schema";
 import { GUIDES } from "@/lib/guides";
 import { CONTENT_UPDATED, SITE_URL } from "@/lib/site";
 
-const PAGE_URL = `${SITE_URL}/guides`;
-const TITLE =
-  "Exterior Cleaning Guides — Brisbane & Sunshine Coast Cost, Method & Frequency";
+const PAGE_URL = `${SITE_URL}/guides/`;
+const TITLE = "Guides - WSI Cleaning";
 const DESCRIPTION =
-  "Pricing guides, method comparisons and frequency calendars for house washing, pressure cleaning and window cleaning across Brisbane and the Sunshine Coast. Written from real jobs — not generic templates.";
+  "Pricing guides, method comparisons and frequency calendars for house washing, pressure cleaning and window cleaning across Greater Brisbane. Written from real jobs — not generic templates.";
 
 export const metadata: Metadata = {
-  title: TITLE,
+  title: { absolute: TITLE },
   description: DESCRIPTION,
-  alternates: { canonical: "/guides" },
+  alternates: { canonical: "/guides/" },
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,
-    url: "/guides",
+    url: "/guides/",
     type: "website",
     images: [{ url: "/images/soft-wash.jpg" }],
   },
@@ -51,7 +50,7 @@ const CATEGORIES: {
     key: "house-washing",
     label: "House washing",
     blurb:
-      "Cost, frequency and what's included for soft-washed house exteriors across Brisbane and the Sunshine Coast.",
+      "Cost, frequency and what's included for soft-washed house exteriors across Greater Brisbane.",
   },
   {
     key: "pressure-washing",
@@ -63,7 +62,7 @@ const CATEGORIES: {
     key: "window-cleaning",
     label: "Window cleaning",
     blurb:
-      "Per-pane pricing, frequency by property type, and the salt-haze problem on coastal Sunshine Coast glass.",
+      "Per-pane pricing, frequency by property type, and how Brisbane glass stays clear between cleans.",
   },
 ];
 
@@ -77,7 +76,7 @@ export default function GuidesIndex() {
     itemListElement: GUIDES.map((g, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      url: `${SITE_URL}/guides/${g.slug}`,
+      url: `${SITE_URL}/guides/${g.slug}/`,
       name: g.title,
     })),
   };
@@ -100,7 +99,7 @@ export default function GuidesIndex() {
     itemListSchema,
     breadcrumbSchema([
       { name: "Home", url: "/" },
-      { name: "Guides", url: "/guides" },
+      { name: "Guides", url: "/guides/" },
     ])
   );
 
@@ -123,7 +122,7 @@ export default function GuidesIndex() {
             <p>
               Pricing guides, method comparisons and frequency calendars for
               house washing, pressure washing and window cleaning across
-              Brisbane and the Sunshine Coast. Written from real jobs — not
+              Greater Brisbane. Written from real jobs — not
               generic templates.
             </p>
             <div className="hero-actions">
@@ -138,7 +137,7 @@ export default function GuidesIndex() {
           <div className="sub-hero-img">
             <Image
               src="/images/soft-wash.jpg"
-              alt="Exterior cleaning guides for Brisbane and Sunshine Coast properties"
+              alt="Exterior cleaning guides for Greater Brisbane properties"
               width={720}
               height={450}
               priority
@@ -198,7 +197,7 @@ export default function GuidesIndex() {
                   <ul className="suburb-list">
                     {items.map((g) => (
                       <li key={g.slug}>
-                        <Link href={`/guides/${g.slug}`}>
+                        <Link href={`/guides/${g.slug}/`}>
                           <strong>{g.headline.replace(/[.?]$/, "")}</strong>
                           <br />
                           <span

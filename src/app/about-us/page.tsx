@@ -11,13 +11,13 @@ import { breadcrumbSchema, graph } from "@/lib/seo/schema";
 import { services, site, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: "About WSI Cleaning",
-  description: `Brisbane-based exterior cleaning company operating across South East Queensland since ${site.foundingYear}. ABN ${site.abnDisplay}. ${site.insuranceLabel}. ${site.rating}/5 from ${site.reviewCount} Google reviews.`,
-  alternates: { canonical: "/about" },
+  title: { absolute: "About Us - WSI Cleaning" },
+  description: `Brisbane-based exterior cleaning company operating across Greater Brisbane since ${site.foundingYear}. ABN ${site.abnDisplay}. ${site.insuranceLabel}. Rated ${site.rating} on Google.`,
+  alternates: { canonical: "/about-us/" },
   openGraph: {
     title: "About WSI Cleaning",
-    description: `Exterior cleaning specialists since ${site.foundingYear}. ${site.insuranceLabel}. Brisbane, Sunshine Coast.`,
-    url: "/about",
+    description: `Exterior cleaning specialists since ${site.foundingYear}. ${site.insuranceLabel}. Greater Brisbane.`,
+    url: "/about-us/",
     images: [{ url: "/images/wsi-team.jpg" }],
     type: "website",
   },
@@ -69,14 +69,14 @@ export default function AboutPage() {
   const pageSchema = graph(
     breadcrumbSchema([
       { name: "Home", url: "/" },
-      { name: "About", url: "/about" },
+      { name: "About", url: "/about-us/" },
     ]),
     {
       "@type": "AboutPage",
-      "@id": `${SITE_URL}/about#about`,
-      url: `${SITE_URL}/about`,
+      "@id": `${SITE_URL}/about-us/#about`,
+      url: `${SITE_URL}/about-us/`,
       name: "About WSI Cleaning",
-      description: `Exterior cleaning specialists serving Brisbane and Sunshine Coast since ${site.foundingYear}. ABN ${site.abnDisplay}.`,
+      description: `Exterior cleaning specialists serving Greater Brisbane since ${site.foundingYear}. ABN ${site.abnDisplay}.`,
       mainEntity: { "@id": `${SITE_URL}/#business` },
       isPartOf: { "@id": `${SITE_URL}/#website` },
     }
@@ -101,7 +101,7 @@ export default function AboutPage() {
             </h1>
             <p>
               WSI Cleaning is a Brisbane-based exterior cleaning company,
-              operating across Brisbane and the Sunshine Coast
+              operating across Greater Brisbane
               since {site.foundingYear}. We service residential homes, body
               corporate properties and commercial buildings — house washes,
               pressure cleans, window work, gutter clears, roof treatments,
@@ -133,10 +133,9 @@ export default function AboutPage() {
           <p className="service-lead-text">
             Founded in {site.foundingYear}, WSI Cleaning has built a steady
             base of repeat residential, body corporate and commercial clients
-            across South East Queensland — {site.rating}/5 stars from{" "}
-            {site.reviewCount} Google reviews,{" "}
+            across Greater Brisbane — rated {site.rating} on Google,{" "}
             {site.insuranceLabel.toLowerCase()}, and a service area covering
-            Brisbane and the Sunshine Coast. We
+            Brisbane, Logan and Ipswich. We
             don&rsquo;t do interior cleaning. We don&rsquo;t do garden work.
             Everything we do is exterior — surfaces that take weather, salt,
             mould and traffic, and the chemistry and pressure required to
@@ -211,7 +210,7 @@ export default function AboutPage() {
               </li>
             </ul>
             <p>
-              <Link href="/services/pressure-washing">
+              <Link href="/pressure-washing/">
                 Read more on soft wash vs pressure wash →
               </Link>
             </p>
@@ -245,19 +244,15 @@ export default function AboutPage() {
             <span className="eyebrow-line" />
             Where we work
           </span>
-          <h2>South East Queensland — two metro hubs.</h2>
+          <h2>Greater Brisbane — one service area.</h2>
           <p>
-            We operate from a Brisbane base across two metro markets in South
-            East Queensland. Brisbane is the primary service area with
-            same-week scheduling for residential. The Sunshine Coast is run as
-            weekly batched trips so multiple jobs share the travel time.
+            We operate from a Brisbane base across Greater Brisbane, including
+            Logan and Ipswich. Residential jobs are usually scheduled in the
+            same week, with quotes returned in writing within 24 business hours.
           </p>
           <ul className="suburb-list">
             <li>
-              <Link href="/locations/brisbane">Brisbane →</Link>
-            </li>
-            <li>
-              <Link href="/locations/sunshine-coast">Sunshine Coast →</Link>
+              <Link href="/brisbane/">Brisbane →</Link>
             </li>
           </ul>
         </section>
@@ -276,7 +271,7 @@ export default function AboutPage() {
           <ul className="suburb-list">
             {services.map((service) => (
               <li key={service.slug}>
-                <Link href={`/services/${service.slug}`}>
+                <Link href={`/${service.slug}/`}>
                   {service.name} →
                 </Link>
               </li>
