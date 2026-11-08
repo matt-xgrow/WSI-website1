@@ -6,7 +6,6 @@ import "./globals.css";
 import { GtmNoScript, TrackingScripts } from "@/components/analytics/tracking-scripts";
 import { TrackingEvents } from "@/components/analytics/tracking-events";
 import { JsonLd } from "@/components/seo/json-ld";
-import { WhatsAppButton } from "@/components/site/whatsapp-button";
 import { BASELINE_META } from "@/lib/seo/baseline-meta";
 import {
   graph,
@@ -117,7 +116,6 @@ export default function RootLayout({
         <JsonLd data={globalSchema} />
         <TrackingEvents />
         {children}
-        <WhatsAppButton />
         <SpeedInsights />
         <TrackingScripts />
       </body>

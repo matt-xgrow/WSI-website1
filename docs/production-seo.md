@@ -33,7 +33,7 @@ The layout loads:
 
 The published GTM container already loads Google Ads `AW-738839583`. This site does not call `gtag('config')` or `gtag('event', 'conversion')` for Ads. The thank-you conversion `AW-738839583/dFcSCO6hqsYDEJ-Yp-AC` is fired by GTM when the URL contains `thank-you`. There is no `NEXT_PUBLIC_GOOGLE_ADS_CONVERSION_LABEL`. GTM currently has that conversion tag twice; pausing one of them is a GTM change, not a code change.
 
-The WhatsApp button keeps `whatsapp-button` and also uses `joinchat__button`, which is the class the existing GTM WhatsApp triggers listen for.
+The floating WhatsApp button has been removed, including the `joinchat__button` link. GTM triggers that listen for that class no longer have a matching element on the site.
 
 Clixtell (`scripts.clixtell.com/track.js`) is injected by a custom HTML tag inside GTM-M9FBSTTS. It is not in this repository. Delaying it until window load has to be done in GTM (change that tag's trigger from Page View to Window Loaded). The site cannot defer a script that GTM injects during its own page-view tag.
 
