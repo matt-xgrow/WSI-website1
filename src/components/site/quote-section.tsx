@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { trackLeadSubmitted } from "@/lib/analytics";
 import { readCampaignParams } from "@/lib/campaign";
 import { site } from "@/lib/site";
@@ -37,6 +37,161 @@ const INITIAL: Data = {
   notes: "",
   company_website: "",
 };
+
+function ServiceMultiSelect({
+  services,
+  selected,
+  onToggle,
+}: {
+  services: string[];
+  selected: string[];
+  onToggle: (service: string) => void;
+}) {
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(0);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const listId = useId();
+
+  useEffect(() => {
+    if (!open) return;
+    const onPointerDown = (event: MouseEvent) => {
+      if (!rootRef.current?.contains(event.target as Node)) setOpen(false);
+    };
+    const onEscape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      event.preventDefault();
+      setOpen(false);
+      buttonRef.current?.focus();
+    };
+    document.addEventListener("mousedown", onPointerDown);
+    document.addEventListener("keydown", onEscape);
+    return () => {
+      document.removeEventListener("mousedown", onPointerDown);
+      document.removeEventListener("keydown", onEscape);
+    };
+  }, [open]);
+
+  useEffect(() => {
+    if (!open) return;
+    const option = document.getElementById(`${listId}-option-${active}`);
+    option?.scrollIntoView({ block: "nearest" });
+  }, [open, active, listId]);
+
+  const onKeyDown = (event: React.KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === "ArrowDown") {
+      event.preventDefault();
+      setOpen(true);
+      setActive((index) => (open ? (index + 1) % services.length : index));
+      return;
+    }
+    if (event.key === "ArrowUp") {
+      event.preventDefault();
+      setOpen(true);
+      setActive((index) =>
+        open ? (index - 1 + services.length) % services.length : index,
+      );
+      return;
+    }
+    if (event.key === "Home") {
+      event.preventDefault();
+      setOpen(true);
+      setActive(0);
+      return;
+    }
+    if (event.key === "End") {
+      event.preventDefault();
+      setOpen(true);
+      setActive(services.length - 1);
+      return;
+    }
+    if (event.key === "Escape") {
+      if (!open) return;
+      event.preventDefault();
+      setOpen(false);
+      return;
+    }
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      if (!open) {
+        setOpen(true);
+        return;
+      }
+      onToggle(services[active]);
+    }
+  };
+
+  return (
+    <div className="service-multi" ref={rootRef}>
+      <button
+        ref={buttonRef}
+        type="button"
+        className="service-multi-trigger"
+        id="qf-service-trigger"
+        aria-labelledby="qf-service-label qf-service-trigger"
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        aria-controls={listId}
+        aria-activedescendant={open ? `${listId}-option-${active}` : undefined}
+        aria-required="true"
+        onClick={() => setOpen((current) => !current)}
+        onKeyDown={onKeyDown}
+      >
+        {selected.length === 0 ? (
+          <span className="service-multi-placeholder">Select services</span>
+        ) : (
+          <span className="service-multi-chips">
+            {selected.map((service) => (
+              <span key={service} className="service-chip">
+                {service}
+              </span>
+            ))}
+          </span>
+        )}
+        <span className="service-multi-meta">
+          {selected.length > 0 ? `${selected.length} selected` : ""}
+          <span className="service-multi-caret" aria-hidden="true">
+            ▾
+          </span>
+        </span>
+      </button>
+      {open ? (
+        <ul
+          id={listId}
+          className="service-multi-list"
+          role="listbox"
+          aria-multiselectable="true"
+          aria-labelledby="qf-service-label"
+        >
+          {services.map((service, index) => {
+            const isSelected = selected.includes(service);
+            return (
+              <li
+                key={service}
+                id={`${listId}-option-${index}`}
+                role="option"
+                aria-selected={isSelected}
+                className={
+                  index === active
+                    ? "service-multi-option is-active"
+                    : "service-multi-option"
+                }
+                onMouseEnter={() => setActive(index)}
+                onMouseDown={(event) => event.preventDefault()}
+                onClick={() => onToggle(service)}
+              >
+                <span className="service-multi-box" aria-hidden="true">
+                  {isSelected ? "✓" : ""}
+                </span>
+                {service}
+              </li>
+            );
+          })}
+        </ul>
+      ) : null}
+    </div>
+  );
+}
 
 export function QuoteSection() {
   return (
@@ -239,20 +394,11 @@ function QuoteForm() {
           <label id="qf-service-label">
             Service <span>(select all that apply)</span>
           </label>
-          <div className="service-checks" role="group" aria-labelledby="qf-service-label">
-            {SERVICES.map((service) => (
-              <label key={service} className="service-check">
-                <input
-                  type="checkbox"
-                  name="service"
-                  value={service}
-                  checked={data.services.includes(service)}
-                  onChange={() => toggleService(service)}
-                />
-                <span>{service}</span>
-              </label>
-            ))}
-          </div>
+          <ServiceMultiSelect
+            services={SERVICES}
+            selected={data.services}
+            onToggle={toggleService}
+          />
         </div>
         <div className="q-field">
           <label htmlFor="qf-suburb">Suburb</label>

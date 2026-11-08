@@ -54,9 +54,6 @@ export default function ContactPage() {
               <li>
                 Email: <a href={`mailto:${site.email}`}>{site.email}</a>
               </li>
-              <li>
-                WhatsApp: <a href={site.whatsappHref}>Message {site.phoneDisplay}</a>
-              </li>
               <li>Hours: 7am–7pm, seven days</li>
             </ul>
           </div>
