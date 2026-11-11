@@ -279,8 +279,8 @@ function articleSchema() {
     image: {
       "@type": "ImageObject",
       url: `${SITE_URL}${GUIDE.image}`,
-      width: 1600,
-      height: 2400,
+      width: 1280,
+      height: 1920,
       caption: GUIDE.imageAlt,
     },
     author: {
