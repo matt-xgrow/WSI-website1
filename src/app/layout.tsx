@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Fraunces, Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import Script from "next/script";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
@@ -18,26 +18,29 @@ import { site, SITE_URL } from "@/lib/site";
 const clarityProjectId = process.env.NEXT_PUBLIC_CLARITY_PROJECT_ID;
 const homeMeta = BASELINE_META["/"];
 
-const fraunces = Fraunces({
+const fraunces = localFont({
+  src: "./fonts/fraunces-latin.woff2",
+  weight: "400 600",
+  display: "swap",
   variable: "--font-fraunces",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "600"],
+  adjustFontFallback: "Times New Roman",
 });
 
-const geistSans = Geist({
+const geistSans = localFont({
+  src: "./fonts/geist-latin.woff2",
+  weight: "400 600",
+  display: "swap",
   variable: "--font-geist",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500", "600"],
+  adjustFontFallback: "Arial",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const geistMono = localFont({
+  src: "./fonts/geist-mono-latin.woff2",
+  weight: "400",
   display: "swap",
-  weight: ["400"],
+  variable: "--font-geist-mono",
   preload: false,
+  adjustFontFallback: false,
 });
 
 export const viewport: Viewport = {
