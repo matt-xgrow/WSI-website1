@@ -2,7 +2,8 @@ export type GuideCategory =
   | "method"
   | "house-washing"
   | "pressure-washing"
-  | "window-cleaning";
+  | "window-cleaning"
+  | "commercial";
 
 export type GuideTopic = "cost" | "frequency" | "method" | "diagnosis";
 
@@ -127,6 +128,27 @@ export const GUIDES: Guide[] = [
     readingMinutes: 8,
     published: "2026-05-08",
     updated: "2026-05-12",
+  },
+  {
+    slug: "commercial-building-washing-brisbane",
+    title: "Commercial Building Washing Brisbane: A Planning Guide",
+    headline:
+      "Commercial building washing in Brisbane: how often, when and what to ask before you book",
+    description:
+      "How often to wash a commercial building in Brisbane, how to do it without disrupting trade, what compliance to ask for and how wash water is handled.",
+    excerpt:
+      "Commercial building washing in Brisbane usually combines a low-pressure soft wash for facades, render and signage, a pressure wash for paving, breezeways and loading bays, and purified water for glass.",
+    category: "commercial",
+    categoryLabel: "Commercial",
+    topic: "frequency",
+    topicLabel: "Frequency",
+    region: "Brisbane",
+    image: "/images/guides/wsi-hero-facade-soft-wash-brisbane.webp",
+    imageAlt:
+      "WSI Cleaning technician washing the upper facade of a two-storey townhouse block in Brisbane",
+    readingMinutes: 6,
+    published: "2026-11-11",
+    updated: "2026-11-11",
   },
 ];
 

@@ -36,7 +36,7 @@ export const metadata: Metadata = {
 };
 
 const CATEGORIES: {
-  key: "house-washing" | "pressure-washing" | "window-cleaning" | "method";
+  key: "house-washing" | "pressure-washing" | "window-cleaning" | "method" | "commercial";
   label: string;
   blurb: string;
 }[] = [
@@ -63,6 +63,12 @@ const CATEGORIES: {
     label: "Window cleaning",
     blurb:
       "Per-pane pricing, frequency by property type, and how Brisbane glass stays clear between cleans.",
+  },
+  {
+    key: "commercial",
+    label: "Commercial",
+    blurb:
+      "How often to wash a commercial building in Brisbane, how to do it without disrupting trade, what compliance to ask for and how wash water is handled.",
   },
 ];
 
@@ -164,7 +170,9 @@ export default function GuidesIndex() {
                   href={`#cat-${cat.key}`}
                   className="guides-cat-card"
                 >
-                  <span className="guides-cat-count">{inCat} guides</span>
+                  <span className="guides-cat-count">
+                    {inCat} {inCat === 1 ? "guide" : "guides"}
+                  </span>
                   <h3>{cat.label}</h3>
                   <p>{cat.blurb}</p>
                   <span className="guides-cat-cta">View guides →</span>

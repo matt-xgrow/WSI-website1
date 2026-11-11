@@ -58,7 +58,7 @@ export const CONTENT_UPDATED = {
   locations: "2026-06-10",
   gallery: "2026-06-10",
   about: "2026-06-10",
-  guides: "2026-06-10",
+  guides: "2026-11-11",
 } as const;
 
 export const services = [
