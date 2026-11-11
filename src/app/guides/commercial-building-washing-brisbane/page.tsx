@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { Fragment, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import { Footer } from "@/components/site/footer";
 import { Nav } from "@/components/site/nav";
 import { QuoteSection } from "@/components/site/quote-section";
@@ -30,19 +30,44 @@ const SLUG = "commercial-building-washing-brisbane";
 const GUIDE = getGuide(SLUG)!;
 const PAGE_URL = `${SITE_URL}/guides/${SLUG}/`;
 
-const WASH_IMAGE = {
-  src: "/images/guides/wsicleaningdrone-11.webp",
-  width: 1600,
-  height: 1200,
-  alt: post.images[1].alt,
+const COVERS_IMAGE = {
+  src: "/images/guides/wsi-commercial-hardstand-pressure-cleaning.webp",
+  width: 1280,
+  height: 1920,
+  alt: "WSI Cleaning technician pressure cleaning the paved area outside a multi-storey office building",
 } as const;
 
-const JOB_IMAGE = {
-  src: "/images/guides/wsicleaningdrone-14.webp",
+const STRATA_IMAGE = {
+  src: "/images/guides/wsi-strata-complex-aerial.webp",
   width: 1600,
   height: 1200,
-  alt: post.images[2].alt,
+  alt: "Aerial view of a WSI Cleaning crew and work ute at a Brisbane townhouse complex",
 } as const;
+
+const WASH_IMAGE = {
+  src: "/images/guides/wsi-stormwater-drain-protection.webp",
+  width: 1600,
+  height: 1200,
+  alt: "Two WSI Cleaning technicians beside a stormwater drain on a concrete common driveway, with wash hoses laid out",
+} as const;
+
+function GuideFigure({
+  image,
+}: {
+  image: { src: string; width: number; height: number; alt: string };
+}) {
+  return (
+    <figure className="guide-figure">
+      <Image
+        src={image.src}
+        alt={image.alt}
+        width={image.width}
+        height={image.height}
+        sizes="(max-width: 860px) 100vw, 820px"
+      />
+    </figure>
+  );
+}
 
 type Block = {
   h: string;
@@ -56,6 +81,7 @@ type Anchor = {
   phrase: string;
   href: string;
   external?: boolean;
+  rel?: string;
 };
 
 const BLOCKS = post.body as Block[];
@@ -63,7 +89,10 @@ const BLOCKS = post.body as Block[];
 const ANCHORS: Anchor[] = [
   ...post.internal.map(([phrase, , href], index) => ({
     key: `internal-${index}`,
-    phrase,
+    phrase:
+      phrase === "strata and body corporate common areas"
+        ? "Strata and body corporate buildings"
+        : phrase,
     href: new URL(href).pathname,
   })),
   {
@@ -79,6 +108,27 @@ const ANCHORS: Anchor[] = [
     external: true,
   },
   {
+    key: "regulation",
+    phrase: "Environmental Protection Regulation 2019",
+    href: "https://www.legislation.qld.gov.au/view/html/inforce/current/sl-2019-0155",
+    external: true,
+    rel: "noopener",
+  },
+  {
+    key: "utilities",
+    phrase: "trade waste approval from Urban Utilities",
+    href: "https://urbanutilities.com.au/business/business-services/trade-waste",
+    external: true,
+    rel: "noopener",
+  },
+  {
+    key: "dulux",
+    phrase: "the wash cycle Dulux recommends for its Acratex facade coatings",
+    href: "https://asset.duluxgroup.com.au/asset/6446d2d1-a23c-4725-917e-8a3ec46fe021/Acratex-Exterior-Care-and-Maintenance-Guide.pdf",
+    external: true,
+    rel: "noopener",
+  },
+  {
     key: "phone",
     phrase: site.phoneDisplay,
     href: site.phoneHref,
@@ -90,19 +140,11 @@ const ANCHORS: Anchor[] = [
   },
 ];
 
-function confirmPattern() {
-  return /\[CONFIRM WITH CLIENT:[^\]]*\]/g;
-}
-
-function maskConfirms(text: string) {
-  return text.replace(confirmPattern(), (match) => " ".repeat(match.length));
-}
-
 function assignAnchors(nodes: { id: string; text: string }[]) {
   const claimed = new Set<string>();
   const byNode = new Map<string, Anchor[]>();
   for (const node of nodes) {
-    const masked = maskConfirms(node.text);
+    const masked = node.text;
     const assigned: Anchor[] = [];
     let cursor = 0;
     while (cursor < masked.length) {
@@ -152,33 +194,12 @@ const TEXT_NODES: { id: string; text: string }[] = [
 const ANCHORS_BY_NODE = assignAnchors(TEXT_NODES);
 
 function RichText({ id, text }: { id: string; text: string }) {
-  const anchors = ANCHORS_BY_NODE.get(id) ?? [];
-  const parts = text.split(confirmPattern());
-  const confirms = text.match(confirmPattern()) ?? [];
-  const nodes: ReactNode[] = [];
-
-  parts.forEach((part, index) => {
-    nodes.push(
-      <Fragment key={`${id}-t-${index}`}>
-        {linkify(part, anchors, `${id}-${index}`)}
-      </Fragment>,
-    );
-    const confirm = confirms[index];
-    if (confirm) {
-      nodes.push(
-        <mark key={`${id}-c-${index}`} className="confirm-pending">
-          {confirm}
-        </mark>,
-      );
-    }
-  });
-
-  return <>{nodes}</>;
+  return <>{linkify(text, ANCHORS_BY_NODE.get(id) ?? [], id)}</>;
 }
 
 function linkify(text: string, anchors: Anchor[], keyPrefix: string) {
   if (!text) return null;
-  const masked = maskConfirms(text);
+  const masked = text;
   const hits: { index: number; anchor: Anchor }[] = [];
   for (const anchor of anchors) {
     const index = masked.toLowerCase().indexOf(anchor.phrase.toLowerCase());
@@ -202,7 +223,10 @@ function linkify(text: string, anchors: Anchor[], keyPrefix: string) {
           key={key}
           href={hit.anchor.href}
           {...(hit.anchor.external
-            ? { target: "_blank", rel: "noopener noreferrer" }
+            ? {
+                target: "_blank",
+                rel: hit.anchor.rel ?? "noopener noreferrer",
+              }
             : {})}
         >
           {label}
@@ -237,7 +261,6 @@ function articleWordCount() {
   for (const item of post.faq) parts.push(item.q, item.a);
   return parts
     .join(" ")
-    .replace(confirmPattern(), "")
     .split(/\s+/)
     .filter((word) => word.length > 0).length;
 }
@@ -279,8 +302,8 @@ function articleSchema() {
     image: {
       "@type": "ImageObject",
       url: `${SITE_URL}${GUIDE.image}`,
-      width: 1280,
-      height: 1920,
+      width: 1600,
+      height: 1067,
       caption: GUIDE.imageAlt,
     },
     author: {
@@ -386,32 +409,19 @@ export default function CommercialBuildingWashingGuide() {
                   ))}
                 </ul>
               ) : null}
+              {block.h === "What a commercial exterior clean covers" ? (
+                <GuideFigure image={COVERS_IMAGE} />
+              ) : null}
+              {block.h === "How often should a commercial building be washed?" ? (
+                <GuideFigure image={STRATA_IMAGE} />
+              ) : null}
               {(block.after ?? []).map((paragraph, part) => (
                 <p key={`after-${index}-${part}`}>
                   <RichText id={`after-${index}-${part}`} text={paragraph} />
                 </p>
               ))}
               {block.h === "What happens to the wash water?" ? (
-                <figure className="guide-figure">
-                  <Image
-                    src={WASH_IMAGE.src}
-                    alt={WASH_IMAGE.alt}
-                    width={WASH_IMAGE.width}
-                    height={WASH_IMAGE.height}
-                    sizes="(max-width: 860px) 100vw, 820px"
-                  />
-                </figure>
-              ) : null}
-              {block.h === "How a WSI Cleaning commercial job runs" ? (
-                <figure className="guide-figure">
-                  <Image
-                    src={JOB_IMAGE.src}
-                    alt={JOB_IMAGE.alt}
-                    width={JOB_IMAGE.width}
-                    height={JOB_IMAGE.height}
-                    sizes="(max-width: 860px) 100vw, 820px"
-                  />
-                </figure>
+                <GuideFigure image={WASH_IMAGE} />
               ) : null}
             </section>
           ))}
@@ -422,7 +432,7 @@ export default function CommercialBuildingWashingGuide() {
             </Callout>
           </section>
 
-          <AuthorCard />
+          <AuthorCard name="WSI Cleaning team" />
 
           <section className="content-section service-faqs" id="faqs">
             <span className="eyebrow">

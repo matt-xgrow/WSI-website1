@@ -2312,16 +2312,6 @@ details.faq-item > summary::marker { content: ""; }
   height: auto;
   border-radius: 16px;
 }
-.guide-copy mark.confirm-pending {
-  background: #ffe14a;
-  color: #3d2a00;
-  font-weight: 700;
-  padding: 0.12em 0.4em;
-  border-radius: 4px;
-  box-shadow: 0 0 0 2px #e6a100;
-  box-decoration-break: clone;
-  -webkit-box-decoration-break: clone;
-}
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {

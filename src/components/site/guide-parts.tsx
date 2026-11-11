@@ -79,14 +79,18 @@ export function Callout({
   );
 }
 
-export function AuthorCard() {
+export function AuthorCard({
+  name = "The WSI Cleaning crew",
+}: {
+  name?: string;
+} = {}) {
   return (
     <aside className="author-card" aria-label="About the author">
       <span className="author-card-avatar" aria-hidden="true">
         W
       </span>
       <div className="author-card-body">
-        <p className="author-card-name">The WSI Cleaning crew</p>
+        <p className="author-card-name">{name}</p>
         <p className="author-card-role">
           Greater Brisbane exterior cleaning specialists
         </p>

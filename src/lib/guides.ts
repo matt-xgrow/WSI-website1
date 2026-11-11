@@ -143,8 +143,9 @@ export const GUIDES: Guide[] = [
     topic: "frequency",
     topicLabel: "Frequency",
     region: "Brisbane",
-    image: "/images/commercial-pressure.jpg",
-    imageAlt: "Commercial facade cleaning of an office building in Brisbane",
+    image: "/images/guides/wsi-hero-facade-soft-wash-brisbane.webp",
+    imageAlt:
+      "WSI Cleaning technician washing the upper facade of a two-storey townhouse block in Brisbane",
     readingMinutes: 6,
     published: "2026-11-11",
     updated: "2026-11-11",
