@@ -210,6 +210,16 @@ export function ServicesSection() {
           );
         })}
       </div>
+
+      {filter !== "residential" ? (
+        <p className="services-related">
+          Related guide:{" "}
+          <Link href="/guides/commercial-building-washing-brisbane/">
+            commercial building washing in Brisbane
+          </Link>
+          .
+        </p>
+      ) : null}
     </section>
   );
 }

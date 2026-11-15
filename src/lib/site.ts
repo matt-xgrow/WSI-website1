@@ -79,9 +79,9 @@ export const services = [
     slug: "pressure-washing",
     name: "Pressure Washing",
     eyebrow: "High-demand service",
-    title: "Pressure Washing Brisbane",
+    title: "Pressure Washing Brisbane | Driveways, Paths & Hard Surfaces",
     description:
-      "Professional pressure washing for driveways, paths, patios, pool surrounds and hard exterior surfaces where dirt, oil and organic growth have built up.",
+      "Professional pressure washing in Brisbane for driveways, paths, patios and hard exterior surfaces. Oil, mould and grime removed.",
     image: "/images/pressure-cleaning.jpg",
     intent: "For properties with concrete, pavers or outdoor areas that need a strong, even clean.",
     proof: "Right pressure for each surface, commercial-grade equipment, tidy finish.",
@@ -159,8 +159,9 @@ export const services = [
     slug: "commercial-cleaning",
     name: "Commercial Cleaning",
     eyebrow: "Business presentation",
-    title: "Commercial Building Cleaning Brisbane & SEQ",
-    description: "Professional washing for commercial building exteriors, warehouses, and shopfronts to maintain a pristine business image.",
+    title: "Commercial Pressure Cleaning Brisbane | Building Washing",
+    description:
+      "Commercial pressure cleaning and building washing in Brisbane for shopfronts, warehouses and facades, including after-hours work.",
     image: "/images/commercial-pressure.jpg",
     intent: "For business owners and property managers requiring exterior maintenance with minimal disruption to operations.",
     proof: "After-hours availability, EWP-licensed crew, and comprehensive safety protocols.",
@@ -173,9 +174,9 @@ export const locations = [
   {
     slug: "brisbane",
     name: "Brisbane",
-    title: "Exterior Cleaning Services Brisbane",
+    title: "Exterior Cleaning Brisbane | House, Driveway & Commercial",
     description:
-      "The primary service area for WSI Cleaning, with priority availability for house washing, pressure cleaning, window cleaning and gutter cleaning across Greater Brisbane, including Logan and Ipswich.",
+      "House washing, driveway pressure washing and commercial pressure washing across Greater Brisbane, Logan and Ipswich.",
     priority: "Primary focus area",
   },
 ];

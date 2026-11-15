@@ -1656,6 +1656,23 @@ details.faq-item > summary::marker { content: ""; }
   max-width: 880px;
 }
 
+.related-guide a,
+.services-related a {
+  color: var(--cyan-ink);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.related-guide a:hover,
+.services-related a:hover { color: var(--navy-ink); }
+.services-related {
+  margin: 28px 0 0;
+  max-width: 820px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-1);
+}
+
 .process-list {
   list-style: none;
   padding: 0;

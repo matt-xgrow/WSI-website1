@@ -19,9 +19,10 @@ export const BASELINE_META: Record<string, BaselineMeta> = {
       "Get professional Brisbane house washing from WSI Cleaning. Remove dirt, mould, grime and buildup with reliable exterior cleaning that keeps your home looking fresh.",
   },
   "/pressure-washing/": {
-    title: "Driveway Pressure Washing and Cleaning in Brisbane",
+    title: "Pressure Washing Brisbane | Driveways, Paths & Hard Surfaces",
     description:
-      "Get professional driveway pressure washing and Cleaning in Brisbane with WSI Cleaning. Remove dirt, stains, mould and grime to restore your driveway’s clean appearance.",
+      "Professional pressure washing in Brisbane for driveways, paths, patios and hard surfaces. Oil, mould and grime removed. Fixed-price quotes from WSI Cleaning.",
+    h1: "Pressure washing in Brisbane for driveways and hard surfaces",
   },
   "/driveway-cleaning/": {
     title: "Driveway Cleaning - WSI Cleaning",
@@ -42,15 +43,16 @@ export const BASELINE_META: Record<string, BaselineMeta> = {
     title: "Strata Cleaning - WSI Cleaning",
   },
   "/commercial-cleaning/": {
-    title: "Commercial Pressure Cleaning Brisbane | WSI Cleaning",
+    title: "Commercial Pressure Cleaning Brisbane | Building Washing",
     description:
-      "Get professional commercial pressure cleaning in Brisbane from WSI Cleaning. Remove dirt, grime and stains with reliable cleaning services for your business.",
-    h1: "Commercial Buildings",
+      "Commercial pressure cleaning and building washing in Brisbane for shopfronts, warehouses and facades, including after-hours work. Fixed-price quotes from WSI.",
+    h1: "Commercial pressure cleaning and building washing in Brisbane",
   },
   "/brisbane/": {
-    title: "Brisbane Exterior Cleaning Services | WSI Cleaning",
+    title: "Exterior Cleaning Brisbane | House, Driveway & Commercial",
     description:
-      "Get professional Brisbane exterior cleaning from WSI Cleaning. Keep your home or business looking fresh with reliable pressure washing and exterior cleaning.",
+      "House washing, driveway pressure washing and commercial pressure washing across Greater Brisbane, Logan and Ipswich. Fixed-price quotes from WSI Cleaning.",
+    h1: "Exterior cleaning in Brisbane",
   },
   "/about-us/": {
     title: "About Us - WSI Cleaning",
