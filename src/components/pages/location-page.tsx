@@ -49,6 +49,20 @@ export function locationMetadata(slug: string): Metadata {
   };
 }
 
+function LocationH1({ text, emphasis }: { text: string; emphasis: string }) {
+  const index = text.indexOf(emphasis);
+  if (index === -1) return <h1>{text}</h1>;
+  return (
+    <h1>
+      {[
+        text.slice(0, index),
+        <em key="place" className="hl-orange">{emphasis}</em>,
+        text.slice(index + emphasis.length),
+      ]}
+    </h1>
+  );
+}
+
 export function LocationPage({ slug }: { slug: string }) {
   const location = getLocation(slug);
   if (!location) notFound();
@@ -85,10 +99,13 @@ export function LocationPage({ slug }: { slug: string }) {
               <span className="eyebrow-dot" />
               {location.priority}
             </span>
-            <h1>
-              Exterior cleaning in{" "}
-              <em className="hl-orange">{location.name}</em>.
-            </h1>
+            <LocationH1
+              text={
+                baselineFor(canonical)?.h1 ??
+                `Exterior cleaning in ${location.name}`
+              }
+              emphasis={location.name}
+            />
             <p>{location.description}</p>
             <div className="hero-actions">
               <Link className="btn btn-orange btn-lg" href="#quote">
@@ -150,6 +167,15 @@ export function LocationPage({ slug }: { slug: string }) {
           {content?.intro.map((paragraph, i) => (
             <p key={i}>{paragraph}</p>
           ))}
+          {location.slug === "brisbane" ? (
+            <p className="related-guide">
+              Body corporate and commercial sites:{" "}
+              <Link href="/guides/commercial-building-washing-brisbane/">
+                commercial building washing guide
+              </Link>
+              .
+            </p>
+          ) : null}
         </section>
 
         {content && content.suburbs.length > 0 && (

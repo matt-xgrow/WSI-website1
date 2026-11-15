@@ -212,6 +212,26 @@ export function ServicePage({ slug }: { slug: string }) {
         {content && (
           <section className="content-section service-lead">
             <p className="service-lead-text">{content.lead}</p>
+            {service.slug === "commercial-cleaning" ? (
+              <p className="related-guide">
+                Related guide:{" "}
+                <Link href="/guides/commercial-building-washing-brisbane/">
+                  planning a commercial building wash in Brisbane
+                </Link>
+                .
+              </p>
+            ) : null}
+            {service.slug === "pressure-washing" ? (
+              <p className="related-guide">
+                Need the building washed, not just the driveway? See{" "}
+                <Link href="/guides/commercial-building-washing-brisbane/">
+                  commercial building washing in Brisbane
+                </Link>{" "}
+                or the{" "}
+                <Link href="/commercial-cleaning/">commercial cleaning</Link>{" "}
+                service.
+              </p>
+            ) : null}
           </section>
         )}
 
@@ -285,6 +305,15 @@ export function ServicePage({ slug }: { slug: string }) {
                 </li>
               ))}
             </ul>
+            {service.slug === "commercial-cleaning" ? (
+              <p className="related-guide">
+                Related guide:{" "}
+                <Link href="/guides/commercial-building-washing-brisbane/">
+                  how often to wash a commercial building
+                </Link>
+                .
+              </p>
+            ) : null}
           </section>
         )}
 
