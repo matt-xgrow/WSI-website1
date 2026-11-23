@@ -26,18 +26,33 @@ import { getService, locations, site, SITE_URL } from "@/lib/site";
 
 import { baselineFor } from "@/lib/seo/baseline-meta";
 
+/**
+ * Hero copy in site.ts `description` is visible on the page and on location
+ * cards. These services take the social description from baseline meta so the
+ * snippet can match the meta description without rewriting that copy.
+ */
+const OG_DESCRIPTION_FROM_BASELINE = new Set([
+  "house-washing",
+  "pressure-washing",
+  "driveway-cleaning",
+]);
+
 export function serviceMetadata(slug: string): Metadata {
   const service = getService(slug);
   if (!service) return {};
   const canonical = `/${service.slug}/`;
   const baseline = baselineFor(canonical);
+  const description = baseline?.description ?? service.description;
+  const ogDescription = OG_DESCRIPTION_FROM_BASELINE.has(service.slug)
+    ? description
+    : service.description;
   return {
     title: { absolute: baseline?.title ?? service.title },
-    description: baseline?.description ?? service.description,
+    description,
     alternates: { canonical },
     openGraph: {
       title: service.title,
-      description: service.description,
+      description: ogDescription,
       url: canonical,
       images: [{ url: service.image }],
       type: "website",
@@ -45,7 +60,7 @@ export function serviceMetadata(slug: string): Metadata {
     twitter: {
       card: "summary_large_image",
       title: service.title,
-      description: service.description,
+      description: ogDescription,
       images: [service.image],
     },
   };

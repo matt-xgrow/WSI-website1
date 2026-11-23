@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { JobGallery } from "@/components/site/job-gallery";
 import { FAQ } from "@/components/site/faq";
 import { Footer } from "@/components/site/footer";
@@ -13,7 +14,23 @@ import { StickyCTA } from "@/components/site/sticky-cta";
 import { TopBar } from "@/components/site/top-bar";
 import { WhyUs } from "@/components/site/why-us";
 import { JsonLd } from "@/components/seo/json-ld";
+import { BASELINE_META } from "@/lib/seo/baseline-meta";
 import { breadcrumbSchema, faqPageSchema, graph } from "@/lib/seo/schema";
+
+const homeMeta = BASELINE_META["/"];
+
+export const metadata: Metadata = {
+  openGraph: {
+    title: homeMeta.title,
+    description: homeMeta.description,
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: homeMeta.title,
+    description: homeMeta.description,
+    images: ["/images/house-wash.jpg"],
+  },
+};
 
 export default function Home() {
   const homeSchema = graph(

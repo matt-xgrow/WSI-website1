@@ -9,12 +9,13 @@ import { TopBar } from "@/components/site/top-bar";
 import { JsonLd } from "@/components/seo/json-ld";
 import { breadcrumbSchema, graph } from "@/lib/seo/schema";
 import { GUIDES } from "@/lib/guides";
+import { BASELINE_META } from "@/lib/seo/baseline-meta";
 import { CONTENT_UPDATED, SITE_URL } from "@/lib/site";
 
 const PAGE_URL = `${SITE_URL}/guides/`;
-const TITLE = "Guides - WSI Cleaning";
-const DESCRIPTION =
-  "Pricing guides, method comparisons and frequency calendars for house washing, pressure cleaning and window cleaning across Greater Brisbane. Written from real jobs — not generic templates.";
+const guidesMeta = BASELINE_META["/guides/"];
+const TITLE = guidesMeta.title;
+const DESCRIPTION = guidesMeta.description ?? "";
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
