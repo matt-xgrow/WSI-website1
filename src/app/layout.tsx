@@ -69,8 +69,12 @@ export const metadata: Metadata = {
     google: "TIm6oNA-_X5XqEUOLnBjYqJsBrpqJEHKYlGWrw5xHF4",
   },
   openGraph: {
-    title: homeMeta.title,
-    description: homeMeta.description,
+    // Pages that do not set their own Open Graph inherit this. Keep the
+    // previous homepage snippet here so those pages do not pick up the new
+    // homepage title. The homepage overrides title and description in page.tsx.
+    title: "Commercial & Residential Exterior Pressure Cleaning In Brisbane",
+    description:
+      "Professional commercial and residential exterior pressure cleaning in Brisbane. WSI Cleaning removes dirt, mould, grime and stains for a cleaner property.",
     url: `${SITE_URL}/`,
     siteName: site.name,
     images: [

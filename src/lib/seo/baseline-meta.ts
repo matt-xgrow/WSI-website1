@@ -9,23 +9,25 @@ export type BaselineMeta = {
 
 export const BASELINE_META: Record<string, BaselineMeta> = {
   "/": {
-    title: "Commercial & Residential Exterior Pressure Cleaning In Brisbane",
+    title: "House Washing & Pressure Cleaning Brisbane | WSI",
     description:
-      "Professional commercial and residential exterior pressure cleaning in Brisbane. WSI Cleaning removes dirt, mould, grime and stains for a cleaner property.",
+      "House washing and pressure cleaning in Brisbane. Soft wash for walls, high pressure for driveways. Rated 4.9 on Google. Get a fixed-price quote.",
   },
   "/house-washing/": {
-    title: "Brisbane House Washing Services | WSI Cleaning Experts",
+    title: "House Washing Brisbane | Soft Wash for Walls & Eaves",
     description:
-      "Get professional Brisbane house washing from WSI Cleaning. Remove dirt, mould, grime and buildup with reliable exterior cleaning that keeps your home looking fresh.",
+      "House washing in Brisbane with a low-pressure soft wash for render, paint, brick and weatherboard. Remove mould, algae and grime. Get a fixed-price quote.",
   },
   "/pressure-washing/": {
     title: "Pressure Washing Brisbane | Driveways, Paths & Hard Surfaces",
     description:
-      "Professional pressure washing in Brisbane for driveways, paths, patios and hard surfaces. Oil, mould and grime removed. Fixed-price quotes from WSI Cleaning.",
+      "Pressure cleaning and washing in Brisbane for driveways, paths, patios and hard surfaces. Oil, mould and grime removed. Get a fixed-price quote from WSI.",
     h1: "Pressure washing in Brisbane for driveways and hard surfaces",
   },
   "/driveway-cleaning/": {
-    title: "Driveway Cleaning - WSI Cleaning",
+    title: "Driveway Cleaning Brisbane | Oil Stains & Tyre Marks",
+    description:
+      "Driveway cleaning in Brisbane for oil stains, tyre marks, dirt and mould on concrete, exposed aggregate and pavers. Get a fixed-price quote from WSI.",
   },
   "/roof-cleaning/": {
     title: "Roof Cleaning - WSI Cleaning",
@@ -61,7 +63,9 @@ export const BASELINE_META: Record<string, BaselineMeta> = {
     title: "Gallery - WSI Cleaning",
   },
   "/guides/": {
-    title: "Guides - WSI Cleaning",
+    title: "Exterior Cleaning Guides Brisbane | Costs & Methods",
+    description:
+      "House washing and pressure cleaning guides for Brisbane: costs, methods and when to book. Written from real WSI jobs, then get a fixed-price quote.",
   },
   "/privacy-policy/": {
     title: "Privacy Policy - WSI Cleaning",

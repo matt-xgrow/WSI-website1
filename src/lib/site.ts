@@ -66,7 +66,7 @@ export const services = [
     slug: "house-washing",
     name: "House Washing",
     eyebrow: "Priority service",
-    title: "House Washing Brisbane",
+    title: "House Washing Brisbane | Soft Wash for Walls & Eaves",
     description:
       "Soft washing for rendered, painted, brick and weatherboard homes, built to remove mould, algae and grime without blasting delicate surfaces.",
     image: "/images/house-wash.jpg",
@@ -126,7 +126,7 @@ export const services = [
     slug: "driveway-cleaning",
     name: "Driveway Cleaning",
     eyebrow: "Curb appeal boost",
-    title: "Driveway Cleaning Brisbane",
+    title: "Driveway Cleaning Brisbane | Oil Stains & Tyre Marks",
     description: "High-pressure driveway cleaning to remove oil stains, tyre marks, dirt, and mould from concrete, exposed aggregate, and pavers.",
     image: "/images/pressure-cleaning.jpg",
     intent: "For properties needing an instant facelift to their entrance or removing slippery moss and algae.",
