@@ -58,7 +58,7 @@ export const CONTENT_UPDATED = {
   locations: "2026-06-10",
   gallery: "2026-06-10",
   about: "2026-06-10",
-  guides: "2026-11-11",
+  guides: "2026-11-25",
 } as const;
 
 export const services = [
@@ -132,6 +132,7 @@ export const services = [
     intent: "For properties needing an instant facelift to their entrance or removing slippery moss and algae.",
     proof: "Surface cleaners for even results, commercial-grade pressure washers, and specialized stain treatments.",
     tags: ["driveway-cleaning"],
+    updated: "2026-11-25",
   },
   {
     slug: "solar-panel-cleaning",

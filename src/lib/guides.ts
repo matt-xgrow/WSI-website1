@@ -84,7 +84,28 @@ export const GUIDES: Guide[] = [
       "Pressure washing a concrete driveway with a rotary surface cleaner in Brisbane",
     readingMinutes: 8,
     published: "2026-05-08",
-    updated: "2026-05-12",
+    updated: "2026-11-25",
+  },
+  {
+    slug: "driveway-stain-removal-brisbane",
+    title: "Driveway Stain Removal Brisbane: Oil, Rust & Tyre Marks | WSI",
+    headline:
+      "Driveway Stain Removal in Brisbane: Oil, Rust and Tyre Marks",
+    description:
+      "How to remove oil, rust and tyre marks from a Brisbane driveway: what works, what to avoid, when stains won't fully lift, and when to call a pro.",
+    excerpt:
+      "Most driveway stains in Brisbane are oil, rust or tyre rubber, and each needs a different treatment. Fresh oil lifts best when it is blotted straight away and degreased before pressure washing.",
+    category: "pressure-washing",
+    categoryLabel: "Pressure Washing",
+    topic: "method",
+    topicLabel: "Method",
+    region: "Brisbane",
+    image: "/images/jobs/driveway-pressure-cleaning-brisbane-aerial.webp",
+    imageAlt:
+      "Aerial view of a WSI Cleaning technician pressure washing a concrete driveway beside the work ute in Brisbane",
+    readingMinutes: 8,
+    published: "2026-11-25",
+    updated: "2026-11-25",
   },
   {
     slug: "mould-vs-lichen-vs-algae",

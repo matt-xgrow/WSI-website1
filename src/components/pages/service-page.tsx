@@ -232,6 +232,15 @@ export function ServicePage({ slug }: { slug: string }) {
                 service.
               </p>
             ) : null}
+            {service.slug === "driveway-cleaning" ? (
+              <p className="related-guide">
+                Oil, rust and tyre marks: see{" "}
+                <Link href="/guides/driveway-stain-removal-brisbane/">
+                  driveway stain removal in Brisbane
+                </Link>
+                .
+              </p>
+            ) : null}
           </section>
         )}
 
