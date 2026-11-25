@@ -84,7 +84,7 @@ export const GUIDES: Guide[] = [
       "Pressure washing a concrete driveway with a rotary surface cleaner in Brisbane",
     readingMinutes: 8,
     published: "2026-05-08",
-    updated: "2026-05-12",
+    updated: "2026-11-25",
   },
   {
     slug: "driveway-stain-removal-brisbane",

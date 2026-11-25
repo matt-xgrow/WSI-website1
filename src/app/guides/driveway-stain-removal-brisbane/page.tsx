@@ -38,10 +38,10 @@ const HERO_IMAGE = {
 } as const;
 
 const JOB_IMAGE = {
-  src: "/images/jobs/driveway-pressure-cleaning-brisbane-townhouse.webp",
+  src: "/images/guides/wsi-strata-complex-aerial.webp",
   width: 1600,
-  height: 1067,
-  alt: "WSI Cleaning technician on a concrete driveway in front of a Brisbane townhouse garage",
+  height: 1200,
+  alt: "Aerial view of a WSI Cleaning technician pressure washing a concrete driveway in front of a townhouse garage, with the work ute parked on the driveway",
 } as const;
 
 const TYRE_IMAGE = {

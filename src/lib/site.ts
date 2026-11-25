@@ -132,6 +132,7 @@ export const services = [
     intent: "For properties needing an instant facelift to their entrance or removing slippery moss and algae.",
     proof: "Surface cleaners for even results, commercial-grade pressure washers, and specialized stain treatments.",
     tags: ["driveway-cleaning"],
+    updated: "2026-11-25",
   },
   {
     slug: "solar-panel-cleaning",

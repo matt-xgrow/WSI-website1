@@ -38,7 +38,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const servicePages: MetadataRoute.Sitemap = services.map((service) => ({
     url: url(`/${service.slug}/`),
-    lastModified: CONTENT_UPDATED.services,
+    lastModified:
+      "updated" in service ? service.updated : CONTENT_UPDATED.services,
     changeFrequency: "monthly" as const,
     priority:
       service.slug === "house-washing" || service.slug === "pressure-washing"
