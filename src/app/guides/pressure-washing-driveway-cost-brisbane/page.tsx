@@ -374,6 +374,13 @@ export default function PressureWashingDrivewayCostBrisbaneGuide() {
             paver joints or tyre marks set into shaded sections, there&rsquo;s
             a line-item surcharge for the extra treatment.
           </p>
+          <p>
+            For how oil, rust and tyre marks are treated, see{" "}
+            <Link href="/guides/driveway-stain-removal-brisbane/">
+              driveway stain removal in Brisbane
+            </Link>
+            .
+          </p>
 
           <div className="comparison-table-wrap">
             <table className="comparison-table">

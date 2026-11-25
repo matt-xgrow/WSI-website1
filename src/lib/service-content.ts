@@ -158,7 +158,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       { title: "Stain pre-treatment", body: "Oil, rust and tyre stains are degreaser-treated and dwelled before the main pass." },
       { title: "Surface cleaner pass", body: "Rotary surface cleaner runs in overlapping strips for even pressure — no zebra striping, no missed lines." },
       { title: "Edge detail", body: "Wand-detail along edges, expansion joints, around drains and against walls." },
-      { title: "Final rinse", body: "Run-off is rinsed off the property and into the street drain." },
+      { title: "Final rinse", body: "Drains are protected and run-off is kept out of the stormwater system." },
       { title: "Optional joint re-sand (pavers)", body: "If you've booked re-sanding, dry sand is brushed into the joints after the surface dries." },
     ],
     surfaces: [
